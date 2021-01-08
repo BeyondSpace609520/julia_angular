@@ -1,0 +1,48 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+content
+  .locale.form-group
+    label(translate) BackEnd_WikiLanguage.EBP_Locale
+    select([formControl]="locale")
+      option(*ngFor="let lang of locales", [value]="lang.value", translate) BackEnd_WikiLanguage.{{lang.name}}
+
+  .features.checkboxes
+    .form-check(*ngFor="let feature of features; let index = index")
+      input([id]="'feature-checkbox' + index", type="checkbox", [(ngModel)]="feature.checked")
+      label([attr.for]="'feature-checkbox' + index", translate) {{feature.name}}
+
+  .categories.checkboxes
+    h3(translate) BackEnd_WikiLanguage.CPA_Categories
+    .form-check(*ngFor="let category of categories; let index = index")
+      input([id]="'category-checkbox' + index", type="checkbox", [(ngModel)]="category.checked")
+      label([attr.for]="'category-checkbox' + index", translate) {{category.name}}
+
+  .classification(*ngIf="portal")
+    h3(translate) BackEnd_WikiLanguage.CPA_Class
+    .inputs
+      app-class-selector(label="BackEnd_WikiLanguage.CPA_ClassStars", ngDefaultControl, [(ngModel)]="portal.stars", [direction]="'right'")
+      .form-check
+        input(id="superior-checkbox", type="checkbox", [(ngModel)]="portal.starsSuperior")
+        label(for="superior-checkbox", translate) Superior
+      app-class-selector(label="BackEnd_WikiLanguage.CPA_ClassEdelweiss", ngDefaultControl, [(ngModel)]="portal.edelweiss")
+      app-class-selector(label="BackEnd_WikiLanguage.CPA_ClassFlowers", ngDefaultControl, [(ngModel)]="portal.flowers")
+    .textareas
+      app-textarea(label="BackEnd_WikiLanguage.CPA_ShortDesc", ngDefaultControl, [(ngModel)]="portal.shortDesc", max="175")
+      app-textarea(label="BackEnd_WikiLanguage.CPA_WelcomeText", ngDefaultControl, [(ngModel)]="portal.welcomeText", max="500")
+      app-textarea(label="BackEnd_WikiLanguage.CPA_LongDescWinter", ngDefaultControl, [(ngModel)]="portal.longDescWinter", max="500")
+      app-textarea(label="BackEnd_WikiLanguage.CPA_LongDescSummer", ngDefaultControl, [(ngModel)]="portal.longDescSummer", max="500")
+
+  .image1(*ngIf="portal")
+    app-image-uploader(
+      label="BackEnd_WikiLanguage.CPA_Pic1",
+      [image]="portal.images[0]",
+      (update)="load()"
+    )
+
+  .image2(*ngIf="portal")
+    app-image-uploader(
+      label="BackEnd_WikiLanguage.CPA_Pic2",
+      [image]="portal.images[1]",
+      (update)="load()"
+    )
+.buttons-container
+  button.btn.btn-secondary((click)="save()", translate) BackEnd_WikiLanguage.generic_Save

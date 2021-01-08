@@ -1,0 +1,39 @@
+<div class="loading-wrapper" *ngIf="isLoading | async; else content">
+  <app-loading></app-loading>
+</div>
+<ng-template #content>
+  <ng-container *ngIf="!noRoomsInThisEntityGroup; else noRoomsInThisEntityGroupContent">
+    <div class="row">
+      <div class="col-8 room">
+        <app-loading *ngIf="isLoadingRoom | async; else roomContent"></app-loading>
+        <ng-template #roomContent>
+          <app-pricing-test-console-room
+            [categoryModal]="modalType === 'category'"
+            [actualRoomId]="actualRoomId"
+            [categoryRooms]="categoryRooms"
+            [period]="period"
+            [serviceTypes]="serviceTypes"
+            [minPerson]="minPerson"
+            [maxPerson]="maxPerson"
+            [maxCots]="maxCots"
+            [maxGarages]="maxGarages"
+            [onChangeDone]="refreshShoppingCartIsDone"
+            (onChange)="refreshData($event)"
+          ></app-pricing-test-console-room>
+        </ng-template>
+      </div>
+      <div class="col-4 shopping-cart">
+        <app-loading *ngIf="isLoadingShoppingCart | async; else shoppingCartContent"></app-loading>
+        <ng-template #shoppingCartContent>
+          <app-pricing-test-console-shopping-cart
+            [prices]="prices"
+            [nightsStay]="nightsStay"
+          ></app-pricing-test-console-shopping-cart>
+        </ng-template>
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #noRoomsInThisEntityGroupContent>
+    {{ noRoomsInThisEntityGroup }}
+  </ng-template>
+</ng-template>

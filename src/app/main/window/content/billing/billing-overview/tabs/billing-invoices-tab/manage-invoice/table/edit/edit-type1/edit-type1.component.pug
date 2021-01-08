@@ -1,0 +1,7 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+.form-group
+  label(translate) BackEnd_WikiLanguage.BW_InvoiceDetailBillTextLabel
+  input(readonly, [value]="detail.invoiceText")
+.form-group
+  label(translate) BackEnd_WikiLanguage.BV_freetext
+  input([formControl]="alternativeText")

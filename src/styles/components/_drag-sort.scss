@@ -1,0 +1,29 @@
+@import "variables";
+
+[appDragSortItem] {
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+[appDragSortItem] * {
+  pointer-events: none;
+}
+[appDragSortItem][draggable="true"] {
+  cursor: grab;
+}
+[appDragSortItem][draggable="true"]:active {
+  cursor: grabbing !important;
+}
+[appDragSortItem].dragging {
+  opacity: 0.75;
+  transform: scale(0.9);
+}
+[appDragSortItem].item-over:not(.dragging):after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: $primary;
+}

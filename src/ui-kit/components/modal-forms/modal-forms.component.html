@@ -1,0 +1,134 @@
+<div
+  class="modal-header"
+  *ngIf="!hideHeader"
+  [class.border-none]="headerWithoutBorder"
+  [class.inverse-background]="inverseBackgroundColors"
+  [class.header-with-element]="modalHeaderWithElement"
+>
+  <img src="assets/img/Julia@2x.png" alt="julia" class="julia-img rounded-circle">
+  <div
+    *ngIf="pages > 1"
+    class="pages"
+  >
+    <button
+      type="button"
+      class="btn btn-secondary btn-sm"
+      (click)="onGoToPage(currentPage - 1)"
+      [ngbTooltip]="'general.back.text' | translate" placement="bottom" container="body"
+    ><i class="mdi mdi-chevron-left mdi-18"></i></button>
+    <span class="cancellationCounter">{{ currentPage }} / {{ pages }}</span>
+    <button
+      type="button"
+      class="btn btn-secondary btn-sm"
+      (click)="onGoToPage(currentPage + 1)"
+      [ngbTooltip]="'general.next.text' | translate" placement="bottom" container="body"
+    ><i class="mdi mdi-chevron-right mdi-18"></i>
+    </button>
+  </div>
+  <h4 class="modal-title" [ngClass]="{'bg_blue': modalType === 2}">
+    <span class="icon">
+      <a
+        *ngIf="academyScreenId; else headerIcon"
+        class="cursor-pointer"
+        (click)="openReference()"
+        [ngbTooltip]="'BackEnd_WikiLanguage.AcademyLinkToolTip' | translate"
+      ><ng-container *ngTemplateOutlet="headerIcon"></ng-container></a>
+      <ng-template #headerIcon>
+        <i
+          class="mdi"
+          [class.mdi-alert-circle]="modalType === 1 && !academyScreenId"
+          [class.mdi-information]="modalType === 2 && !academyScreenId"
+          [class.mdi-help-circle]="academyScreenId"
+        ></i>
+      </ng-template>
+    </span>
+    <span class="title" [innerHTML]="textHead | translate : textHeadParams"></span>
+  </h4>
+  <button class="close" [attr.aria-label]="'general.buttonClose.text' | translate" (click)="cancelIconWithoutClosing ? onCancelWithoutClosing() : activeModal.dismiss('Cross click')" *ngIf="closable">
+    <i class="mdi mdi-close"></i>
+  </button>
+</div>
+<div
+  class="modal-body"
+  [class.inverse-background]="inverseBackgroundColors"
+  [class.full-width]="fullWidthModalBody"
+  [class.white-background]="whiteModalBody && !inverseBackgroundColors"
+  [class.top-border]="modalBodyTopBorder"
+>
+  <ng-template #bodyContainer></ng-template>
+</div>
+<div class="modal-footer" [ngClass]="{'inverse-background': inverseBackgroundColors}">
+  <div class="price-calculation-info" *ngIf="priceCalculationInfo">
+    <span [translate]="priceCalculationInfo.nightCount < 2 ? 'offerwizard.priceForNightsSingular.text' : 'offerwizard.priceForNightsPlural.text'" [translateParams]="{nights: priceCalculationInfo.nightCount}"></span>
+    <span>:&nbsp;&nbsp;{{ formatService.priceFormat(priceCalculationInfo.roomTotalPrice) }}</span>
+    <i
+      *ngIf="priceCalculationInfo.cmOrigPrice !== null && priceCalculationInfo.cmOrigPrice !== undefined"
+      class="warning-icon mdi mdi-alert-circle"
+      [ngbTooltip]="channelPriceWarningTooltipContent"
+    ></i>
+    <ng-template #channelPriceWarningTooltipContent>
+      <span [innerHtml]="'offerwizard.shoppingCartChannelBookingWarning.text' | translate:{price:formatService.priceFormat(priceCalculationInfo.cmOrigPrice)}"></span>
+    </ng-template>
+  </div>
+  <div class="modal-footer-buttons">
+    <ng-template #modalFormsSavePopOverContent>
+      <div *ngIf="saveButtonPopOver">
+        <div *ngFor="let msg of saveButtonPopOver">
+          <strong [translate]="msg.label" *ngIf="msg.label"></strong><span *ngIf="msg.label">: </span><span [translate]="msg.text"></span>
+        </div>
+      </div>
+    </ng-template>
+    <div
+      [hidden]="hideCheckboxForPrimaryButton"
+      *ngIf="checkboxForPrimaryButton && checkboxForPrimaryButtonLabel"
+      class="checkbox-for-primary-button-wrapper"
+    >
+      <input type="checkbox" (change)="checkboxChange($event.target.checked)" id="checkbox-for-primary-button">
+      <label for="checkbox-for-primary-button"><strong>{{ checkboxForPrimaryButtonLabel | translate }}</strong></label>
+    </div>
+    <div
+      class="d-inline-block position-relative"
+      [popoverTitle]="savePopOverTitle | translate"
+      [ngbPopover]="modalFormsSavePopOverContent"
+      container="body"
+      triggers="manual"
+      #modalFormsSavePopOver="ngbPopover"
+      (mouseenter)="!formStatus && saveButtonPopOver && modalFormsSavePopOver.open()"
+      (mouseleave)="modalFormsSavePopOver.close()">
+      <button
+        *ngIf="extraButton"
+        type="button"
+        class="btn {{ extraButtonColor }}"
+        (click)="onSave(true)"
+        [disabled]="isSaveProcessing"
+      >
+        <i class="mdi {{ extraButtonIcon }} mdi-18 align-middle" *ngIf="extraButtonIcon && extraButtonIconPosition === 'left'"></i>
+        <span [ngClass]="{'align-middle with-icon': extraButtonIcon}" [translate]="extraButtonLabel">Back</span>
+        <i class="mdi {{ extraButtonIcon }} mdi-18 align-middle" *ngIf="extraButtonIcon && extraButtonIconPosition === 'right'"></i>
+      </button>
+      <div class="button-wrap">
+        <div class="loadingOnButton" [ngClass]="{'run': isSaveProcessing}">
+          <app-loading></app-loading>
+        </div>
+        <button
+          *ngIf="!hidePrimaryButton"
+          type="button"
+          class="btn ml-2 {{ primaryButtonColor }}"
+          [disabled]="!formStatus || isSaveProcessing"
+          (click)="onSave()"
+        >
+          <i class="mdi {{ buttonSaveIcon }} mdi-18 align-middle" *ngIf="buttonSaveIcon && primaryButtonIconPosition === 'left'"></i>
+          <span [ngClass]="{'align-middle with-icon': buttonSaveIcon}" [translate]="buttonSaveLabel">Ok</span>
+          <i class="mdi {{ buttonSaveIcon }} mdi-18 align-middle" *ngIf="buttonSaveIcon && primaryButtonIconPosition === 'right'"></i>
+        </button>
+      </div>
+    </div>
+    <button
+      *ngIf="!hideCancelButton"
+      type="button"
+      class="btn btn-secondary ml-2"
+      (click)="cancelWithoutClosing ? onCancelWithoutClosing() : activeModal.close(false)"
+      [translate]="buttonCancelLabel"
+    >Cancel</button>
+  </div>
+</div>

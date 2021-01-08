@@ -1,0 +1,106 @@
+@import "_mixins"
+@import "_variables"
+
+\:host
+  display: flex
+  flex-direction: column
+  height: 98%
+  border: 1px solid #E0E0E0
+  border-top: unset
+
+app-settings-button
+  position: absolute
+  right: 10px
+
+select.outstanding
+  width: auto
+
+.grid
+  display: grid
+  grid-gap: 0.2em 2em
+  padding: 1em
+  +mb(3)
+  grid-template-columns: 2fr 1fr 1fr 1fr
+  grid-template-rows: auto
+  grid-template-areas: "input type submit" "date outstanding checkbox"
+  @include media-breakpoint-down(sm)
+    grid-template-areas: "input input input" "type type submit" "date date date" "outstanding checkbox checkbox"
+
+.input-section
+  grid-area: input
+
+.date-section
+  grid-area: date
+  .form-group
+    @include make-col-ready()
+    @include media-breakpoint-up(lg)
+      @include make-col(4)
+    @include media-breakpoint-down(md)
+      @include make-col(6)
+    &:first-child
+      @include media-breakpoint-down(md)
+        @include make-col(12)
+
+.type-section
+  grid-area: type
+
+.outstanding-section
+  grid-area: outstanding
+
+.submit-section
+  grid-area: submit
+
+.checkbox-section
+  grid-area: checkbox
+  display: flex
+  flex-direction: column
+  justify-content: flex-end
+  .form-group:first-child
+    +mb(0)
+
+.form-group.no-label
+  padding-top: 1.8em
+
+.toolbar-search
+  width: auto
+
+virtual-scroller
+  height: 100%
+  min-height: 110px
+  +mx(3)
+
+.table
+  height: 100%
+  overflow: auto
+  .secondary
+    font-style: italic
+  .primary
+    font-weight: bold
+  .deleted
+    color: red
+    font-weight: bold
+  .number
+    text-align: right
+    padding: unset
+  td.number
+    padding-right: 0.3rem
+
+.bold
+  font-weight: bold
+
+.buttons
+  display: flex
+  justify-content: space-between
+  +m(3)
+  .column
+    display: flex
+    flex-direction: column
+    .btn-secondary
+      +mb(2)
+
+.wrapper-icons
+  display: flex
+
+  i
+    margin: 0, 5px
+    cursor: pointer

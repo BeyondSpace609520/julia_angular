@@ -1,0 +1,24 @@
+app-manage-list.with-tooltip(
+  (langChange)="load($event)",
+  (new)="addItem(+$event)",
+  (save)="save(+$event)",
+  [disabled]="isLoading | async",
+  [onlyImportant]="true"
+)
+  i.mdi.mdi-exclamation(*ngIf="form && !form.valid", [ngbTooltip]="'BackEnd_WikiLanguage.missingSourceTranslation' | translate", placement="right")
+app-loading.loading-bar(*ngIf="isLoading | async")
+br
+form(*ngIf="form", [formGroup]="form")
+  fieldset(formArrayName="formArray")
+    .item.form-group(*ngFor="let source of sources; let i = index")
+      .form-check([ngClass]="{ 'pl-0': isType1(source)}")
+        input(
+          *ngIf="!isType1(source) && source.cbs_customerChannel_id === null",
+          [id]="source.cbs_description+'checkbox'",
+          type="checkbox",
+          [formControl]="groupArray[i].get('checkbox')"
+        )
+        label([for]="source.cbs_description+'checkbox'") {{source.cbs_description}}
+      .form-group
+        input(*ngIf="!isType1(source)", [formControl]="groupArray[i].get('value')")
+        i.mdi.mdi-close(*ngIf="!isType1(source) && source.cbs_isDefaultSource == 'off'", (click)="deleteItem(source)")

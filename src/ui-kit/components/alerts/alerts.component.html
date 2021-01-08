@@ -1,0 +1,26 @@
+<div class="alert-container">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-6 offset-sm-6">
+        <div
+          *ngFor="let alert of alerts"
+          class="alert"
+          role="alert"
+          [ngClass]="{
+            'alert-success': alert.type === 0,
+            'alert-info':    alert.type === 1,
+            'alert-warning': alert.type === 2,
+            'alert-danger':  alert.type === 3,
+            'alert-dismissible': alert.dismissible
+            }"
+          [@flyInOut]="'in'"
+        >
+          <div *ngIf="alert.dismissible" class="close" data-dismiss="alert" aria-label="Close" (click)="onDismiss(alert)">
+            <i class="mdi mdi-close"></i>
+          </div>
+          <ng-container *ngIf="alert.type === 3"><i class="mdi mdi-alert-circle"></i>&nbsp;&nbsp;</ng-container>{{ alert.msg | translate }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

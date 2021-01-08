@@ -1,0 +1,35 @@
+$size: 96px
+
+\:host
+  display: flex
+  align-items: center
+  justify-content: center
+  position: absolute
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  z-index: 100
+
+.logo-with-animation
+  display: block
+  position: relative
+  animation: eb-heart 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1)
+
+  img
+    width: $size
+    height: $size
+
+@keyframes eb-heart
+  0%
+    transform: scale(0.95)
+  5%
+    transform: scale(1.1)
+  39%
+    transform: scale(0.85)
+  45%
+    transform: scale(1)
+  60%
+    transform: scale(0.95)
+  100%
+    transform: scale(0.9)

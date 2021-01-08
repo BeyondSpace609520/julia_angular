@@ -1,0 +1,17 @@
+form.grid-area(*ngIf="form", [formGroup]="form")
+  .form-group
+    label.form-control-label(translate) BackEnd_WikiLanguage.AG_Name
+    input.form-control(formControlName="name")
+  .form-group
+    label.form-control-label
+      span(translate) BackEnd_WikiLanguage.CS_ECOP_StartDate
+      span([innerHTML]="' - '")
+      span(translate) BackEnd_WikiLanguage.CS_ECOP_EndDate
+    app-datepicker-input(
+      placement="bottomLeft",
+      [mandatory]="true",
+      [date]="form.get('startDate').value",
+      (dateChange)="form.get('startDate').setValue($event);",
+      [range]="form.get('endDate').value",
+      (rangeChange)="form.get('endDate').setValue($event);"
+    )

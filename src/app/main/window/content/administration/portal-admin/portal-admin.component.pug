@@ -1,0 +1,9 @@
+app-tabs(
+  *ngIf="tabSettings.buttons.length",
+  [settings]="tabSettings",
+  [(selected)]="activeTabId"
+)
+.content
+  app-loading.loading-bar(*ngIf="isLoading | async")
+  app-portals(*ngIf="activeTabId === 'portals'")
+  app-categories(*ngIf="activeTabId === 'categories'")

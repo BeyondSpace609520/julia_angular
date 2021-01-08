@@ -1,0 +1,21 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+app-invoice-form(#form, [invoice]="invoice", (invoiceChange)="invoice = $event", (valid)="onChange($event)")
+app-invoice-details-table([invoice]="invoice", [billing]="billing", (refresh)="refreshInvoice()")
+.row(*ngIf="invoice")
+  .col-3.billing-text
+    .form-group
+      label(translate) BackEnd_WikiLanguage.BW_BillText001
+      textarea([formControl]="form.getExternalField('billingText')")
+  .col-7.payments
+    .form-group
+      button.btn.btn-link.btn-success((click)="addPayment()")
+        i.mdi.mdi-plus-outline
+      label(translate) BackEnd_WikiLanguage.BW_Payments
+    app-invoice-payments([invoice]="invoice", (refresh)="refreshInvoice()")
+    .total(appFormatNumber, [ngClass]="{ highlight: totalPayments > 0 }", , [innerText]="totalPayments")
+  .col-2
+    .total(appFormatNumber, [innerText]="invoice.totalGross")
+    .total(appFormatNumber, [ngClass]="{ highlight: totalPayments > 0 }", [innerText]="-totalPayments")
+    .total(appFormatNumber, [innerText]="invoice.totalGross - totalPayments")
+.bottom-buttons(*ngIf="invoice")
+  app-invoice-additional-actions([invoice]="invoice", [billing]="billing", [form]="form", (refresh)="refreshInvoice(true)")

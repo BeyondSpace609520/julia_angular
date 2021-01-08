@@ -1,0 +1,22 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+
+ng-container(*ngIf="validations")
+  .controls
+    button.btn.btn-secondary((click)="refresh()", translate) BackEnd_WikiLanguage.generic_Refresh
+  .list
+    .item(*ngFor="let item of items")
+      label(translate) {{item.label}}
+      .button-wrap(
+        *ngIf="validations[item.key] as state",
+        [ngbTooltip] = "item.tooltip && item.tooltip(state) | translate",
+        container="body"
+      )
+        button.btn.btn-secondary(
+          [disabled]="!item.clickable || !item.clickable(state)",
+          (click)="item.click && item.click()",
+        )
+          i.mdi.mdi-check.ok(*ngIf="state === 'OK'")
+          i.mdi.mdi-alert-octagon.error(*ngIf="state !== 'OK'")
+  .content([ngSwitch]="activeValidationContent")
+    app-loading.loading-bar(*ngIf="isContentLoading | async")
+    app-room-price-errors(*ngSwitchCase="ValidationContent.ROOM_PRICE_ERRORS")

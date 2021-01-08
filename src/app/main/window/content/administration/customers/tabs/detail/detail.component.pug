@@ -1,0 +1,45 @@
+form(*ngIf="form")
+    .section1
+        app-field(
+            *ngFor="let field of mainFields[0]; let i = index",
+            [field]="field",
+            [control]="form.get(field[2])",
+            [resources]="selectResources"
+        )
+    .section2
+        app-field(
+            *ngFor="let field of mainFields[1]; let i = index",
+            [field]="field",
+            [control]="form.get(field[2])",
+            [resources]="selectResources"
+        )
+    .section3
+        h3(translate) BackEnd_WikiLanguage.RCAD_contactDetail
+        app-field(
+            *ngFor="let field of contactFields; let i = index",
+            [field]="field",
+            [control]="form.get(field[2])",
+            [resources]="selectResources"
+        )
+    .section4
+        app-field(
+            *ngFor="let field of additionalFields; let i = index",
+            [field]="field",
+            [control]="form.get(field[2])",
+            [resources]="selectResources"
+        )
+    .section5
+        app-field(
+            *ngFor="let field of bottomFields; let i = index",
+            [field]="field",
+            [control]="form.get(field[2])",
+            [resources]="selectResources"
+        )
+
+.bottom-section
+    .controls
+        button.btn.btn-secondary((click)="rebuildCache()", translate) Rebuild Cache
+    .extra
+        .form-group(*ngIf="details")
+            label(translate) BackEnd_WikiLanguage.RCAD_creationDate
+            div {{details.creationDate | ebDate}}

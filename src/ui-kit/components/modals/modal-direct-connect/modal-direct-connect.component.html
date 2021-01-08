@@ -1,0 +1,18 @@
+<div class="directConnectModal d-flex flex-row">
+  <div class="left-box">
+    <img class="firework" src="assets/img/modal/Fire.svg">
+    <h1 class="header"> {{ 'modal.directConnectModalHeader.text' | translate }}</h1>
+    <p class="paragraph">{{ 'modal.directConnectModalParagraph.text' | translate }}</p>
+    <button class="btn-green" (click)="openCM()">{{ 'modal.directConnectModalActivate.text' | translate }}</button>
+    <div class="spanButtonContainer">
+      <p (click)="activeModal.close(true)">{{ 'modal.directConnectModalRemindLater.text' | translate }}</p>
+      <div class="mx-2">|</div>
+      <p (click)="notInterested()">{{ 'modal.directConnectModalNotInterested.text' | translate }}</p>
+    </div>
+  </div>
+  <div>
+    <img class="typing" src="assets/img/modal/img1.png">
+    <img class="suitcase" src="assets/img/modal/img2.png">
+    <img class="vector" src="assets/img/modal/Vector.svg">
+  </div>
+</div>

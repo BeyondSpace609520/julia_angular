@@ -1,0 +1,13 @@
+form(*ngIf="form", [formGroup]="form")
+  .form-group
+    label(translate) BackEnd_WikiLanguage.epAirbnbDeclineReason
+    select(formControlName="reason")
+        option(
+            *ngFor="let option of reasons",
+            [value]="option.value",
+            [disabled]="option.placeholder"
+            translate
+        ) {{option.name}}
+  .form-group
+      label(translate) BackEnd_WikiLanguage.epAirbnbMessageToGuest
+      textarea(formControlName="message")

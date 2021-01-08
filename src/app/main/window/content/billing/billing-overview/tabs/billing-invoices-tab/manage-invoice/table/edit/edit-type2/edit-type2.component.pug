@@ -1,0 +1,26 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+.grid-area
+  .form-group
+    label(translate) BackEnd_WikiLanguage.BW_InvoiceDetailBillTextLabel
+    input(type="text", [formControl]="invoiceText")
+  .form-group
+    label(translate) BackEnd_WikiLanguage.BV_freetext
+    input(type="text", [formControl]="alternativeText")
+  .form-group
+    label(translate) BackEnd_WikiLanguage.BW_InvoiceDetailUnitPriceGrossLabel
+    input(type="text", [readonly]="!pricesEditable", [formControl]="unitPriceGross", appNumberInput)
+  .form-group
+    label(translate) BackEnd_WikiLanguage.BW_InvoiceDetailUnitsLabel
+    input(type="text", readonly, [formControl]="unitCount", appNumberInput, decimals="0" )
+  .form-group
+    label(translate) BackEnd_WikiLanguage.BW_InvoiceDetailTotalNetLabel
+    input(type="text", readonly, [value]="detail.totalNet | formatNumber")
+  .form-group
+    label(translate) BackEnd_WikiLanguage.BW_InvoiceDetailTotalTaxLabel
+    input(type="text", readonly, [value]="detail.totalTax | formatNumber")
+  .form-group
+    label(translate) BackEnd_WikiLanguage.BW_InvoiceDetailTotalGrossLabel
+    input(type="text", readonly, [value]="detail.totalGross | formatNumber")
+  .form-group
+    label(translate) BackEnd_WikiLanguage.BW_InvoiceDetailTaxPercLabel
+    input(type="text", readonly, [value]="detail.taxPerc")

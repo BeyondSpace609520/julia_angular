@@ -1,0 +1,20 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+.sidebar
+  app-list-view.list-view(
+    [items]="items",
+    [selected]="selectedItemId | selectedItem : items",
+    (select)="selectItem($event)"
+  )
+    ng-template(let-item) {{item.displayField}}
+content
+  app-edit-guest(
+    *ngIf="selectedItemId | selectedItem : items",
+    #editForm,
+    [guest]="selectedItemId | selectedItem : items",
+    [hotel]="hotel",
+    [baseValidationLevel]="baseValidation",
+    [mainGuestId]="mainGuestId",
+    [others]="selectedItemId | notSelectedItems : items",
+    (updated)="guestSaved()",
+    (cancel)="closeWindow()"
+  )

@@ -1,0 +1,50 @@
+app-loading.loading-bar(*ngIf="!form || (isLoading | async)")
+ng-container(*ngIf="form")
+  form([formGroup]="form")
+    section(*ngFor="let section of fields")
+      ng-container(*ngFor="let sectionField of section")
+        ng-container(*ngIf="sectionField")
+          .form-group(*ngIf="sectionField.name | isFieldVisible : guestRegistrationProviderId : desklineEditionV3")
+            label(*ngIf="!sectionField.isLabelStatic", [for]="sectionField.name", translate) {{ sectionField.label }}
+            label(*ngIf="sectionField.isLabelStatic", [for]="sectionField.name") {{ sectionField.label }}
+            ng-container([ngSwitch]="sectionField.type")
+              select.form-control(
+                *ngSwitchCase="'select'",
+                [id]="sectionField.name",
+                [formControlName]="sectionField.name"
+              )
+                option(
+                  *ngFor="let option of sectionField.selectOptions",
+                  [value]="option.id"
+                ) {{ option.name }}
+              input.form-control(
+                *ngSwitchCase="'checkbox'",
+                [id]="sectionField.name",
+                type="checkbox",
+                [formControlName] = "sectionField.name",
+                [value]="sectionField.name"
+              )
+              input.form-control(
+                *ngSwitchDefault,
+                [id]="sectionField.name",
+                [type]="sectionField.type",
+                [formControlName] = "sectionField.name"
+              )
+            ng-container(*ngIf="sectionField.extraField && (sectionField.extraField.name | isFieldVisible : guestRegistrationProviderId : desklineEditionV3)")
+              ng-container([ngSwitch]="sectionField.extraField.type")
+                select.form-control(
+                  *ngSwitchCase="'select'",
+                  [id]="sectionField.extraField.name",
+                  [formControlName]="sectionField.extraField.name"
+                )
+                  option(
+                    *ngFor="let option of sectionField.extraField.selectOptions",
+                    [value]="option.id"
+                  ) {{ option.name }}
+                input.form-control(
+                  *ngSwitchDefault,
+                  [id]="sectionField.extraField.name",
+                  [type]="sectionField.extraField.type",
+                  [formControlName] = "sectionField.extraField.name"
+                )
+            i.mdi.mdi-information.text-primary(*ngIf="sectionField.tooltip", [ngbTooltip]="sectionField.tooltip | translate")

@@ -1,0 +1,27 @@
+@import "../../../../../shared/window-content/with-sidebar.sass"
+@import "../../../../../shared/window-content/with-tabs.sass"
+@import "_variables"
+@import "_mixins"
+
+.flexbox-column
+    @include media-breakpoint-up(md)
+        flex-direction: row
+    .sidebar
+        width: 160px
+        @include media-breakpoint-down(sm)
+            width: 100%
+        .list-view
+            height: 100%
+            @include media-breakpoint-down(sm)
+                max-height: 150px
+        
+        .item.highlight
+            color: red
+
+    content
+        +pl(0)
+        .tab-container
+            +p(3)
+        app-tabs
+            margin-right: 0.5rem
+            margin-left: 0.5rem

@@ -1,0 +1,35 @@
+@import "../../../shared/window-content/with-sidebar.sass"
+@import "../../../shared/window-content/with-tabs.sass"
+@import '_variables'
+
+.sidebar
+    .list-view
+        flex: 1
+        .highlight
+            color: red
+    .bottom-buttons
+        display: grid
+        grid-template-columns: 1fr 1fr
+        grid-gap: 0.5em
+        margin-top: 1em
+content
+    overflow-y: auto
+    .editor-area
+        display: flex
+        height: 100%
+        .main
+            flex: 1
+            padding-top: 1em
+            padding-bottom: 1em
+            border: 1px solid $border-light
+            overflow-y: auto
+            display: flex
+            flex-direction: column
+            .bottom-buttons
+                margin-top: auto
+        .categories
+            overflow-y: auto
+            width: 14em
+            margin-left: 1em
+            padding: 1em
+            border: 1px solid $border-light

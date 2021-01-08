@@ -1,0 +1,22 @@
+@import "../../../shared/window-content/with-sidebar.sass"
+@import '_variables'
+
+.sidebar
+    .list-view
+        flex: 1
+        height: 100%
+    .bottom-buttons
+        display: grid
+        grid-template-columns: 1fr 1fr
+        grid-gap: 0.5em
+        margin-top: 1em
+.group-edit
+
+content
+    display: flex
+    app-edit-item
+        display: flex
+        flex-direction: column
+        flex: 1
+        border: 1px solid $border-light
+        padding: 1em

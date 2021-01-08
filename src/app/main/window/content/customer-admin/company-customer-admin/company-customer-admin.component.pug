@@ -1,0 +1,39 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+.flexbox-column
+  .sidebar
+    .import-export-section
+      permission(id="import", dontShow)
+        label Feratel Import
+        button.btn.btn-secondary((click)="onImport()")
+          i.import-button.mdi.mdi-file-excel
+      permission(id="export", tooltip="BackEnd_WikiLanguage.guestCardExportNotForAdmins")
+        label Export
+        button.btn.btn-secondary((click)="onExport()", [disabled]="!permissionService.can.export")
+          i.mdi.mdi-file-excel
+    form.form-group.toolbar-search
+      input(type="text", #searchInput)
+      button.btn.btn-secondary(
+        [disabled]="isLoadingSearch | async",
+        (click)="onSearch(searchInput.value)"
+      )
+        i.mdi.mdi-magnify
+    app-list-view.list-view(
+      [items]="items",
+      [selected]="selectedItemId",
+      (select)="selectItem($event)"
+    )
+      ng-template(let-item) {{item.lastName}}, {{item.firstName}}
+    button.btn.btn-outline-secondary.bg-white((click)="createNewCustomer()", translate) BackEnd_WikiLanguage.generic_New
+  content
+    app-settings-button(moduleId="generalSettings")
+    app-tabs(
+      *ngIf="tabSettingsButtons.length",
+      [settings]="{ buttons: tabSettingsButtons, buttonClasses: ['nav-link']}",
+      [(selected)]="activeTabId"
+    )
+    app-loading.loading-bar(*ngIf="isLoadingTab | async")
+    .tab-container(*ngIf="selectedGuest")
+      app-rating.content(*ngIf="activeTabId === 'rating'", [item]="selectedGuest")
+      app-detail(*ngIf="activeTabId === 'detail'", [item]="selectedGuest", (update)="onSearch(searchInput.value, $event)")
+      app-booking.content(*ngIf="activeTabId === 'booking'", [item]="selectedGuest")
+      app-interaction(*ngIf="activeTabId === 'interaction'", [item]="selectedGuest")

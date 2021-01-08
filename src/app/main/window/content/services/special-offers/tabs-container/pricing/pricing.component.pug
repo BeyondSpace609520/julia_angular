@@ -1,0 +1,82 @@
+form.main(*ngIf="form", [formGroup]="form")
+  .grid-area
+    .form-group
+      label(translate) BackEnd_WikiLanguage.SO_valid
+      app-datepicker-input(
+        inputId="validRange",
+        [date]="form.get('fromDate').value",
+        (dateChange)="form.get('fromDate').setValue($event)",
+        [range]="form.get('untilDate').value",
+        (rangeChange)="form.get('untilDate').setValue($event)",
+        (statusChange)="onValidityChange('validRange', $event === 'VALID')",
+        [mandatory]="true",
+      )
+    .form-group
+      label(translate) BackEnd_WikiLanguage.SO_bookable
+      app-datepicker-input(
+        inputId="bookableRange",
+        [date]="form.get('bookableFromDate').value",
+        (dateChange)="form.get('bookableFromDate').setValue($event)",
+        [range]="form.get('bookableUntilDate').value",
+        (rangeChange)="form.get('bookableUntilDate').setValue($event)",
+        (statusChange)="onValidityChange('bookableRange', $event === 'VALID')",
+        [mandatory]="true",
+      )
+    .form-group
+      label(translate) BackEnd_WikiLanguage.generic_Nights
+      input(formControlName="nightsStay", type="number", min="1", max="100")
+      .form-check
+        input(type="checkbox", id="autoCostsId", formControlName="autoCosts")
+        label(translate, for="autoCostsId") BackEnd_WikiLanguage.SO_individualBoard
+    .form-group
+      label(translate) BackEnd_WikiLanguage.SO_MinPersons
+      input(formControlName="minPersons", type="number", min="1", max="100")
+    .form-group
+      label(translate) BackEnd_WikiLanguage.SO_MaxPersons
+      input(formControlName="maxPersons", type="number", min="1", max="100")
+
+.periods(*ngIf="details && form")
+  .days(*ngIf="form.get('arrival') as arrivalForm")
+    .form-check
+      label(translate) BackEnd_WikiLanguage.SO_Arrival
+      input(type="checkbox", [formControl]="arrivalForm.get('all')")
+    .form-check(*ngFor="let day of weekDays; let i = index")
+      label(translate, [for]="day.id") {{day.label}}
+      input(type="checkbox", [id]="day.id", [formControl]="arrivalForm.get('days').controls[i]")
+  app-periods.list(
+    #periodsComponent,
+    [fromDate]="form.get('fromDate').value",
+    [untilDate]="form.get('untilDate').value",
+    [nights]="+form.get('nightsStay').value",
+    [arrivalDays]="form.get('arrival').get('days').getRawValue()",
+    [existingPeriods]="details.periods",
+    (periodsChange)="details.periods = $event"
+  )
+
+app-prices.prices(
+  *ngIf="details",
+  [prices]="details.prices",
+  [ageGroups]="details.ageGroups",
+  [individualCatering]="details.offer.individualCatering",
+  (allValid)="onValidityChange('prices', $event)"
+)
+
+.age-groups
+  app-age-groups(
+    *ngIf="details",
+    [(ageGroups)]="details.ageGroups",
+    (allValid)="onValidityChange('ageGroups', $event)"
+  )
+
+.controls
+  button.btn.btn-secondary(
+    (click)="save()",
+    [disabled]="!isSaveEnabled",
+    translate
+  ) BackEnd_WikiLanguage.generic_Save
+  button.btn.btn-secondary(
+    *ngIf="periodsComponent && !periodsComponent.onlyChildren",
+    (click)="save(true)",
+    [disabled]="!isSaveEnabled",
+    translate
+  ) BackEnd_WikiLanguage.generic_SaveForAll

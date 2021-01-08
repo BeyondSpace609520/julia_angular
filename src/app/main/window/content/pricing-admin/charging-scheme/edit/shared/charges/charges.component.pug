@@ -1,0 +1,39 @@
+form(*ngIf="form", [formGroup]="form")
+    .form-group.row
+        .col-md-3.text-right.pr-0
+            label.form-control-label(translate) BackEnd_WikiLanguage.CS_ECOP_AdultCharge
+        .col-md-4
+            input.form-control(type="text", appNumberInput, formControlName="adult")
+    .row
+        .form-group.col-3.children-charge.pr-0
+            label.form-control-label(translate) BackEnd_WikiLanguage.CS_ECOP_ChildrenCharge
+        .d-flex.flex-column.col
+            .item(*ngFor="let childGroup of form.get('children').controls")
+                input.form-control(
+                type="text",
+                appNumberInput,
+                [decimals]="0",
+                [max]="maxChildAgeFrom",
+                [formControl]="childGroup.get('from')"
+                )
+                span -
+                input.form-control(
+                type="text",
+                appNumberInput,
+                [decimals]="0",
+                [min]="minChildAgeTo",
+                [formControl]="childGroup.get('to')"
+                )
+                span {{label}}
+                input.form-control(type="text", appNumberInput, [formControl]="childGroup.get('charge')")
+        .d-flex.flex-column.col.button
+            i.button.mdi.mdi-plus-circle(
+                [ngbTooltip]="'BackEnd_WikiLanguage.CS_ECOP_AddAgeGroupToolTip' | translate",
+                container="body",
+                (click)="add()"
+            )
+            i.button.mdi.mdi-delete(
+                [ngbTooltip]="'BackEnd_WikiLanguage.CS_ECOP_RemoveLastAgeGroupToolTip' | translate",
+                container="body",
+                (click)="remove()"
+            )

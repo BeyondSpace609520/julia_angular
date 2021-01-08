@@ -1,0 +1,43 @@
+app-edit-general(#general, [data]="scheme")
+form(*ngIf="form", [formGroup]="form")
+  .d-flex
+      .form-group.m-2
+          input.checkbox(type="checkbox", formControlName="forPeriod")
+          label.checkbox-label(translate) BackEnd_WikiLanguage.CS_ECODOWP_ForPeriod
+      .form-group
+          label.form-control-label(translate) BackEnd_WikiLanguage.CS_ECOP_ChargeType
+          select.form-control.custom-select(formControlName="chargeType")
+              option(value="PricePerPersonPerNight", translate) BackEnd_WikiLanguage.{{isForPeriod?'generic_PricePerPersonPerPeriod':'generic_PricePerPersonPerNight'}}
+              option(value="PercOnTotal", translate) BackEnd_WikiLanguage.generic_PercOnLogis
+  .tabs(*ngIf="!isForPeriod")
+    app-tabs(
+        *ngIf="tabSettings.buttons.length",
+        [settings]="tabSettings",
+        [(selected)]="activeTabId"
+    )
+    ng-container(*ngFor="let weekDay of weekDays; let i = index")
+      .tab-container(*ngIf="form.get('weekDays').controls[i] as activeControl", [hidden]="activeTabId != i")
+          .form-group.row
+              .col-md-3.text-right.form-control-label(translate) BackEnd_WikiLanguage.generic_Active
+              .col-md-3
+                input.checkbox(type="checkbox", [formControl]="form.get('weekDays').controls[i]")
+          app-edit-charges(
+            #charges,
+            [label]="chargeLabel",
+            [charges]="getChargeData(weekDay.id)",
+            [childFormGroupName]="'valuesForWeekDay' + i",
+            [parentFormGroup]="form"
+          )
+  .week-days(*ngIf="isForPeriod")
+      .form-group(*ngFor="let weekDay of weekDays; let i = index")
+          label.form-control-label(translate) {{weekDay.label}}
+          input.checkbox(type="checkbox", [formControl]="form.get('weekDays').controls[i]")
+  app-edit-charges(
+    *ngIf="isForPeriod",
+    #charges,
+    [label]="chargeLabel",
+    [charges]="getChargeData()",
+    [childFormGroupName]="'valuesForPeriod'",
+    [parentFormGroup]="form"
+  )
+app-edit-translations.mt-3(#translations, [list]="scheme && scheme.translations")

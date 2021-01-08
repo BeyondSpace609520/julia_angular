@@ -1,0 +1,15 @@
+app-tabs(
+  *ngIf="tabSettings.buttons.length",
+  [settings]="tabSettings",
+  [(selected)]="activeTabId"
+)
+content
+  app-billing-invoices-tab(
+    *ngIf="activeTabId === 'invoice'",
+    [range]="range",
+    [bookingNumber]="bookingNumber",
+    [openManageInvoiceModal]="openManageInvoiceModal",
+    [type]="type"
+  )
+  app-billing-receipts-tab(*ngIf="activeTabId === 'receipts' && showReceipts")
+

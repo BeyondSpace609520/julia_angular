@@ -1,0 +1,57 @@
+ng-container(*ngIf="enquiry.createdDate")
+    app-table-action(
+        [active]="isOpen",
+        tooltip="BackEnd_WikiLanguage.EQP_actionCancelEnquiry",
+        [rightTooltip]="false",
+        icon="cancel",
+        (click)="cancel()"
+    )
+    app-table-action(
+        [active]="!isAirbnb",
+        tooltip="BackEnd_WikiLanguage.EQP_actionDeleteEnquiry",
+        [rightTooltip]="false",
+        icon="close",
+        (click)="delete()"
+    )
+    app-table-action(
+        [active]="isOpen",
+        tooltip="BackEnd_WikiLanguage.EQP_actionAutoCreateEnquiry",
+        [rightTooltip]="false",
+        icon="arrow-right",
+        (click)="assign()"
+    )
+    app-table-action(
+        [active]="!isAirbnb && isOpen",
+        tooltip="BackEnd_WikiLanguage.EQP_actionMarkAsManualCreatedEnquiry",
+        [rightTooltip]="false",
+        icon="check",
+        (click)="markAssign()"
+    )
+    app-table-action(
+        [active]="canView && +enquiry.bookingIds[0] > 0",
+        tooltip="BackEnd_WikiLanguage.EQP_actionViewEnquiry",
+        [rightTooltip]="false",
+        icon="file-document-box",
+        (click)="previewOffer(0)"
+    )
+    app-table-action(
+        [active]="canView && +enquiry.bookingIds[1] > 0",
+        tooltip="BackEnd_WikiLanguage.EQP_actionViewEnquiry1",
+        [rightTooltip]="false",
+        icon="file-document-box",
+        (click)="previewOffer(1)"
+    )
+    app-table-action(
+        [active]="canView && +enquiry.bookingIds[2] > 0",
+        tooltip="BackEnd_WikiLanguage.EQP_actionViewEnquiry2",
+        [rightTooltip]="false",
+        icon="file-document-box",
+        (click)="previewOffer(2)"
+    )
+    app-table-action(
+        [active]="canView && +enquiry.bookingIds[3] > 0",
+        tooltip="BackEnd_WikiLanguage.EQP_actionViewEnquiry3",
+        [rightTooltip]="false",
+        icon="file-document-box",
+        (click)="previewOffer(3)"
+    )

@@ -1,0 +1,22 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+.row
+  h3.col(translate) BackEnd_WikiLanguage.PrepaymentSenderCheck
+.row
+  .col
+    .form-group
+      label(translate) BackEnd_WikiLanguage.BW_PaymentAmount
+      .form-value.pl-4 {{payment.amount}}
+  .col
+    .form-group
+      label(translate) BackEnd_WikiLanguage.BW_PaymentDate
+      .form-value.pl-4 {{payment.date | ebDate:false}}
+.grid-area
+    .form-group
+      label(translate) BackEnd_WikiLanguage.BW_PaymentType
+      .form-value {{payment.name}}
+    .form-group
+      label(translate) BackEnd_WikiLanguage.BW_PaymentDesc
+      .form-value {{payment.desc}}
+    .form-group
+      label(translate) BackEnd_WikiLanguage.BW_CustomerEmail
+      input([formControl]="email")

@@ -1,0 +1,20 @@
+.list(
+  appDragSortContainer,
+  [dsItems]="items",
+  [disableDrag]="!enableDragSort",
+  (dsItemsSorted)="itemsSorted.emit($event)",
+)
+  .item(
+    *ngFor="let item of items; let i = index; trackBy: trackByFn",
+    appDragSortItem,
+    [dsItem]="item",
+    [class.selected]="selected | isItemSelected : item : itemIdField",
+    (click)="onClick(item)",
+    appScrollIntoView,
+    [shouldScroll]="autoScroll | shouldItemScroll : selected : item : itemIdField"
+  )
+    ng-template(*ngTemplateOutlet="template; context: { $implicit: item }")
+
+.drag-sort-hint(*ngIf="enableDragSort")
+  i.mdi.mdi-information-outline
+  span {{ 'BackEnd_WikiLanguage.MW_orderByDragAndDropHint' | translate }}

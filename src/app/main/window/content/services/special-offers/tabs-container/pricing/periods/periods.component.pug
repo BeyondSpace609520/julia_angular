@@ -1,0 +1,4 @@
+app-list-view.list-view([items]="periods || []")
+    ng-template(let-item)
+        span(translate)
+            | {{item.fromWeekDay.label | translate}}, {{item.fromDate | ebDate:false}} - {{item.untilWeekDay.label | translate}}, {{item.untilDate | ebDate:false}}

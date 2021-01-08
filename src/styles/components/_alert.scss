@@ -1,0 +1,56 @@
+.alert {
+  position: relative;
+  pointer-events: auto;
+  box-shadow: $popover-shadow;
+  background-color: $bg-darker;
+
+  .close {
+    position: absolute;
+    top: $alert-padding-y;
+    right: $alert-padding-x;
+    color: white;
+    opacity: 0.6;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &.alert-info {
+    background: $primary;
+    color: white;
+  }
+
+  &.alert-success {
+    color: $success;
+  }
+
+  &.alert-danger {
+    color: white;
+    background-color: #E26868;
+    display: flex;
+  }
+
+  &.alert-warning {
+    color: $warning;
+  }
+
+  &.alert-warning2 {
+    background-color: $orange;
+    color: white;
+    padding: 10px 40px;
+    .mdi-alert-circle {
+      position: absolute;
+      line-height: 1em;
+      font-size: 22px;
+      opacity: 0.6;
+      top: 10px;
+      left: 10px;
+    }
+    button {
+      position: absolute;
+      top: 12px;
+      right: 15px;
+    }
+  }
+}

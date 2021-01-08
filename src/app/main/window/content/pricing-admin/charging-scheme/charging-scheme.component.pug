@@ -1,0 +1,24 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+.sidebar
+  app-list-view.list-view(
+    [items]="items",
+    [selected]="selected && selected.id",
+    (select)="selectItem($event)"
+  )
+    ng-template(let-item)
+      span([ngClass]="{ highlight: !item.startDate || !item.endDate }") {{item.name}}
+  .bottom-buttons
+    button.btn.btn-secondary((click)="newScheme()", translate) BackEnd_WikiLanguage.generic_New
+    button.btn.btn-secondary(*ngIf="selected", (click)="deleteScheme(selected)", translate) BackEnd_WikiLanguage.generic_Delete
+content
+  app-loading.loading-bar(*ngIf="isLoadingItem | async")
+  .editor-area(*ngIf="selected")
+    .main.container
+      app-edit-type1(#editor, *ngIf="selected.type === 'ExtraChargeOverDayOfWeekPeriod'", [scheme]="selected")
+      app-edit-type2(#editor, *ngIf="selected.type === 'ExtraChargeOverPeriod'", [scheme]="selected")
+      app-edit-type3(#editor, *ngIf="selected.type === 'FixedAmountOnNightsStay'", [scheme]="selected")
+      .bottom-buttons
+        button.btn.btn-secondary.mr-2((click)="saveScheme()", [disabled]="!editor || !(editor.isValid() | async)", translate) BackEnd_WikiLanguage.generic_Save
+        button.btn.btn-secondary((click)="copyScheme(selected)", translate) BackEnd_WikiLanguage.generic_Copy
+    .categories
+      app-linked-categories(#linked, [scheme]="selected")

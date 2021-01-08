@@ -1,0 +1,28 @@
+@import "app-globals"
+
+\:host
+  display: flex
+  flex-direction: column
+  justify-content: stretch
+  height: 100%
+
+app-tabs
+  display: block
+  flex: none
+  padding-top: 5px
+
+.content
+  flex: auto
+  overflow: hidden
+
+  > *
+    display: block
+    height: 100%
+    overflow-x: hidden
+    overflow-y: auto
+    padding: $grid-gutter-width/2
+
+footer
+  padding: $grid-gutter-width/4 $grid-gutter-width/2
+  border-top: 1px solid $border-light
+  text-align: right

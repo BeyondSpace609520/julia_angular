@@ -1,0 +1,44 @@
+@import "variables"
+
+:host
+    display: flex
+    flex-direction: column
+
+form
+    padding: 1em
+    padding-bottom: unset
+    overflow: auto
+
+.mdi-information
+    vertical-align: middle
+    margin: 0 0.3em
+
+.grid-area .form-group
+    grid-template-columns: 1fr 2fr
+    grid-gap: .2em
+
+.child-rooms
+    display: flex
+    justify-content: flex-end
+    padding-right: 1em
+    .list
+        max-height: 6.5em
+        width: 40%
+        overflow-y: auto
+        background: lighten($block, 40%)
+        padding: 10px
+        .item
+            display: flex
+            label
+                flex: 1
+
+.parent-rooms
+    font-weight: bold
+    font-size: .9rem
+    text-align: center
+.text-right
+    font-size: .9rem
+
+.controls
+    padding: 1em
+    padding-top: unset

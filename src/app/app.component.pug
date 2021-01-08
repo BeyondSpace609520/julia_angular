@@ -1,0 +1,2 @@
+app-splash(*ngIf="contentLoading", [@fade]="'in'")
+router-outlet(*ngIf="this.initService.loaded$ | async")

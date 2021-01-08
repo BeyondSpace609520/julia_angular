@@ -1,0 +1,46 @@
+.nav-tabs {
+  padding: 0 $grid-gutter-width/2;
+  border-bottom: 1px solid $border-light;
+
+  li:not(:last-child) {
+    //padding-right: 22px;
+  }
+
+  li {
+    display: inline-block;
+    //height: 50px;
+    border: none;
+
+    a.nav-link {
+      margin-right: 5px;
+      padding: 5px 10px;
+      text-transform: none;
+      text-align: center;
+      color: $text-muted;
+      background: #EAEEF1;
+      border: 1px solid $border-light;
+      transition: color 0.3s ease, box-shadow 0.2s ease;
+      &.disabled {
+        color: $gray-600;
+      }
+      &.active {
+        color: $body-color;
+        background: #fff;
+        font-weight: $headings-font-weight;
+      }
+    }
+  }
+  .nav-link.disabled {
+    opacity: $btn-disabled-opacity;
+    cursor: not-allowed;
+  }
+}
+
+  app-edit-type3 app-tabs .nav.nav-tabs{
+    overflow-x: scroll;
+    overflow-y: hidden;
+    flex-wrap: unset;
+    .nav-link {
+      white-space: nowrap;
+    }
+  }

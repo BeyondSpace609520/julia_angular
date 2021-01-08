@@ -1,0 +1,22 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+app-special-offers-iframe(*ngIf="!enabled")
+ng-container(*ngIf="enabled")
+  app-settings-button(moduleId="specialOffersSettings")
+  .sidebar
+    .form-check
+      input(type="checkbox", id="showOffline", [formControl]="showOffline")
+      label(for="showOffline", translate) BackEnd_WikiLanguage.SO_ShowInactive
+    app-list-view.list-view(
+      [items]="items",
+      [selected]="selectedItemId",
+      (select)="selectItem($event.id)"
+    )
+      ng-template(let-item)
+        span([ngClass]="{ highlighted: !item.active }", translate)
+          | {{item.title}}, {{(item.fromDate | ebDate:false) || '??'}} - {{(item.untilDate | ebDate:false) || '??'}}
+    .bottom-buttons
+      button.btn.btn-secondary((click)="newOffer()", translate) BackEnd_WikiLanguage.generic_New
+      button.btn.btn-secondary((click)="copy(selected)", [disabled]="!selected", translate) BackEnd_WikiLanguage.generic_Copy
+      button.btn.btn-secondary((click)="delete(selected)", [disabled]="!selected", translate) BackEnd_WikiLanguage.generic_Delete
+  content
+    app-tabs-container(*ngIf="selected", [offer]="selected", (tabSaved)="onTabSaved()")

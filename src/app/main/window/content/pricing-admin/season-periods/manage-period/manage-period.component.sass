@@ -1,0 +1,50 @@
+@import "_variables"
+@import "_mixins"
+
+:host
+    position: relative
+    display: block
+
+.grid-area
+    .form-group
+        grid-template-columns: 1fr 2fr
+        .fit-content
+            width: fit-content
+
+.center
+    text-align: center
+    input[type="checkbox"]
+        margin: 0 1em
+.col.red
+    max-width: 300px
+    padding-right: 0px
+    .red-form
+        background: #ffd5d5
+        padding: 1em
+        border: 1px solid $border-light
+        border-radius: 0.3rem
+        max-width: 300px
+        +mb(2)
+.col.blue
+    max-width: 450px
+    .blue-form
+        background: #9ebad6
+        padding: 1em
+        border: 1px solid $border-light
+        border-radius: 0.3rem
+        .form-group
+            justify-content: flex-end
+            input
+                width: 40px
+            select
+                width: auto
+
+.gap-info
+    display: inline-block
+    margin: 1em 0
+    i
+        font-size: 1.5rem
+    span
+        vertical-align: text-bottom
+    .v-auto
+        vertical-align: unset

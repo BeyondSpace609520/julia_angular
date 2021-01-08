@@ -1,0 +1,13 @@
+@import 'app-globals';
+
+.modal-body {
+  &:not(.preformatted) {
+    white-space: pre;
+  }
+  .preformatted p {
+    margin-bottom: 0;
+  }
+  h5 {
+    color: $gray-700;
+  }
+}

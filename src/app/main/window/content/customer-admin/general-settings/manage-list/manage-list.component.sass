@@ -1,0 +1,18 @@
+@import "_mixins"
+
+:host
+    margin-top: 1em
+    display: block
+.control
+    margin: 0 1em
+    width: 15%
+    min-width: 150px
+    max-width: 300px
+    display: inline-block
+    +mb(2)
+    &:first-child
+        +ml(0)
+    &:last-child
+        +mx(0)
+        @include media-breakpoint-up(sm)
+            +ml(3)

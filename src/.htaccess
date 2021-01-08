@@ -1,0 +1,10 @@
+<IfModule mod_headers.c>
+<filesMatch "^(index\.html|version\.json)$">
+  Header set Cache-Control "no-cache, no-store, must-revalidate"
+  Header set Pragma "no-cache"
+  Header set Expires 0
+</filesMatch>
+<filesMatch "^version\.json">
+  Header set Access-Control-Allow-Origin "*"
+</filesMatch>
+</IfModule>

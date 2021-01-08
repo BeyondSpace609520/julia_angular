@@ -1,0 +1,14 @@
+app-manage-list(
+    (langChange)="loadCharacteristics($event)",
+    (new)="addItem($event)",
+    (save)="save($event)",
+    [disabled]="isLoading | async"
+)
+app-loading.loading-bar(*ngIf="isLoading | async")
+br
+.list
+    .item.form-group(*ngFor="let ch of characteristics")
+        label {{ch.ch_name}}
+        .form-group
+            input([(ngModel)]="ch.chl_value")
+            i.mdi.mdi-close((click)="deleteItem(ch)")

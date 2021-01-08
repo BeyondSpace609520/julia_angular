@@ -1,0 +1,5 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+.flex-1
+  app-manage-item(#manage, [item]="discount", (formStateChange)="onFormStateChanged($event)")
+.controls
+  button.btn.btn-secondary((click)="save()", [disabled]="!isFormValid", translate) BackEnd_WikiLanguage.generic_Save

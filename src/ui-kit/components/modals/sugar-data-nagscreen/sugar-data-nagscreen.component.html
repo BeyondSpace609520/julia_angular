@@ -1,0 +1,155 @@
+<div *ngIf="form">
+  <div class="header">
+    {{ 'modal.sugarDataNagscreenDataComparison.text' | translate}}
+  </div>
+  <div class="m-4">
+    <form [formGroup]="form">
+      <div *ngIf="page === 1">
+      <h4>{{ 'modal.sugarDataNagscreenCheckCompanyData.text' | translate}}</h4>
+        <div class="row grid-area">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>{{ 'modal.sugarDataNagscreenShippingAddress.text' | translate}}*</label>
+              <input formControlName="addressLine">
+            </div>
+            <div class="form-group">
+              <label>{{ 'modal.sugarDataNagscreenPostCodeAndCity.text' | translate}}*</label>
+              <div class="d-flex">
+                <input class="mr-2 w-50" formControlName="postCode">
+                <input formControlName="city">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>{{ 'modal.sugarDataNagscreenCountry.text' | translate}}*</label>
+              <select formControlName="country">
+                <option [value]="option.id" *ngFor="let option of data.countryList" [disabled]="option.id === '_empty_'"> {{option.value}}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>{{ 'modal.sugarDataNagscreenRental.text' | translate}}*</label>
+              <select formControlName="businessPlan">
+                <option value="0"> {{ 'modal.sugarDataNagscreenRentalCommercial.text' | translate}}</option>
+                <option value="1"> {{ 'modal.sugarDataNagscreenRentalPrivate.text' | translate}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>{{ 'modal.sugarDataNagscreenEmail.text' | translate}}*</label>
+              <input formControlName="email">
+            </div>
+            <div class="form-group">
+              <label>{{ 'modal.sugarDataNagscreenPhoneLandline.text' | translate}}*</label>
+              <input formControlName="phone">
+            </div>
+            <div class="form-group">
+              <label>{{ 'modal.sugarDataNagscreenWebsite.text' | translate}}</label>
+              <input formControlName="website">
+            </div>
+          </div>
+        </div>
+        <div class="my-3">
+          <input type="checkbox" formControlName="hasBillingAddress" (change)="hasBillingCheck($event)" [checked]="data.hasBillingAddress === 'on'"> {{ 'modal.sugarDataNagscreenDifferentBillingAddress.text' | translate}}
+        </div>
+        <div class="row grid-area" *ngIf="data.hasBillingAddress === 'on'">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>{{ 'modal.sugarDataNagscreenBillReceiver.text' | translate}}*</label>
+              <input formControlName="billing_invoice_recipient_c">
+            </div>
+            <div class="form-group">
+              <label>{{ 'modal.sugarDataNagscreenBillReceiver2.text' | translate}}</label>
+              <input formControlName="billing_invoice_recipient2_c">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>{{ 'modal.sugarDataNagscreenAddress.text' | translate}}*</label>
+              <input formControlName="billing_addressLine">
+            </div>
+            <div class="form-group">
+              <label>{{ 'modal.sugarDataNagscreenPostCodeAndCity.text' | translate}}*</label>
+              <div class="d-flex">
+                <input class="mr-2 w-50" formControlName="billing_postCode">
+                <input formControlName="billing_city">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>{{ 'modal.sugarDataNagscreenCountry.text' | translate}}*</label>
+              <select formControlName="billing_country">
+                <option [value]="option.id" *ngFor="let option of data.countryList" [disabled]="option.id === '_empty_'"> {{option.value}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <h4 class="mt-3">{{ 'modal.sugarDataNagscreenCheckContactData.text' | translate}}</h4>
+        <div class="row grid-area">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>{{ 'modal.sugarDataNagscreenFirstName.text' | translate}}*</label>
+              <input formControlName="c_firstName">
+            </div>
+            <div class="form-group">
+              <label>{{ 'modal.sugarDataNagscreenLastName.text' | translate}}*</label>
+              <input formControlName="c_lastName">
+            </div>
+            <div class="form-group">
+              <label>{{ 'modal.sugarDataNagscreenComputerSkills.text' | translate}}*</label>
+              <select formControlName="c_technicalAffinity">
+                <option [value]="option.id" *ngFor="let option of data.technicalAffinityList" [disabled]="option.id === '_empty_'"> {{option.value}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>{{ 'modal.sugarDataNagscreenEmail.text' | translate}}*</label>
+              <input formControlName="c_email">
+            </div>
+            <div class="form-group">
+              <label>{{ 'modal.sugarDataNagscreenPhoneLandline.text' | translate}}</label>
+              <input formControlName="c_phone">
+            </div>
+            <div class="form-group">
+              <label>{{ 'modal.sugarDataNagscreenPhoneMobile.text' | translate}}</label>
+              <input formControlName="c_mobil">
+            </div>
+          </div>
+        </div>
+        <div class="button-container">
+          <b id="validationRequired" [style.color]="inputColorStr">{{ 'modal.sugarDataNagscreenRequiredFields.text' | translate}}*</b>
+          <div>
+            <button class="btn btn-grey" (click)="activeModal.close(true)">{{ 'modal.sugarDataNagscreenLater.text' | translate}}</button>
+            <button class="btn btn-grey ml-3" (click)="proceed()">{{ 'modal.sugarDataNagscreenProceed.text' | translate}}</button>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="page === 2">
+        <div class="row">
+          <div class="col-md-6">
+            <h4>{{ 'modal.sugarDataNagscreenCategoryHeader.text' | translate}} <span class="font-weight-normal">({{ 'modal.sugarDataNagscreenMultipleOptions.text' | translate}})</span>*:</h4>
+            <div *ngFor="let category of data.categoryList" class="mb-2">
+              <input type="checkbox" [id]="category.id" [checked]="data.c_category.includes(category.id)"> {{category.value}}
+            </div>
+          </div>
+          <div class="col-md-6">
+            <h4>{{ 'modal.sugarDataNagscreenMembershipsHeader.text' | translate}} <span class="font-weight-normal">({{ 'modal.sugarDataNagscreenMultipleOptions.text' | translate}})</span>:</h4>
+            <div *ngFor="let membership of data.membershipsList" (change)="showOthers()" class="mb-2">
+              <input type="checkbox" [id]="membership.id" [checked]="data.c_memberships.includes(membership.id)"> {{membership.value}}
+            </div>
+            <div class="form-group" *ngIf="showMembershipOthers">
+              <label>{{ 'modal.sugarDataNagscreenMembershipsOther.text' | translate}}</label>
+              <input formControlName="c_memberships_other">
+            </div>
+          </div>
+        </div>
+        <div class="button-container">
+          <b id="validationRequired" [style.color]="inputColorStr">{{ 'modal.sugarDataNagscreenRequiredFields.text' | translate}}*</b>
+          <div>
+            <button class="btn btn-grey" (click)="page = 1">{{ 'modal.sugarDataNagscreenBack.text' | translate}}</button>
+            <button class="btn btn-grey ml-3" (click)="save()">{{ 'modal.sugarDataNagscreenConfirm.text' | translate}}</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

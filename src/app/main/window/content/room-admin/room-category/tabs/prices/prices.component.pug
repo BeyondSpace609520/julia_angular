@@ -1,0 +1,16 @@
+app-pricing-settings(
+  *ngIf="category",
+  #settings,
+  [source]="{ id: category.id, type: 'category' }",
+  [saveForAllByDefault]="!canSaveForAll",
+  [extraActionsTemplate]="extraActions",
+  (saved)="saved.emit(category)"
+)
+  ng-template(#extraActions, let-save="save", let-period="period")
+    button.save-for-all.btn.btn-secondary(*ngIf="canSaveForAll", (click)="save(true)", translate)
+      | BackEnd_WikiLanguage.generic_SaveForAll
+    .button-controls-right
+      button.copy-to.btn.btn-secondary((click)="copyTo(period)", translate)
+        | BackEnd_WikiLanguage.generic_copyTo
+      button.copy-to.btn.btn-secondary((click)="openTestingPriceConsole(period)", translate)
+        | BackEnd_WikiLanguage.EMA_SendTestEmailNow

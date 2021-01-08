@@ -1,0 +1,104 @@
+.top-controls
+  button.btn.btn-secondary.btn-sm((click)="printAll()", [ngbTooltip]="'BackEnd_WikiLanguage.MW_PrintAll' | translate")
+    i.mdi.mdi-printer
+
+app-table.with-tooltip([items]="items", clickable="multiple", (select)="selectItems($event)")
+  ng-template(
+    *ngFor="let field of fields",
+    #column,
+    [sortable]="field.name",
+    [label]="field.label",
+    let-item
+  )
+    ng-container([ngSwitch]="field.type")
+      ng-container(*ngSwitchCase="'date'") {{ item[field.name] | ebDate : false }}
+      ng-container(*ngSwitchDefault) {{ item[field.name] }}
+  ng-template(#column, label="BackEnd_WikiLanguage.MW_Actions", let-item)
+    // Error Icon 1
+    app-table-action(
+      [active]="item.screwed",
+      tooltip="BackEnd_WikiLanguage.MW_connectivityProblemTooltip2",
+      [rightTooltip]="false",
+      icon="alert"
+    )
+    // Error Icon 2
+    app-table-action(
+      [active]="item.restoreInformation",
+      tooltip="BackEnd_WikiLanguage.MW_connectivityProblemTooltip",
+      [rightTooltip]="false",
+      icon="alert"
+    )
+    // Icon 1
+    app-table-action(
+      [active]="!item.screwed",
+      [tooltip]="('BackEnd_WikiLanguage.MW_TooltipRegFormNumber' | translate) + ' ' + item.number + ' ' + ('BackEnd_WikiLanguage.MW_TooltipViewAndEdit' | translate)",
+      [rightTooltip]="false",
+      icon="pencil",
+      [disabled]="item.restoreInformation",
+      (clicked)="openRegForm(item)"
+    )
+    // Icon 2
+    app-table-action(
+      [active]="!item.screwed",
+      tooltip="BackEnd_WikiLanguage.MW_TooltipPrintRegform",
+      [rightTooltip]="false",
+      icon="printer",
+      [disabled]="item.restoreInformation",
+      (clicked)="print(item)"
+    )
+    // Icon 3
+    app-table-action(
+      [active]="!item.screwed && hotel.canProviderPrintGuestCard && hotel.printLink",
+      [tooltip]="!hotel.guestCardSeparate ? 'BackEnd_WikiLanguage.MW_TooltipPrintGuestcards' : 'BackEnd_WikiLanguage.guestCardBTN2'",
+      [rightTooltip]="false",
+      icon="account",
+      subIcon="printer",
+      [disabled]="item.restoreInformation || isArrivalDepartureOnSameDay(item) || item.departed || !item.guestcardPrintEnabled",
+      (clicked)="printGuestCard(item)"
+    )
+    // Icon 4
+    app-table-action(
+      [active]="!item.screwed && hotel.guestCardSeparate && hotel.printLink",
+      [rightTooltip]="false",
+      tooltip="BackEnd_WikiLanguage.guestCardBTN1",
+      icon="account-multiple",
+      subIcon="printer",
+      [disabled]="item.restoreInformation || isArrivalDepartureOnSameDay(item) || item.departed || !item.guestcardPrintEnabled",
+      (clicked)="printGuestCardPerPerson(item)"
+    )
+    // Icon 5
+    app-table-action(
+      [active]="!item.screwed",
+      [rightTooltip]="false",
+      tooltip="BackEnd_WikiLanguage.MW_TooltipArrival",
+      icon="door-open",
+      [disabled]="item.restoreInformation || isArrivalDepartureOnSameDay(item) || item.arrived",
+      (clicked)="setArrival(item)"
+    )
+    // Icon 6
+    app-table-action(
+      [active]="!item.screwed",
+      [rightTooltip]="false",
+      tooltip="BackEnd_WikiLanguage.MW_TooltipDeparture",
+      icon="door",
+      [disabled]="item.restoreInformation || isArrivalDepartureOnSameDay(item) || !item.arrived || item.departed",
+      (clicked)="setDeparted(item)"
+    )
+    // Icon 7
+    app-table-action(
+      [active]="!item.screwed",
+      [rightTooltip]="false",
+      tooltip="BackEnd_WikiLanguage.MW_TooltipCancelRegform",
+      icon="cancel",
+      [disabled]="item.restoreInformation || isArrivalDepartureOnSameDay(item) || item.number == '-1' || item.number == '0' || item.departed",
+      (clicked)="cancel(item)"
+    )
+    // Icon 8
+    app-table-action(
+      [active]="!item.screwed",
+      [rightTooltip]="false",
+      tooltip="BackEnd_WikiLanguage.MW_TooltipDeleteRegform",
+      icon="delete",
+      [disabled]="item.restoreInformation || isArrivalDepartureOnSameDay(item) || item.number > 0 || item.arrived",
+      (clicked)="delete(item)"
+    )

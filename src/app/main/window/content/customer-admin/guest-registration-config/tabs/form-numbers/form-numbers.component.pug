@@ -1,0 +1,18 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+ng-container(*ngIf="form")
+  h4(translate) BackEnd_WikiLanguage.MW_TitleNumberRanges
+  button.btn.btn-secondary((click)="guestRegistrationConfigService.addNumberRange()", [disabled]="!enableAddButton", translate) BackEnd_WikiLanguage.MW_AddNumberRange
+  main
+    .ranges
+      .range(*ngFor="let rangeGroup of form.controls; index as rangeIndex", [formGroup]="rangeGroup")
+        .form-group
+          label([for]="'start-' + rangeIndex", translate) BackEnd_WikiLanguage.generic_From
+          input([id]="'start-' + rangeIndex", type="text", appNumberInput, [decimals]="0", [formControl]="rangeGroup.get('start')")
+        .form-group
+          label([for]="'end-' + rangeIndex", translate) BackEnd_WikiLanguage.generic_To
+          input([id]="'end-' + rangeIndex", type="text", appNumberInput, [decimals]="0", [formControl]="rangeGroup.get('end')")
+    .active-range
+      h4(translate) BackEnd_WikiLanguage.MW_ActiveNumberRange
+      p.last-used
+        span(translate) BackEnd_WikiLanguage.MW_LastUsedNumber
+        strong {{ maxRegisteredNumber }}

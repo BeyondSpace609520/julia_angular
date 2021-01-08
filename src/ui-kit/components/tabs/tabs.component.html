@@ -1,0 +1,12 @@
+<ul *ngIf="settings" class="nav nav-tabs" role="tablist">
+  <li
+    *ngFor="let button of settings.buttons"
+    class="nav-item"
+    [hidden]="button.hidden"
+  ><a
+    role="tab"
+    class="{{ getButtonClasses(button.id) }}"
+    [ngClass]="getButtonStatus(button)"
+    (click)="!button.disabled && onSelect(button.id)"
+  >{{ button.label | translate }}</a></li>
+</ul>

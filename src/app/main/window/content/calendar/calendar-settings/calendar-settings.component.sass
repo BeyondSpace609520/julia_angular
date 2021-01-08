@@ -1,0 +1,64 @@
+@import '_mixins'
+@import '_variables'
+
+.colors
+  border-bottom: solid 1px $bg-icon
+  +mx(0)
+  +py(4)
+  .color
+    display: flex
+  .color > *
+    vertical-align: middle
+  .col-sm-7
+    +mt(5)
+    @include media-breakpoint-up(sm)
+      +mt(0)
+
+.col.d-flex
+  align-items: flex-end
+
+.card-header
+  display: flex
+  h3
+    +mb(0)
+  .color
+    +ml(auto)
+.card-body
+  .btn-primary
+    +mt(2)
+    +p(0)
+
+.pick-color
+  width: 18px
+  height: 18px
+  border-radius: 16.5px
+  margin-right: 10px
+  border: 1px solid $border-light
+
+.periods
+  margin: 2em auto
+  width: 80%
+  min-width: 40em
+
+.buttons-container
+  padding: 1em
+  & > *
+    margin-left: auto
+    display: block
+table.nocolor
+  border: none
+  table-layout: unset
+  width: -webkit-fill-available
+  .pick-color
+    margin-left: auto
+  thead, th, tr, tr:hover, td
+    background: unset
+    border: unset
+    background-color: unset!important
+    padding: 0.1rem
+  .btn-secondary, .btn-success
+    +p(0)
+    +ml(0)
+    +mt(1)
+  .mdi-close
+    color: $danger

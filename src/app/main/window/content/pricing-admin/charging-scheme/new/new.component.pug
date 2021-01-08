@@ -1,0 +1,9 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+.form-group
+  label.form-control-label(translate) BackEnd_WikiLanguage.CSNEW_ChargingSchemeType
+  select.form-control.custom-select([(ngModel)]="selectedType")
+    option([value]="null")
+    option(*ngFor="let option of types", [value]="option.value", translate) {{option.name}}
+app-edit-type1(#editor, *ngIf="selectedType === 'ExtraChargeOverDayOfWeekPeriod'", [scheme]="null")
+app-edit-type2(#editor, *ngIf="selectedType === 'ExtraChargeOverPeriod'", [scheme]="null")
+app-edit-type3(#editor, *ngIf="selectedType === 'FixedAmountOnNightsStay'", [scheme]="null")

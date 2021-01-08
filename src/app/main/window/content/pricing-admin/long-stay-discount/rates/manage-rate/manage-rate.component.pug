@@ -1,0 +1,2 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+app-discount-details(#details, [data]="rate", [extraFields]="extraFields", (localeChange)="selectTranslation($event)", (formStateChange)="formStateChange.emit($event)")

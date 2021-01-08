@@ -1,0 +1,50 @@
+<header>
+    <img src="assets/images/sara_modal_header.png"/>
+    <i class="mdi mdi-close" (click)="activeModal.dismiss('Cross click')"></i>
+</header>
+<div *ngIf="page === 1">
+    <main>
+        <h4>{{ 'modal.saraInitialHeader.text' | translate}}</h4>
+
+        <p>{{ 'modal.saraInitialText.text' | translate}}
+        </p>
+
+        <button class="btn btn-orange" (click)="useSaraNow()">{{ 'modal.saraActivateButton.text' | translate}}</button>
+    </main>
+    <footer>
+        <p (click)="page = 2">{{ 'modal.saraNotInterested.text' | translate}}</p>
+        <img class="easybooking-logo" src="assets/images/eblogo_dark.png">
+    </footer>
+</div>
+<div *ngIf="page === 2">
+    <main>
+        <h4>{{ 'modal.saraHideHeader.text' | translate}}</h4>
+
+        <p>{{ 'modal.saraHideText.text' | translate}}
+        </p>
+        <div class="d-flex flex-column align-items-center">
+            <button class="btn btn-orange mb-4" (click)="openSaraBlog()" href="https://blog.easybooking.eu/kommunikation-mit-app-sara/" target="blank">{{ 'modal.saraBlogButton.text' | translate}}</button>
+            <button class="btn btn-orange" (click)="useSaraNow()">{{ 'modal.saraActivateButton.text' | translate}}</button>
+        </div>
+    </main>
+    <footer>
+        <div class="d-flex flex-row">
+            <p class="mr-2" (click)="hideSara()">{{ 'modal.saraHideModal.text' | translate}}</p>
+            <p (click)="activeModal.dismiss('Close')">{{ 'modal.saraRemindLater.text' | translate}}</p>
+        </div>
+        <img class="easybooking-logo" src="assets/images/eblogo_dark.png">
+    </footer>
+</div>
+<div *ngIf="page === 3">
+    <main>
+        <h4>{{ 'modal.saraSuccessTitle.text' | translate}}</h4>
+
+        <p>{{ 'modal.saraSuccessText.text' | translate}}
+        </p>
+
+        <button class="btn btn-orange" (click)="openAcademy()">{{ 'modal.saraManualsButton.text' | translate}}</button>
+    </main>
+    <footer>
+        <img class="easybooking-logo ml-auto" src="assets/images/eblogo_dark.png">
+    </footer>
+</div>

@@ -1,0 +1,71 @@
+form(*ngIf="details && guestDetails")
+    .sectionA
+        .form-group
+            label(translate) BackEnd_WikiLanguage.CCAD_CreationDate
+            .form-value {{details.creationDate | ebDate}}
+        .form-group
+            label(translate) BackEnd_WikiLanguage.CCAB_BookingDetailBookingRefNo
+            .form-value {{details.bookingNo}}
+        .form-group
+            label(translate) BackEnd_WikiLanguage.CCAB_selfAdminPinCode
+            .form-value {{details.pinCode}}
+        .form-group
+            label(translate) BackEnd_WikiLanguage.CCAB_BookingDetailBookingStatus
+            .form-value {{details.status}}
+        .form-group
+            label(translate) BackEnd_WikiLanguage.CCAB_BookingDetailBookingSource
+            .form-value {{details.source}}
+        .form-group
+            label(translate) BackEnd_WikiLanguage.CCAB_BookingDetailBookingIP
+            .form-value {{details.ip}}
+    .sectionB
+        .form-group
+            label(translate) BackEnd_WikiLanguage.CCAB_BookingDetailBookingComment
+            textarea {{details.comment}}
+        .form-group
+            label(translate) BackEnd_WikiLanguage.IC_InternalComment
+            textarea {{details.commentInternal}}
+        .form-group
+            .empty
+            button.btn.btn-secondary(*ngIf="showEditButton", [disabled]="!canEdit", (click)="openGuestInformation()", translate) BackEnd_WikiLanguage.editTravellingPersons
+    .sectionC
+        .form-group
+            label(translate) BackEnd_WikiLanguage.CCAB_PrepaymentMethod
+            .form-value {{details.paymentType}}
+        ng-container(*ngIf="hasCreditCardDetails")
+            .form-group
+                label(translate) BackEnd_WikiLanguage.CCAB_CreditCardType
+                .form-value {{details.creditCard.type}}
+            .form-group
+                label(translate) BackEnd_WikiLanguage.CCAB_CardHolderName
+                .form-value {{details.creditCard.holder}}
+            .form-group
+                label(translate) BackEnd_WikiLanguage.CCAB_CardNumber
+                .form-value {{details.creditCard.number}}
+            .form-group
+                label(translate) BackEnd_WikiLanguage.CCAB_VerificationCode
+                .form-value {{details.creditCard.verificationCode}}
+            .form-group
+                label(translate) BackEnd_WikiLanguage.CCAB_ExpiryDate
+                .form-value
+                    span {{details.creditCard.expiryAt}}
+                    span  MM / YY
+        .form-group(*ngIf="hasCreditCardDetails || isDepositAmountShown")
+            label(translate) BackEnd_WikiLanguage.CCAB_PrepaymentAmount
+            .form-value(appFormatNumber, [innerText]="details.depositAmount")
+        button.btn.btn-secondary(*ngIf="hasCreditCardDetailsButton", (click)="openCreditCardDetails()", translate)
+            | BackEnd_WikiLanguage.showCreditCardDetails
+    .sectionD
+        .form-group(*ngIf="isPrivacyPolicyShows")
+            label(translate) BackEnd_WikiLanguage.gtcLabel
+            .form-input(*ngFor="let doc of guestDetails.docs")
+                input(type="checkbox", checked, [disabled]="true")
+                label([ngClass]="{clickable: doc.url}", (click)="openDoc(doc.url)")
+                    span {{doc.name}} 
+                    span(translate) BackEnd_WikiLanguage.gtcAgreed
+                    span  {{doc.version}}
+            .form-group
+                label(*ngIf="guestDetails.agreedAt")
+                    span(translate) BackEnd_WikiLanguage.gtcAgreedAt
+                    span : {{guestDetails.agreedAt | ebDate}}
+        

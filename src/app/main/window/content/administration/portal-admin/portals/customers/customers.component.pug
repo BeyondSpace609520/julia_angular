@@ -1,0 +1,13 @@
+.title(translate) BackEnd_WikiLanguage.POA_AssignedCustomers
+
+app-table.table-container([items]="sortedCustomers", [clickable]="true", (select)="selected = $event")
+    ng-template(#column, label="BackEnd_WikiLanguage.POA_Database", sortable="dbName", let-item) {{item.dbName}}
+    ng-template(#column, label="BackEnd_WikiLanguage.POA_Customer", sortable="name", let-item) {{item.name}}
+    ng-template(#column, label="BackEnd_WikiLanguage.POA_RemoteId", sortable="remoteId", let-item) {{item.remoteId}}
+    ng-template(#column, label="BackEnd_WikiLanguage.POA_Active", sortable="active", let-item) {{item.active ? 'on' : 'off'}}
+
+app-edit-portal-customer.customer(*ngIf="selected", [customer]="selected", (update)="load()")
+
+.bottom-controls
+    button.btn.btn-secondary((click)="addCustomer()", translate) BackEnd_WikiLanguage.generic_New
+    button.btn.btn-secondary.ml-3([disabled]="!selected", (click)="selected && delete(selected)", translate) BackEnd_WikiLanguage.generic_Delete

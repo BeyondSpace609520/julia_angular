@@ -1,0 +1,30 @@
+<html>
+    <!-- Must be served separately. For test purposes only -->
+    <head>
+        <script>
+            function login() {
+                localStorage.setItem('user', JSON.stringify({username: 'username', token: 'fake-jwt-token'}));
+
+                if(location.href.includes('//test-eb-3.easy-booking.at'))
+                    location.href = location.origin+'/JuliaAngular';
+                else
+                    location.href = 'http://localhost:4200';
+            }
+        </script>
+
+        <style>
+            label {
+                display: block
+            }
+        </style>
+    </head>
+    <body>
+        <label>Username
+            <input name="username">
+        </label>
+        <label>Password
+            <input name="password" type="password">
+        </label>
+        <button onclick="login()">Login</button>
+    </body>
+</html>

@@ -1,0 +1,16 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+ng-container(*ngIf="guestRegistrationConfigService.hotels")
+  app-tabs(
+    [settings]="tabSettings",
+    [(selected)]="activeTabId"
+  )
+  main.content
+    app-company(*ngIf="activeTabId === 'company'")
+    app-form-numbers(*ngIf="activeTabId === 'numberRanges'")
+    app-guest-types(*ngIf="activeTabId === 'guestTypes'")
+footer.buttons
+  button.btn.btn-secondary(
+    (click)="guestRegistrationConfigService.save()",
+    [disabled]="!guestRegistrationConfigService.saveEnabled",
+    translate
+  ) BackEnd_WikiLanguage.generic_Save

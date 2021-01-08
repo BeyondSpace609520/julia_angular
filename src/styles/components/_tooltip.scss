@@ -1,0 +1,15 @@
+.tooltip {
+  &.pre .tooltip-inner {
+    white-space: pre-wrap;
+  }
+  &.left .tooltip-inner {
+    text-align: left;
+  }
+  &.nowrap {
+    white-space: nowrap;
+  }
+}
+
+.with-tooltip {
+  position: relative
+}

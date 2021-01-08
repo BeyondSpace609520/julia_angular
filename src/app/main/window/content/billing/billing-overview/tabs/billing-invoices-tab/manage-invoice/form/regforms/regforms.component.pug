@@ -1,0 +1,7 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+
+app-table([items]="registrationForms", [clickable]="true", [dblclickable]="true", (select)="selected = $event", (dblclick)="onRegisterDblClick(selected)")
+  ng-template(#column, label="BackEnd_WikiLanguage.MW_RegNumber", sortable="rg_number", let-regform) {{regform.rg_number}}
+  ng-template(#column, label="BackEnd_WikiLanguage.MW_MainGuest", sortable="mainGuest", let-regform) {{regform.mainGuest}}
+  ng-template(#column, label="BackEnd_WikiLanguage.MW_Arrival", sortable="rg_fromDate", let-regform) {{regform.rg_fromDate}}
+  ng-template(#column, label="BackEnd_WikiLanguage.MW_Departure", sortable="rg_untilDate", let-regform) {{regform.rg_untilDate}}

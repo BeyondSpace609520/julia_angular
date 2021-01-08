@@ -1,0 +1,80 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+form.main(*ngIf="form", [formGroup]="form")
+  h4 {{'BackEnd_WikiLanguage.MW_Hotelname' | translate}}: {{hotel.name}}
+  .row
+    .col-4
+      h4 {{'BackEnd_WikiLanguage.MW_RegFormType' | translate}}:
+    .col-2.form-check(*ngFor="let regType of types; let i = index")
+      input(
+        type="radio",
+        [id]="'regType'+i",
+        name="type",
+        [value]="regType.value",
+        [attr.disabled]="!registrationForm?.arrived && isTypeAvailable(regType) ? null : 'disabled'",
+        formControlName="type"
+      )
+      label([for]="'regType'+i") {{regType.name}}
+  h4 {{'BackEnd_WikiLanguage.MW_RegformNumber' | translate}}: <span class="ml-4">{{registrationForm?.number || -1}} {{selectedType?.name}} </span>
+  .row.pt-3
+    .col-4.grid-area
+      .form-group
+        label(translate) BackEnd_WikiLanguage.BW_Arrival
+        app-datepicker-input(
+          [date]="form.get('arrival').value",
+          [disabled]="registrationForm?.arrived",
+          (dateChange)="form.get('arrival').setValue($event)",
+          [inputId]="'create-reg-form-arrival'"
+        )
+      .form-group(*ngIf="hotel.guestRegistrationProviderId === Providers.WILKEN")
+        label(translate) BackEnd_WikiLanguage.MW_travelPurpose
+        select.form-control(formControlName="travelPurpose")
+          option(value="holiday", translate) BackEnd_WikiLanguage.wilkenJourneyReason_holiday
+          option(value="cure", translate) BackEnd_WikiLanguage.wilkenJourneyReason_cure
+          option(value="business", translate) BackEnd_WikiLanguage.wilkenJourneyReason_business
+          option(value="sport", translate) BackEnd_WikiLanguage.wilkenJourneyReason_sport
+    .col-4.grid-area
+      .form-group
+        label(translate) BackEnd_WikiLanguage.MW_PlannedDeparture
+        app-datepicker-input(
+          [dateControl]="form.get('plannedDeparture')",
+          [inputId]="'create-reg-form-planned-departure'"
+        )
+      .form-group
+        label(translate) BackEnd_WikiLanguage.MW_RealDeparture
+        app-datepicker-input(
+          [dateControl]="form.get('actualDeparture')",
+          [minDate]="form.get('arrival').value",
+          [inputId]="'create-reg-form-actual-departure'"
+        )
+    .col-4
+      .form-check
+        input(type="checkbox", id="arrived", formControlName="arrived")
+        label(for="arrived", translate) BackEnd_WikiLanguage.MW_Arrived
+      .form-check
+        input(type="checkbox", id="departed", formControlName="departed")
+        label(for="departed", translate) BackEnd_WikiLanguage.MW_Departed
+app-individual.guests(
+  *ngIf="selectedType?.category === GuestsCategory.INDIVIDUAL",
+  [guests]="guests.individual.slice(0, 7)",
+  [canCreateNewGuest]="registrationFormService.isChannelManager || guests.individual.length < registrationFormService.linkedGuestsCount || guests.individual.length < 6",
+  [arrived]="form.get('arrived').value",
+  [forGroup]="false",
+  (delete)="deleteGuest($event)",
+  (add)="guests.individual.push($event)",
+  (save)="save($event)"
+)
+app-group.guests(
+  *ngIf="selectedType?.category === GuestsCategory.GROUP",
+  [group]="guests.group",
+  [arrived]="form.get('arrived').value",
+  (save)="saveTravelGroup($event)"
+)
+app-individual.guests(
+  *ngIf="selectedType?.category === GuestsCategory.DETAIL_GROUP",
+  [guests]="guests.individual",
+  [canCreateNewGuest]="registrationFormService.isChannelManager || guests.individual.length < registrationFormService.linkedGuestsCount",
+  [forGroup]="true",
+  (delete)="deleteGuest($event)",
+  (add)="guests.individual.push($event)",
+  (save)="save($event)"
+)

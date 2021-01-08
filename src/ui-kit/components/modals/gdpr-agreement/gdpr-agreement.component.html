@@ -1,0 +1,19 @@
+<img src="assets/img/artwork_banner.png" alt="artwork" class="modal-banner">
+<section [hidden]="modalStatus !== GDPRAgreementModalStatus.Contract">
+  <h1>{{ 'modal.gdprAgreementSecondScreenTitle.text' | translate }}</h1>
+  <div [innerHTML]="'modal.gdprAgreementSecondScreenBody.text' | translate"></div>
+  <div #contractArea id='contract' contenteditable="false">
+    <div class="loading-wrapper" *ngIf="isLoading | async">
+      <app-loading></app-loading>
+    </div>
+  </div>
+</section>
+<section [hidden]="modalStatus !== GDPRAgreementModalStatus.FinalStep">
+  <h1>{{ 'modal.gdprAgreementThirdScreenTitle.text' | translate }}</h1>
+  <div [innerHTML]="'modal.gdprAgreementThirdScreenBody.text' | translate"></div>
+  <div class="newsletter-wrapper form-check">
+    <input type="radio" name="newsletter" (change)="onNewsletterChange(true)"><label>{{ 'BackEnd_WikiLanguage.generic_Yes' | translate }}</label>
+    <input type="radio" name="newsletter" (change)="onNewsletterChange(false)"><label>{{ 'BackEnd_WikiLanguage.generic_No' | translate }}</label>
+  </div>
+  <div class="newsletter-hint" *ngIf="newsletter === false"><strong>{{ 'modal.gdprAgreementThirdScreenHint.text' | translate }}</strong></div>
+</section>

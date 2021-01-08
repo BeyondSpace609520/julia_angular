@@ -1,0 +1,48 @@
+app-statistics-filter(
+  [expiryOptions]="expiryFilterOptions",
+  (filter)="onFilter($event)",
+  (exportExcel)="onExportExcel()"
+)
+app-loading.loading-bar(*ngIf="isLoading | async")
+.m-3
+  //- TODO use app-table
+  table.with-tooltip.table-responsive.d-lg-table(mdbTable, bordered="true")
+    thead
+      tr
+        th(
+          *ngFor="let field of fields"
+          translate,
+          scope="col",
+          [sortable]="field.sortable ? field.id : null",
+          [currentSortable]="lastSortEvent",
+          (sort)="sort($event)",
+        ) {{ field.label }}
+        th(translate, scope="col") BackEnd_WikiLanguage.validUntilSTAT_actions
+    tbody
+      tr.table-row(
+        *ngFor="let item of sortedItems; trackBy: trackStatistics",
+        mdbTableCol
+      )
+        td(
+          *ngFor="let field of fields",
+          [class.numeric]="field.type === TableFieldType.Numeric || field.type === TableFieldType.NumericFormatted"
+        )
+          ng-container([ngSwitch]="field.type")
+            ng-container(*ngSwitchCase="TableFieldType.Date") {{ item[field.id] | ebDate : false }}
+            ng-container(*ngSwitchCase="TableFieldType.TextArray") {{ item[field.id].join(', ') }}
+            ng-container(*ngSwitchCase="TableFieldType.NumericFormatted") {{ item[field.id] | formatNumber : 2 }}
+            ng-container(*ngSwitchDefault) {{ item[field.id] }}
+        td
+          app-table-action(
+            tooltip="BackEnd_WikiLanguage.MW_TooltipOpenBooking",
+            icon="open-in-app",
+            [rightTooltip]="false",
+            (click)="openBooking(item)"
+          )
+          app-table-action(
+            tooltip="BackEnd_WikiLanguage.IC_PreviewEMailPDFToolTip",
+            [icon]="pdfsLoading.includes(item.bookingId) ? 'loading' : 'file-pdf'",
+            [class.loading]="pdfsLoading.includes(item.bookingId)",
+            [rightTooltip]="false",
+            (click)="downloadPdf(item)"
+          )

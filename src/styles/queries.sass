@@ -1,0 +1,15 @@
+$desktop-width: 1200px
+$tablet-width: 992px
+$phone-width: 768px
+
+=desktop
+    @media screen and (max-width: #{$desktop-width})
+        @content
+
+=tablet
+    @media screen and (max-width: #{$tablet-width})
+        @content
+
+=phone
+    @media screen and (max-width: #{$phone-width})
+        @content

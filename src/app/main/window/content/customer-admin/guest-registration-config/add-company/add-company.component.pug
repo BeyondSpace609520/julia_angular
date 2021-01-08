@@ -1,0 +1,4 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+form([formGroup]="form")
+  label(for="name", translate) BackEnd_WikiLanguage.MW_Hotelname
+  input#name.form-control(type="text", formControlName="name")

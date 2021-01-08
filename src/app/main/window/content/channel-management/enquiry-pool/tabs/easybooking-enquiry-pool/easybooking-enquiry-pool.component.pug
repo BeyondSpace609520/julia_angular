@@ -1,0 +1,54 @@
+app-search-bar(
+  [checkboxes]="searchCheckboxes",
+  [fromDayShift]="14",
+  [fromDate]="fromDate",
+  [untilDate]="untilDate",
+  (search)="onSearch($event)",
+  [refreshInsteadOfGo]="true"
+)
+  .form-group(middleSlot)
+    label &#8203;
+    select([formControl]="dateFilterOption")
+      option(
+        *ngFor="let option of filterOptions",
+        [value]="option.value",
+        translate
+      ) {{option.name}}
+app-loading.loading-bar(*ngIf="isContentLoading | async")
+.m-3.with-tooltip
+  app-table([items]="enquiries")
+    ng-template(#column, sortable="status", label="BackEnd_WikiLanguage.EQP_status", let-item)
+      .center(*ngIf="getStatus(item) as status")
+        i.mdi.mdi-18px([ngClass]="status.icon", [ngbTooltip]="status.tooltip | translate", container="body", placement="right-top")
+
+    ng-template(#column, sortable="source", label="BackEnd_WikiLanguage.EQP_source", let-item)
+      span([ngClass]="{highlight: isHighlighted(item)}") {{item.source}}
+
+    ng-template(#column, sortable="name", label="BackEnd_WikiLanguage.EQP_name", let-item)
+      span([ngbTooltip]="item.companyInfo", [ngClass]="{highlight: isHighlighted(item)}", tooltipClass="pre left", placement="right", container="body") {{item.name}}
+
+    ng-template(#column, sortable="createdDate", label="BackEnd_WikiLanguage.EQP_incomingDate", let-item)
+      span([ngClass]="{highlight: isHighlighted(item)}") {{item.createdDate | ebDate}}
+    ng-template(#column, sortable="arrival", label="BackEnd_WikiLanguage.EQP_arrival", let-item)
+      span([ngClass]="{highlight: isHighlighted(item)}")  {{item.arrival | ebDate}}
+    ng-template(#column, sortable="start", label="Period Start", let-item)
+      span([ngClass]="{highlight: isHighlighted(item)}")  {{item.start | ebDate:false}}
+    ng-template(#column, sortable="end", label="Period End", let-item)
+      span([ngClass]="{highlight: isHighlighted(item)}")  {{item.end | ebDate:false}}
+    ng-template(#column, sortable="nights", label="BackEnd_WikiLanguage.EQP_nights", let-item)
+      span([ngClass]="{highlight: isHighlighted(item)}")  {{item.nights}}
+    ng-template(#column, sortable="adults", label="BackEnd_WikiLanguage.EQP_adults", let-item)
+      span([ngClass]="{highlight: isHighlighted(item)}")  {{item.adults}}
+    ng-template(#column, sortable="children", label="BackEnd_WikiLanguage.EQP_children", let-item)
+      span([ngClass]="{highlight: isHighlighted(item)}")  {{item.children}}
+    ng-template(#column, sortable="ages", label="BackEnd_WikiLanguage.EQP_ages", let-item)
+      span([ngClass]="{highlight: isHighlighted(item)}")  {{item.ages}}
+
+    ng-template(#column, sortable="price", label="BackEnd_WikiLanguage.EQP_price", let-item)
+      .right([ngClass]="{highlight: isHighlighted(item)}") {{item.price}}
+
+    ng-template(#column, sortable="comment", label="BackEnd_WikiLanguage.EQP_comment", let-item)
+      i.mdi.mdi-18px([ngClass]="item.comment?'mdi-comment-text':''", [ngbTooltip]="item.comment", container="body")
+
+    ng-template(#column, label="BackEnd_WikiLanguage.EQP_actions", let-item)
+      app-actions([enquiry]="item", (listChange)="updateList()")

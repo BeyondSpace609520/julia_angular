@@ -1,0 +1,25 @@
+form(*ngIf="form")
+  .column(*ngFor="let column of columns; let i = index")
+    .item.form-group.form-check(*ngFor="let item of column")
+      ng-container(*ngIf="item.divider; else control")
+        .p-1
+      ng-template(#control)
+        input(
+          *ngIf="item.type === 'checkbox'",
+          [id]="item.key",
+          type="checkbox",
+          [formControl]="getControl(i, item.key)"
+        )
+        label([for]="item.key", translate, [ngClass]="{'text-right': item.type !== 'checkbox'}") BackEnd_WikiLanguage.{{item.label}}
+        input(
+          *ngIf="item.type === 'number'",
+          type="number",
+          min="0",
+          max="20",
+          decimals="0",
+          [formControl]="getControl(i, item.key)"
+        )
+        input(
+          *ngIf="item.type === 'string'",
+          [formControl]="getControl(i, item.key)"
+        )

@@ -1,0 +1,9 @@
+.range
+    .form-group
+        label.font-weight-bold.text-right(translate) {{title}}
+    .form-group
+        label(translate) BackEnd_WikiLanguage.SO_FromDate
+        app-datepicker-input([date]="fromControl.value", (dateChange)="fromControl.setValue($event);", placement="bottomLeft")
+    .form-group
+        label(translate) BackEnd_WikiLanguage.SO_UntilDate
+        app-datepicker-input([date]="untilControl.value", (dateChange)="untilControl.setValue($event);", placement="bottomLeft")

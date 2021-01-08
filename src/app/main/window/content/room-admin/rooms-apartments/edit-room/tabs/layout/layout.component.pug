@@ -1,0 +1,5 @@
+app-layout-uploader(
+  [id]="item && item.id",
+  source="apartmentLayout",
+  (saved)="edited.emit()",
+)

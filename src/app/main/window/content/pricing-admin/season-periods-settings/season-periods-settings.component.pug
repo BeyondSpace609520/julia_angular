@@ -1,0 +1,52 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+form.main
+  .container.season-periods-settings.border
+    .row.mb-2
+      .col-6
+        label {{ 'BackEnd_WikiLanguage.GS_BlockArrival' | translate }}
+        .form-group
+          app-datepicker-input(
+            minDate="{{ today }}",
+            #blockArrivalDate,
+            placement="bottomLeft"
+          )
+          button.add-button.btn.btn-secondary([disabled]="!blockArrivalDate.inputValue || !blockArrivalDate.valid", (click)="addBlockArrivalDate(blockArrivalDate.inputValue)") +
+
+      .col-6
+        label(translate) BackEnd_WikiLanguage.GS_BlockDeparture
+        .form-group
+          app-datepicker-input(
+            minDate="{{ today }}",
+            #blockDepartureDate,
+            placement="bottomRight"
+          )
+          button.add-button.btn.btn-secondary([disabled]="!blockDepartureDate.inputValue || !blockDepartureDate.valid", (click)="addBlockDepartureDate(blockDepartureDate.inputValue)") +
+
+    .row.list
+      .col-6
+        .form-group
+          app-list-view.list-view(
+            [items]="blockArrivalDates",
+            [selected]="selectedblockArrivalDateId",
+            (select)="selectBlockArrivalDate($event)"
+          )
+            ng-template(let-item)
+              | {{ item }}
+          button.remove-button.btn.btn-secondary([disabled]="!selectedblockArrivalDate", (click)="removeBlockArrivalDate(selectedblockArrivalDate)") -
+
+      .col-6
+        .form-group
+          app-list-view.list-view(
+            [items]="blockDepartureDates",
+            [selected]="selectedblockDepartureDateId",
+            (select)="selectBlockDepartureDate($event)"
+          )
+            ng-template(let-item)
+              | {{ item }}
+          button.remove-button.btn.btn-secondary([disabled]="!selectedblockDepartureDate", (click)="removeBlockDepartureDate(selectedblockDepartureDate)") -
+
+  .row.mt-2
+    .col-6
+      button.btn.btn-secondary((click)="cancel()", translate) BackEnd_WikiLanguage.generic_Cancel
+    .col-6
+      button.btn.btn-secondary((click)="save()", translate) BackEnd_WikiLanguage.generic_Save

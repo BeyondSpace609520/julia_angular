@@ -1,0 +1,17 @@
+<div class="modal-header" *ngIf="!hideHeader">
+  <img src="assets/img/Julia@2x.png" alt="julia" class="julia-img rounded-circle">
+  <h4 class="modal-title">
+    <i class="mdi mdi-information mdi-24px"></i>
+    <span class="modal-title__text">{{textHead | translate}}</span>
+  </h4>
+  <button class="close" [attr.aria-label]="'general.buttonClose.text' | translate" (click)="activeModal.dismiss('Cross click')" *ngIf="closableWithIcon">
+    <i class="mdi mdi-close"></i>
+  </button>
+</div>
+<div class="modal-body">
+  <ng-template #bodyContainer></ng-template>
+</div>
+<div class="modal-footer modal-footer--flex text-right">
+  <div *ngIf="closable" class="btn {{buttonClass}}" (click)="activeModal.close('Close click')">{{buttonCloseLabel | translate}}</div>
+  <ng-template #shortcutsContainer></ng-template>
+</div>

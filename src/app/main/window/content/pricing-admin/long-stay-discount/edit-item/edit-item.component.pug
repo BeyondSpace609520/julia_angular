@@ -1,0 +1,4 @@
+.main
+    app-manage-item(#manage, [item]="item")
+    button.btn.btn-secondary((click)="manage.save().then(onSave)", translate) BackEnd_WikiLanguage.generic_Save
+app-rates.rates(*ngIf="details", [rates]="details.rates", [discount]="item", (edited)="load()")

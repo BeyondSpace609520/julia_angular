@@ -1,0 +1,10 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{ textHead | translate }}</h4>
+</div>
+<div class="modal-body">
+  <ngb-progressbar
+    *ngIf="progress"
+    type="info"
+    [value]="progress | async | progressValue : headStart"
+  >{{ progress | async | progressValue : headStart }}%</ngb-progressbar>
+</div>

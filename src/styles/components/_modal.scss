@@ -1,0 +1,263 @@
+// Defaults
+//
+.modal-backdrop#offerwizard-backdrop {
+  z-index: $zindex-ow-modal-backdrop;
+}
+
+.modal {
+  border: none;
+  box-shadow: $popover-shadow;
+
+  &:not(.julia) .modal-title {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  &.price-calculation .modal-body {
+    max-height: 80vh;
+    overflow: auto;
+    position: static;
+  }
+
+  &.show {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .modal-dialog {
+      max-height: 100%;
+    }
+  }
+
+  &.offerWizard-modal {
+    z-index: $zindex-ow-modal;
+  }
+  &.select-guest-modal {
+    .modal-header {
+      height: 36px;
+      padding: 14px;
+      box-sizing: content-box;
+      h4 {
+        line-height: 36px;
+      }
+    }
+  }
+  &.contract-renewal-modal {
+    .modal-dialog {
+      max-width: 740px;
+    }
+  }
+
+  &.password-change-modal {
+    .modal-dialog {
+      max-width: 400px;
+    }
+  }
+
+  .julia-img {
+    display: none;
+  }
+
+  .modal-dialog {
+    margin: 0;
+    flex: none;
+  }
+
+  .modal-header {
+    h4 .icon {
+      display: none;
+    }
+    background: none;
+    border-bottom-color: $bg-light;
+    &.with-tabs {
+      padding-bottom: 0;
+      .nav-tabs {
+        margin-bottom: 0;
+        border-bottom: none;
+      }
+    }
+    .modal-title {
+      font-weight: 400;
+    }
+    .close:focus {
+      outline: unset;
+      color: $primary;
+    }
+  }
+
+  .modal-content {
+    /* overflow: hidden; */
+    margin: 20px;
+    width: auto;
+    border: none;
+    border-radius: 0.3rem;
+  }
+
+  .modal-footer {
+    text-align: right;
+    background: $bg-lighter;
+    border-radius: 0 0 0.3rem 0.3rem;
+  }
+
+  & app-modal-forms {
+    .modal-body:not(.inverse-background) {
+      background: $bg-lighter;
+    }
+    .modal-body .form-header {
+      margin: -1rem -1rem 1rem;
+      padding: 1rem;
+      border-bottom: 1px solid $gray-200;
+      background: white;
+    }
+    .modal-footer:not(.inverse-background) {
+      background: white;
+    }
+  }
+
+  &.julia {
+    .modal-content {
+      margin-top: 60px;
+    }
+    .modal-header {
+      padding: 36px 20px 8px;
+      position: relative;
+
+      h4 {
+        display: flex;
+        width: 100%;
+        margin: 0;
+        padding: 15px;
+        color: #FFFFFF;
+        font-weight: 400;
+        background-color: #F68D1B;
+        border-radius: 4px;
+        line-height: 1.3em;
+        font-size: 16px;
+        &.bg_blue {
+          background-color: $primary;
+        }
+        .icon {
+          display: block;
+          padding: 0 10px 0 0;
+          opacity: 0.8;
+          font-size: 18px;
+          line-height: 1em;
+        }
+        .icon, .title {
+          align-self: flex-start;
+        }
+      }
+
+      img.julia-img {
+        display: block;
+        position: absolute;
+        left: 50%;
+        top: -40px;
+        transform: translate(-50%, 0);
+        width: 80px;
+        height: 80px;
+        border: solid 5px #FFFFFF;
+      }
+
+      .close {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+      }
+    }
+    .modal-body {
+      padding: 10px 20px;
+      &.full-width {
+        padding: 0;
+      }
+      &.white-background {
+        background-color: #FFFFFF !important;
+      }
+      &.top-border {
+        border-top: 1px solid $border-lighter;
+      }
+      .component-header {
+        margin-bottom: 1em;
+        padding-bottom: 1em;
+        border-bottom: 1px solid $border-light;
+      }
+    }
+    .modal-footer .btn {
+      padding: .5rem 3rem;
+    }
+  }
+
+  // Scrollable fullsize modal with fixed header/footer
+  //
+  &.scrollable {
+    overflow: hidden;
+    display: flex;
+
+    .modal-dialog {
+      height: 100%;
+      padding: 20px;
+    }
+    &.julia .modal-dialog {
+      padding-top: 60px;
+    }
+    .modal-content {
+      margin: 0;
+      max-height: 100%;
+    }
+
+    .modal-content {
+      &,
+      & > *:not(p):not(div):not(small):not(table):not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+    }
+
+    .modal-header,
+    .modal-footer {
+      position: relative;
+      display: block;
+
+      .close {
+        position: absolute;
+        top: $modal-inner-padding;
+        right: $modal-inner-padding;
+        padding: 0;
+        margin: 0;
+      }
+    }
+
+    .modal-body {
+      flex: 1;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+}
+
+@media (min-width: 576px) {
+  .pricing-test-console {
+    .modal-dialog {
+      max-width: 850px
+    }
+  }
+  .modal-dialog {
+    width: 80%;
+    max-width: 600px;
+    &.modal-sm {
+      max-width: 400px;
+    }
+    &.modal-md {
+      max-width: 720px;
+    }
+    &.modal-lg {
+      max-width: 940px;
+    }
+    &.modal-xl {
+      max-width: 1260px;
+    }
+  }
+}

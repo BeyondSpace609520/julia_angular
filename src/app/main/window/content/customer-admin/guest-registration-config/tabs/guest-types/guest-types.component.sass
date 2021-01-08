@@ -1,0 +1,48 @@
+@import "app-globals"
+
+\:host
+  height: 100%
+
+main
+  display: grid
+  grid-template-columns: 50% 4rem auto
+  grid-template-rows: 24px 24px auto
+  grid-template-areas: "availableTitle . selectedTitle" "providers . ." "availableList controls selectedList"
+  grid-gap: $grid-gutter-width/2
+  height: 100%
+
+  .providers
+    grid-area: providers
+
+    label
+      flex: none
+      width: 50%
+      padding-right: 1em
+      overflow: hidden
+      text-overflow: ellipsis
+      white-space: nowrap
+
+    .form-control
+      width: 50%
+
+  .available-title
+    grid-area: availableTitle
+
+  .available-list
+    grid-area: availableList
+
+  .controls
+    grid-area: controls
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+
+    * + *
+      margin-top: $grid-gutter-width/2
+
+  .selected-title
+    grid-area: selectedTitle
+
+  .selected-list
+    grid-area: selectedList

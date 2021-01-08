@@ -1,0 +1,61 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+.sidebar
+  .row
+    .col
+      .form-check
+        input(type="radio", id="customerType", name="type", [value]="EmailTemplateType.CUSTOMER", [formControl]="type")
+        label(for="customerType", translate) BackEnd_WikiLanguage.generic_Customer
+    .col
+      .form-check
+        input(type="radio", id="adminType", name="type", [value]="EmailTemplateType.ADMIN", [formControl]="type")
+        label(for="adminType", translate) BackEnd_WikiLanguage.generic_Admin
+  app-season-select(
+    #seasonSelect,
+    [control]="periodId",
+    [localeId]="localeId.value",
+    [template]="selected",
+    [disabled]="type.value !== EmailTemplateType.CUSTOMER"
+  )
+  .form-group
+    select([formControl]="localeId")
+      option(*ngFor="let locale of locales", [value]="locale.value", translate) BackEnd_WikiLanguage.{{locale.name}}
+  app-list-view.list-view(
+    [items]="templates",
+    [selected]="selectedTemplateId",
+    (select)="selectItem($event)"
+  )
+    ng-template(let-item) {{item.translation}}
+content(*ngIf="selected")
+  app-tabs(
+    [settings]="tabSettings",
+    [(selected)]="activeTabId"
+  )
+  app-loading.loading-bar(*ngIf="isTabLoading | async")
+  .tab-container
+    app-email-tab.content(
+      *ngIf="activeTabId === 'email'",
+      [template]="selected",
+      [localeId]="+localeId.value",
+      [period]="seasonSelect.period",
+      (update)="seasonSelect.updatePeriods()",
+    )
+    app-pdf-tab.content(
+      *ngIf="activeTabId === 'pdf'",
+      [template]="selected",
+      [localeId]="+localeId.value",
+      [period]="seasonSelect.period",
+      (update)="seasonSelect.updatePeriods()"
+    )
+    app-images-tab.content(
+      *ngIf="activeTabId === 'images'",
+      [template]="selected",
+      [localeId]="+localeId.value",
+      [period]="seasonSelect.period",
+      (update)="seasonSelect.updatePeriods()",
+    )
+    app-attachments-tab.content(
+      *ngIf="activeTabId === 'attachments'",
+      [template]="selected",
+      [localeId]="+localeId.value",
+      [period]="seasonSelect.period",
+    )

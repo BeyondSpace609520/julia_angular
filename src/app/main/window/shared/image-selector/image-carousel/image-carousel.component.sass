@@ -1,0 +1,39 @@
+$side-picture-width: 30%
+$transition: 0.6s
+
+@mixin transform($angle, $width: $side-picture-width, $scale: 2)
+    perspective: 50em
+    width: $width
+    .img-container
+        transition: $transition
+        transform: rotateY($angle) scale($scale)
+
+
+.wrapper
+    @for $i from 1 through 8
+        &.offset-#{$i}
+            margin-left: 0// override bootstrap styles
+            .picture:first-child
+                margin-left: -$i * $side-picture-width
+    .picture
+        width: 100%
+        display: inline-block
+        transition: $transition
+
+        @include transform(65deg)
+        &.current
+            @include transform(0deg, 100%, 1)
+            & ~ .picture
+                @include transform(-65deg)
+        .img-container
+            img
+                width: 100%
+                &.reflection
+                    position: absolute
+                    top: 105%
+                    left: 0
+                    transform: scaleY(-1)
+                    -webkit-mask: linear-gradient(0deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 25%)
+    .current:nth-child(1) .picture:first-child
+        margin-left: -30%
+            

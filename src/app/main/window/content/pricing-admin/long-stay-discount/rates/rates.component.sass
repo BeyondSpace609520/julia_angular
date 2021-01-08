@@ -1,0 +1,32 @@
+@import "../../../../shared/window-content/with-sidebar.sass"
+@import '_variables'
+
+:host
+    min-height: 20em
+    border-top: 1px solid $border-light
+
+.sidebar
+    width: 120px
+    .list-view
+        flex: 1
+        margin-bottom: 0.5em
+        min-height: 10em
+    .icon
+        font-size: 1.4em
+        color: #f12d2d
+        margin: auto
+content
+    display: flex
+    .rates-border
+        border: 1px solid $border-light
+        padding: 1em
+        flex: 1    
+        display: flex
+        flex-direction: column
+        form 
+            max-width: 20em
+            padding: 0 1em
+        .control-buttons
+            margin-top: auto
+            button
+                margin-right: 0.5em

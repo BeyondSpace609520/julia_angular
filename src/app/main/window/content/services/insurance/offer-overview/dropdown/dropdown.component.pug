@@ -1,0 +1,5 @@
+div(ngbDropdown, #dropdown="ngbDropdown", (dblclick)="clearSelection(); dropdown.open()")
+  ng-content
+  div(ngbDropdownAnchor)
+  div(ngbDropdownMenu)
+    button(*ngFor="let item of items", ngbDropdownItem, (click)="selected.emit(item.id)") {{item.label}}

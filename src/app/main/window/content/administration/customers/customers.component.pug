@@ -1,0 +1,22 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+.sidebar
+  form.toolbar-search
+    input.form-control(type="text", [(ngModel)]="filter", [ngModelOptions]="{standalone: true}")
+    button.btn.btn-secondary((click)="load()", translate) BackEnd_WikiLanguage.generic_Refresh
+  app-list-view.list-view(
+    [items]="items | filterItems : filter : 'name'",
+    [selected]="selectedItem",
+    (select)="selectItem($event)"
+  )
+    ng-template(let-item)
+      .item([style.color]="getItemColor(item)") {{item.name}}&#8203;
+content(*ngIf="selectedItem")
+  app-loading.loading-bar(*ngIf="isTabLoading | async")
+  app-tabs(
+    [settings]="tabSettings",
+    [(selected)]="activeTabId"
+  )
+  .tab-container
+    app-detail(*ngIf="activeTabId === 'details'", [id]="selectedItem.id")
+    app-users(*ngIf="activeTabId === 'users'", [customer]="selectedItem")
+    app-login(*ngIf="activeTabId === 'login'")

@@ -1,0 +1,3 @@
+app-table([items]="roomErrors")
+    ng-template(#column, label="BackEnd_WikiLanguage.REP_DBValid_EntityGroup", sortable="number", let-room) {{room.number}}
+    ng-template(#column, label="BackEnd_WikiLanguage.REP_DBValid_SeasonPeriod", sortable="name", let-room) {{room.name}}

@@ -1,0 +1,16 @@
+app-loading.loading-bar(*ngIf="!guestRegistrationConfigService.hotels; else content")
+ng-template(#content)
+  aside
+    app-list-view(
+      [items]="guestRegistrationConfigService.hotels",
+      [selected]="guestRegistrationConfigService.selectedHotel | async",
+      (select)="guestRegistrationConfigService.selectHotel($event)",
+      [enableDragSort]="true",
+      (itemsSorted)="guestRegistrationConfigService.itemsSorted()",
+    )
+      ng-template(let-item) {{ item.name }}
+    .buttons
+      button.btn.btn-secondary((click)="guestRegistrationConfigService.addHotel()", translate) BackEnd_WikiLanguage.generic_New
+      button.btn.btn-secondary((click)="guestRegistrationConfigService.deleteHotel()", translate) BackEnd_WikiLanguage.generic_Delete
+  main
+    app-company-details(*ngIf="guestRegistrationConfigService.selectedHotel | async")

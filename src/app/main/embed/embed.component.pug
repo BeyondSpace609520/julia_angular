@@ -1,0 +1,7 @@
+wt-lazy.content(
+    *ngFor="let frame of embeds",
+    [hidden]="!frame.visible",
+    [location]="frame.embed",
+    [inputs]="{ visible: frame.visible }",
+    [outputs]="outputs(frame)"
+)

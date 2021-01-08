@@ -1,0 +1,15 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+app-tabs(
+  *ngIf="tabSettings.buttons.length",
+  [settings]="tabSettings",
+  [(selected)]="activeTabId"
+)
+content(*ngIf="form", [formGroup]="form.get(activeTabId)")
+  .form-group.heading
+    label(translate) BackEnd_WikiLanguage.CMS_Heading
+    input(formControlName="heading")
+  .form-group.editor
+    label(translate) BackEnd_WikiLanguage.TAS_Text
+    quill-editor.editor(formControlName="text", [modules]="editorConfig")
+  .buttons-container
+    button.btn.btn-secondary((click)="save()", translate) BackEnd_WikiLanguage.generic_Save

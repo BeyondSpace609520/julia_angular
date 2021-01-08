@@ -1,0 +1,9 @@
+.dropdown.form-group(*ngIf="roomTypes")
+    label(translate) BackEnd_WikiLanguage.NEP_EntityType
+    select([formControl]="roomType")
+        option(*ngFor="let item of roomTypes", [ngValue]="item.id", translate) BackEnd_WikiLanguage.generic_{{item.name}}
+app-shared-room-features(#features, [data]="featuresData")
+.buttons
+    button.btn.btn-secondary(translate, (click)="save(!hasAdvancedPricingModule)") BackEnd_WikiLanguage.generic_Save
+    button.btn.btn-secondary(*ngIf="hasAdvancedPricingModule", translate, (click)="save(true)") BackEnd_WikiLanguage.generic_SaveForAll
+    button.btn.btn-secondary((click)="copyTo()", translate) BackEnd_WikiLanguage.generic_copyTo

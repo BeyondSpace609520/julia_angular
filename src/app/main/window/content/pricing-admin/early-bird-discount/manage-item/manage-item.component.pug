@@ -1,0 +1,41 @@
+form(*ngIf="form", [formGroup]="form")
+  h5(translate) BackEnd_WikiLanguage.EBD_validFromUntil
+  .date-fields
+    .form-group
+      label {{ 'BackEnd_WikiLanguage.LM_FromDate' | translate }} - {{ 'BackEnd_WikiLanguage.LM_UntilDate' | translate }}
+      app-datepicker-input.datepicker(
+        inputId="fromAndUntilDate",
+        placement="bottomLeft",
+        [date]="form.get('fromDate').value",
+        (dateChange)="form.get('fromDate').setValue($event)",
+        [range]="form.get('untilDate').value",
+        (rangeChange)="form.get('untilDate').setValue($event)",
+        [mandatory]="true",
+        (statusChange)="onFieldStatusChange('fromAndUntilDate', $event)"
+      )
+  ng-container(*ngIf="extraFields")
+    app-discount-details(
+      #discountDetails,
+      [data]="details",
+      (localeChange)="selectTranslation($event)",
+      (formStateChange)="onFieldStatusChange('discountDetails', $event.valid)"
+    )
+    h5.mt-4(translate) BackEnd_WikiLanguage.EBD_ValidUntil
+    .day-fields
+      .form-check
+        input(type="radio", id="days", name="dateType", [value]="DiscountDateType.DAYS", formControlName="dateType")
+        label(for="days", translate) BackEnd_WikiLanguage.EBD_days
+      .form-group
+        input(type="text", appNumberInput, decimals="0", min="1", max="365", formControlName="daysBeforeArrival")
+      .form-check
+        input(type="radio", id="fixedDay", name="dateType", [value]="DiscountDateType.FIXED", formControlName="dateType")
+        label(for="fixedDay", translate) BackEnd_WikiLanguage.EBD_fixedDay
+      .form-group
+        app-datepicker-input.datepicker(
+          inputId="fixedDate",
+          [date]="form.get('fixedDate').value",
+          (dateChange)="form.get('fixedDate').setValue($event)",
+          [mandatory]="form.get('dateType').value === DiscountDateType.FIXED",
+          placement="top",
+          (statusChange) = "onFieldStatusChange('fixedDate', $event)"
+        )

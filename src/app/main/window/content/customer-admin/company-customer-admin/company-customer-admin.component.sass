@@ -1,0 +1,56 @@
+@import "../../../shared/window-content/with-sidebar.sass"
+@import "../../../shared/window-content/with-tabs.sass"
+@import "_variables"
+@import "_mixins"
+
+.flexbox-column
+  @include media-breakpoint-up(lg)
+    flex-direction: row
+  .sidebar
+    @include media-breakpoint-down(md)
+      position: unset
+      height: auto
+      width: 100%
+      .list-view
+        max-height: 150px
+    .import-export-section
+      margin: 0.5em 0
+      label
+        vertical-align: middle
+        margin: 0.5em
+      .btn
+        padding: 0.5em
+        .mdi
+          font-size: 1.4rem
+          color: #0A6800
+
+    .list-view
+      flex: 1
+      margin: 0.5em 0
+      overflow: auto
+    .btn-outline-secondary
+      width: fit-content
+    .toolbar-search
+      input
+        max-width: 70%
+      .btn-secondary
+        +ml(2)
+        padding: 0.3rem 0
+        height: 100%
+        flex: 1
+
+  content
+    overflow: auto
+    +px(0)
+    +pb(0)
+    @include media-breakpoint-down(md)
+      margin-left: unset
+      overflow: unset
+    .tab-container
+      +p(0)
+      .content
+        display: flex
+
+app-tabs
+  margin-right: 0.5rem
+  margin-left: 0.5rem

@@ -1,0 +1,17 @@
+ng-container(*ngTemplateOutlet="itemTemplate; context: { $implicit: tree }")
+
+ng-template(#itemTemplate, let-folders)
+    .tree(
+        *ngFor="let item of folders",
+        [ngClass]="{selected: isSelected(item)}",
+        (click)="$event.stopPropagation(); onClick(item)"
+    )
+        .item
+            i.toggler.mdi.mdi-play(
+                (click)="$event.stopPropagation(); toggle(item)",
+                [ngClass]="{ visible: item.children.length, expanded: isExpanded(item) }"
+            )
+            i.mdi.mdi-folder
+            label {{item.name}}
+        .children(*ngIf="isExpanded(item)")
+            ng-container(*ngTemplateOutlet="itemTemplate; context: { $implicit: item.children }")

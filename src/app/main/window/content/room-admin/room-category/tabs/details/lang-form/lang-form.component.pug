@@ -1,0 +1,11 @@
+form.grid-area([formGroup]="form")
+  .form-group
+    label(translate) {{label}}
+    input(formControlName="title")
+  .row
+    .col
+      label(translate) BackEnd_WikiLanguage.EG_Description
+      quill-editor.editor(formControlName="description", [modules]="editorConfig")
+    .col
+      label(translate) BackEnd_WikiLanguage.egl_priceWidgetLabel
+      quill-editor.editor(formControlName="priceInfo", [modules]="editorConfig")

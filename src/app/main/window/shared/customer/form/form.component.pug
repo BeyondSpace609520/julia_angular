@@ -1,0 +1,16 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+form(*ngIf="form && resources")
+  .column(*ngFor="let fields of columns")
+    app-field(
+      *ngFor="let field of fields",
+      [field]="field",
+      [control]="form.get('fields').get(field[2])",
+      [resources]="resources",
+      [dependencies]="field[3]?.dependencies",
+      [group]="form.get('fields')"
+    )
+
+ng-template(#birthDateTooltip)
+  div(translate) BackEnd_WikiLanguage.MW_childWithRelatedBookingTooltip
+  button.btn
+    i.mdi.mdi-arrow-right((click)="openRoomplan()")

@@ -1,0 +1,22 @@
+.popover {
+  max-width: 530px;
+  background-color: rgba(255, 255, 255, 0.95);
+  border: none;
+  box-shadow: $popover-shadow;
+  font-size: 0.9rem;
+
+  .popover-header {
+    background: none;
+  }
+
+  @supports (backdrop-filter:$backdrop-filter) {
+    & {
+      background-color: $backdrop-filter-bg;
+      backdrop-filter: $backdrop-filter;
+    }
+  }
+
+  .error {
+     color: $danger;
+  }
+}

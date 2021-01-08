@@ -1,0 +1,19 @@
+.user-image {
+  display: inline-block;
+  box-sizing: content-box;
+  width: 94px;
+  height: 94px;
+  line-height: 94px;
+  background-color: #dadfea;
+  color: #74849A;
+  box-shadow: $shadow-smooth;
+  border: solid 2px #f9fafe;
+  border-radius: 100%;
+  margin: 0 auto;
+}
+
+.user-image img {
+  width: 94px;
+  height: 94px;
+  border-radius: 50%;
+}

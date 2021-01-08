@@ -1,0 +1,35 @@
+@import '_variables'
+
+form
+  height: 100%
+  display: flex
+  flex-direction: column
+  .form-content
+    flex: 1 1 auto
+    .with-info
+      max-width: calc(40% + 1.25rem)
+      label
+        flex: 1 1 auto
+    .auto-anonymize-details
+      margin: 1.25rem 0
+      padding: 1.25rem 0
+      background-color: $gray-200
+      > div, > button
+        padding-left: 1.25rem
+    .auto-anonymization-days
+      label
+        white-space: nowrap
+      input
+        width: auto
+        max-width: 60px
+        text-align: right
+        margin: 0 8px 0 4px
+    .form-check
+      margin-bottom: 0.3rem
+      display: flex
+      align-items: center
+      align-content: center
+      input[type=checkbox], input[type=radio]
+        margin-top: 0
+  .form-navigation
+    text-align: right

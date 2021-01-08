@@ -1,0 +1,28 @@
+app-table([items]="currentFormArray.controls")
+  ng-template(#column, let-priceControl)
+    span(
+      [ngClass]="{bold: !isRoomLevel && priceControl.get('personsNo').value == stdPricePosition}",
+      [innerText]="'Person: '+priceControl.get('personsNo').value"
+    )
+  ng-template(#column,
+    [label]="isRoomLevel?'BackEnd_WikiLanguage.generic_RoomPrice':'BackEnd_WikiLanguage.generic_AdultPrice'",
+    let-priceControl
+  )
+    input.editable-cell(
+      type="text",
+      appNumberInput,
+      [formControl]="priceControl.get('adultPrice')"
+    )
+  ng-container(*ngFor="let group of ageService.sortedAgeGroups")
+    ng-template(#column,
+      *ngIf="!isRoomLevel",
+      [label]="group.from + '-' + group.to + ' (' + group.percDiscount + '%)'",
+      let-priceControl, let-i="rowIndex"
+    )
+      input.editable-cell(
+        *ngIf="createNewControlsForEachCatering(i, group) && +priceControl.get('personsNo').value > fullPayers; else cell",
+        type="text",
+        appNumberInput,
+        [formControl]="getAgeGroupControl(priceControl, group)"
+      )
+      ng-template(#cell) -

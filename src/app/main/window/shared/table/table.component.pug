@@ -1,0 +1,36 @@
+table
+  thead
+    tr
+      th(
+        *ngFor="let column of columns; let colIndex = index",
+        #headerCell,
+        (click)="headerClick(column)",
+        [class]="column.classNames || ''",
+        [ngClass]="sortRule?.column === column.sortable ? ['sorted', sortRule.direction] : []",
+        [attr.sortable]="column.sortable",
+        [style.width]="column.calculatedWidth | columnWidth : column.width : column.widthIsPercent",
+        scope="col"
+      )
+        span.label(translate) {{ column.label }}
+        span.resize-handle(
+          *ngIf="!disableCellResizing && colIndex !== columns.length - 1",
+          appResizeHandle,
+          (resizeStart)="resizeColumnStart(colIndex)",
+          (resizing)="resizingColumn(colIndex, $event)",
+          (resizeEnd)="resizeColumnEnd()"
+        )
+  tbody
+    tr(
+      *ngFor="let item of sortedItems; let rowIndex = index",
+      (click)="selectItem($event, item)",
+      (dblclick)="dblClickItem(item)",
+      [class.clickable]="clickable",
+      [class.selected]="isSelected(item)"
+    )
+      td(
+        *ngFor="let column of columns; let colIndex = index",
+        [class]="column.classNames || ''",
+      )
+        ng-container(*ngIf="templates.toArray()[colIndex] as template")
+          ng-container(*ngTemplateOutlet="template; context: { $implicit: item, rowIndex: rowIndex, colIndex: colIndex }")
+    ng-container(*ngTemplateOutlet="extra")

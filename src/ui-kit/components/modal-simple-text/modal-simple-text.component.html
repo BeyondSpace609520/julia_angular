@@ -1,0 +1,34 @@
+<div class="modal-header">
+  <img src="assets/img/Julia@2x.png" alt="julia" class="julia-img rounded-circle">
+  <h4 class="modal-title" [ngClass]="{'bg_blue': modalType === 2}">{{textHead | translate}}</h4>
+  <button
+    class="close"
+    [attr.aria-label]="'general.buttonClose.text' | translate"
+    (click)="activeModal.dismiss('Cross click')"
+    *ngIf="closable"
+  >
+    <i class="mdi mdi-close"></i>
+  </button>
+</div>
+<div
+  *ngIf="textBody || textBodyTitle"
+  class="modal-body"
+  [class.preformatted]="textBodyIsHTML"
+>
+  <h5 *ngIf="textBodyTitle">{{ textBodyTitle | translate }}</h5>
+  <ng-container *ngIf="textBody">
+    <p *ngIf="!textBodyIsHTML">{{ textBody | translate }}</p>
+    <div *ngIf="textBodyIsHTML" [innerHTML]="textBody"></div>
+  </ng-container>
+</div>
+<div class="modal-footer" [class.justify-content-center]="loadingAnimation">
+  <div
+    *ngIf="!loadingAnimation"
+    class="btn btn-secondary"
+    (click)="activeModal.close(true)"
+    [translate]="buttonCloseLabel"
+  >Close</div>
+  <div class="loading" *ngIf="loadingAnimation">
+    <app-loading></app-loading>
+  </div>
+</div>

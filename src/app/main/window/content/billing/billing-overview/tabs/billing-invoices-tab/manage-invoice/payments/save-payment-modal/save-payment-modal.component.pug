@@ -1,0 +1,26 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+form.grid-area(*ngIf="form", [formGroup]="form")
+  .row
+    .col.form-group
+      label(translate) BackEnd_WikiLanguage.BW_PaymentType
+      select.fit-content(formControlName="type")
+        option(translate, disabled, [value]="null") general.selectOne.text
+        option(
+          *ngFor="let option of types",
+          [value]="option.value",
+          translate
+        ) {{option.name}}
+    .col-4.payment-now.form-check(*ngIf="creditCardIsAvailable")
+      label
+        input(type="checkbox", formControlName="now")
+        span(translate) BackEnd_WikiLanguage.paymentOnTheSpotLabel
+      i.mdi.mdi-alert-circle.mdi-18px([ngbTooltip]="'BackEnd_WikiLanguage.paymentOnTheSpotLabelInfo' | translate")
+  .form-group
+    label(translate) BackEnd_WikiLanguage.BW_PaymentDate
+    app-datepicker-input.fit-content([date]="form.get('date').value", (dateChange)="form.get('date').setValue($event)")
+  .form-group
+    label(translate) BackEnd_WikiLanguage.BW_PaymentAmount
+    input.fit-content(formControlName="amount", type="text", appNumberInput, decimals="2")
+  .form-group
+    label(translate) BackEnd_WikiLanguage.BW_PaymentDesc
+    input(formControlName="description")

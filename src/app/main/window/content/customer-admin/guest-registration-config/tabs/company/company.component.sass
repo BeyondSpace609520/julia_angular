@@ -1,0 +1,30 @@
+@import "app-globals"
+
+\:host
+  display: flex !important
+
+aside
+  position: sticky
+  top: 0
+  flex: none
+  display: flex
+  flex-direction: column
+  justify-content: flex-start
+  height: 100%
+  margin-right: $grid-gutter-width/2
+  width: 30%
+  min-width: 120px
+
+  app-list-view
+    flex-grow: 0
+    flex-shrink: 1
+    overflow: hidden
+
+  .buttons
+    flex: none
+    margin-top: $grid-gutter-width/2
+    display: flex
+    justify-content: space-between
+
+main
+  flex: auto

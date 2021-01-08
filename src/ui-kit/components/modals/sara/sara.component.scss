@@ -1,0 +1,49 @@
+header {
+    img {
+        width: 100%;
+    }
+    i {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+main {
+    text-align: center;
+    margin: 0 3rem;
+    h4 {
+        color: #f39700;
+        margin: 1.5rem;
+    }
+    p {
+        font-size: 15px;
+    }
+    .btn-orange {
+        background-color: #f39700;
+        border-color: #f39700;
+        color: white;
+        padding: .7rem 2rem;
+        margin: .7rem;
+    }
+}
+footer {
+    display: flex;
+    flex-direction: revert;
+    justify-content: space-between;
+    margin: 1rem;
+    padding-bottom: 2rem;
+    align-items: center;
+    .easybooking-logo {
+        width: 200px;
+    }
+    p {
+        margin-bottom: unset;
+        text-decoration: underline;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}

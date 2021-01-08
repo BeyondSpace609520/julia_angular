@@ -1,0 +1,25 @@
+@import "_mixins"
+
+.col
+    position: relative
+
+.new-recipient
+    +mt(auto)
+    +mb(2)
+
+.link // TODO #link
+    color: blue
+    cursor: pointer
+
+.col-md-4:last-child
+    display: flex
+    flex-direction: column
+
+.grid-area .form-group
+    grid-template-columns: 1fr 2fr
+    grid-gap: 1em
+
+.input-group .btn
+    padding-top: 0.385rem
+    padding-bottom: 0.385rem
+

@@ -1,0 +1,33 @@
+form(*ngIf="form", [formGroup]="form")
+  .form-group
+    label(translate) BackEnd_WikiLanguage.POA_Name
+    input(formControlName="name")
+  .form-group
+    label(translate) BackEnd_WikiLanguage.POA_IP
+    input(formControlName="ip")
+  .form-group
+    label(translate) BackEnd_WikiLanguage.POA_AccountNo
+    input(formControlName="accountNo")
+  .form-group
+    label(translate) BackEnd_WikiLanguage.POA_CssFile
+    input(formControlName="cssFile")
+  .form-group
+    label(translate) BackEnd_WikiLanguage.POA_SerialNo
+    .input-group
+      input(formControlName="serialNo")
+      .input-group-append
+        button.btn.btn-secondary((click)="generateSerialNo()", translate) BackEnd_WikiLanguage.POA_GenerateSerialNo
+  .form-group
+    label(translate) BackEnd_WikiLanguage.CI_NameLabel
+    input(formControlName="ciName")
+  .form-check
+    label(translate) BackEnd_WikiLanguage.POA_Active
+    input(type="checkbox", formControlName="active")
+    label.showWizard(translate) BackEnd_WikiLanguage.ShowInWizard
+    input(type="checkbox", formControlName="showInWizard")
+  .form-check
+    label(translate) BackEnd_WikiLanguage.POA_Multiple
+    input(type="checkbox", formControlName="multiple")
+
+.bottom-buttons
+  button.btn.btn-secondary((click)="save()", translate) BackEnd_WikiLanguage.generic_Save

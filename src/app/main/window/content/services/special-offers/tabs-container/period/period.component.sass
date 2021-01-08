@@ -1,0 +1,49 @@
+\:host
+  display: flex
+  height: 98%
+
+.list-view
+  width: 17em
+
+.not-child
+  &:not(:first-child)
+    margin-left: 0.5em
+  &:not(:last-child)
+    margin-right: 0.5em
+
+content
+  flex: 1
+  position: relative
+  overflow-y: auto
+  display: grid
+  grid-template-columns: repeat(2, auto)
+  grid-template-rows: auto 1fr
+  grid-template-areas: "A B" "C B" "D B"
+  margin-left: 1em
+  grid-gap: 1em
+  .title
+    grid-area: A
+    font-size: 1.1rem
+    font-weight: 700
+  .age-groups
+    grid-area: B
+    position: absolute
+    display: flex
+    flex-direction: row
+    width: 240px
+    right: 0px
+  .prices
+    grid-area: C
+    overflow-y: scroll
+    max-height: 17em
+    margin-right: 120px
+  .controls
+    grid-area: D
+    .btn
+      margin-right: 1em
+
+app-prices
+    z-index: 5
+    
+app-age-groups
+    z-index: 4

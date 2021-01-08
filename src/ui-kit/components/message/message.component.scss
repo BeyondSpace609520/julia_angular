@@ -1,0 +1,31 @@
+@import "app-globals";
+
+:host {
+  display: flex;
+  color: $primary;
+
+  &.type-success {
+    color: $success;
+  }
+
+  &.type-error {
+    color: $danger;
+  }
+
+  &.type-warning {
+    color: $warning;
+  }
+}
+
+.icon {
+  flex: none;
+  margin-right: 0.25em;
+}
+
+.text {
+  flex: auto;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}

@@ -1,0 +1,15 @@
+content(*ngIf="(mainService.company$ | async) !== null")
+  app-header.header
+  .windows-container(#bounds)
+    img.eblogo(src="assets/images/logo-eb.svg")
+    app-window(
+      *ngFor="let window of (windows | async)",
+      [@fade]="'in'",
+      [window]="window",
+      [bounds]="bounds",
+      (close)="windowsService.closeWindow(window)",
+      (selected)="windowsService.selectWindow(window)",
+      [top]="window === windowsService.activeWindow"
+    )
+  app-embed
+app-live-chat

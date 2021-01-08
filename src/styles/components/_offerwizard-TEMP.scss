@@ -1,0 +1,333 @@
+// TODO: Should be reworked -> Use mostly global styles, overwrite stuff in components not here
+// TODO: Remove this file then
+// TODO: Repkace hardcode variables by variables from _variables.scss
+
+.offerwizard {
+  .offerWizard-modal {
+    &.modal-eb-resize-lg {
+      .modal-lg {
+        width: 100%;
+        max-width: 1000px;
+      }
+    }
+    .modal-dialog.modal-lg {
+      .modal-header {
+        .modal-title {
+          font-size: 1.375rem;
+        }
+      }
+      .modal-content {
+        max-height: 100%;
+      }
+      .modal-footer {
+        background: $bg-lighter;
+      }
+    }
+    .modal-with-tabs {
+      .modal-dialog.modal-lg {
+        .modal-content {
+          .modal-header {
+            border-bottom: none;
+          }
+        }
+      }
+    }
+    .modal-sticky {
+      .modal-dialog.modal-lg {
+        .modal-content {
+          overflow-y: hidden;
+          min-height: 0px;
+          .modal-content-wrap {
+            padding-top: 106px;
+            padding-bottom: 68px;
+            max-height: 90vh;
+            overflow-y: auto;
+          }
+          .modal-header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 56px;
+            background: #ffffff;
+            z-index: 10;
+          }
+          .tabset-modal-nav {
+            display: block;
+          }
+          @-moz-document url-prefix() {
+            .tabset-modal-nav.nav-main {
+              padding-bottom: 56px;
+            }
+          }
+          .tabset-modal-nav.nav-main > .nav-tabs {
+            position: fixed;
+            top: 56px;
+            left: 1px;
+            right: 1px;
+            height: 52px;
+            background: #ffffff;
+            z-index: 10;
+          }
+          .modal-footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 10;
+          }
+        }
+      }
+    }
+    .modal-footer {
+      .twobuttons {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        > div {
+          margin: 0 6px;
+        }
+      }
+    }
+    ngb-modal-window.julia .eb-close-button,
+    ngb-modal-window.without-message .modal-body,
+    ngb-modal-window .modal-header img.julia-img,
+    ngb-modal-window .modal-header h1 .icon {
+      display: none;
+    }
+    ngb-modal-window.julia {
+      .modal-header {
+        padding: 36px 20px 8px;
+        position: relative;
+        border-bottom: none;
+        border-bottom-color: transparent;
+        h1 {
+          display: -ms-flexbox;
+          display: -webkit-box;
+          display: flex;
+          width: 100%;
+          margin: 0;
+          padding: 15px;
+          color: #FFFFFF;
+          font-weight: 400;
+          background-color: #F68D1B;
+          border-radius: 4px;
+          line-height: 1.3em;
+          font-size: 16px;
+          .icon, .title {
+            align-self: flex-start;
+          }
+          icon {
+            display: block;
+            padding: 0 10px 0 0;
+            opacity: 0.8;
+            font-size: 18px;
+            line-height: 1em;
+          }
+        }
+        img.julia-img {
+          display: block;
+          position: absolute;
+          left: 50%;
+          top: -40px;
+          -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+          width: 80px;
+          height: 80px;
+          border: solid 5px #FFFFFF;
+        }
+      }
+      .modal-body {
+        padding: 10px 20px;
+        //.component-header {
+        //  margin-top:-35px;
+        //}
+      }
+      .modal-footer .btn {
+        padding: .5rem 3rem;
+      }
+    }
+
+    /* nav-tabs */
+    ngb-tabset.tabset-modal-nav {
+      position: relative;
+      > .nav-tabs {
+        position: relative;
+      }
+    }
+    ngb-tabset.tabset-btn-group > .nav-tabs {
+      border: none;
+      position: relative;
+      vertical-align: middle;
+      display: flex !important;
+      li a.nav-link {
+        display: inline-block;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        border: 1px solid $border-light;
+        line-height: 1.5;
+        border-radius: .3rem;
+        -webkit-transition: all 0.3s;
+        -moz-transition: all 0.3s;
+        transition: all 0.3s;
+        padding: .5rem 3rem;
+        font-size: 1.1rem;
+        position: relative;
+        -ms-flex: 0 1 auto;
+        flex: 0 1 auto;
+        margin-bottom: 0;
+        z-index: 2;
+        font-weight: 600;
+      }
+      li a.nav-link:hover,
+      li a.nav-link:active {
+        background-image: linear-gradient(to bottom, #FFFFFF 0%, #e2e7ed 100%);
+      }
+      li:first-child a.nav-link {
+        margin-left: 0;
+      }
+      li:first-child:not(:last-child) a.nav-link {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+      li:not(:first-child):not(:last-child) a.nav-link {
+        border-radius: 0;
+      }
+      li:last-child:not(:first-child) a.nav-link {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+      li a.nav-link.active {
+        font-weight: 600;
+        color: #fff;
+        border-color: #1175c0;
+        background-color: #1991EB;
+      }
+      li a.nav-link.active:hover,
+      li a.nav-link.active:active {
+        color: #fff;
+        background-image: linear-gradient(to bottom, #127bca 0%, #1175c0 100%);
+        border-color: #0f67a9;
+      }
+    }
+    /* tiles */
+    .tile {
+      position: relative;
+      margin-bottom: 6px;
+      border: 1px solid $border-light;
+      border-radius: $border-radius;
+      background-color: white;
+      filter: alpha(opacity=100);
+      opacity: 1;
+      transition: opacity 0.25s ease-out;
+      .dvd.dvd-btm {
+        border-bottom-width: 1px;
+      }
+      .dvd {
+        border-color: $border-light;
+        border-style: solid;
+        border-width: 0;
+      }
+      .tile-header,
+      .tile-widget,
+      .tile-body,
+      .tile-footer {
+        position: relative;
+      }
+      .tile-header {
+        padding: 3px 10px;
+        &.d-flex {
+          align-items: center;
+        }
+        h1, h2, h3, h4 {
+          margin: 0;
+          display: inline-block;
+          font-weight: 400;
+          line-height: 1.3;
+        }
+        h1, h3, h4 {
+          padding: 0;
+        }
+        .controls {
+          position: absolute;
+          right: 0;
+          top: 0;
+          z-index: 9;
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          height: 100%;
+          > li {
+            display: inline-block;
+            height: 100%;
+            float: left;
+            > a {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              height: 100%;
+              min-width: 40px;
+            }
+          }
+        }
+        .right-text {
+          margin-left: auto;
+        }
+      }
+      .tile-header.dvd {
+        .controls {
+          user-select: none;
+          > li {
+            border-left: 1px solid $border-light;
+          }
+        }
+      }
+      .tile-widget,
+      .tile-body,
+      .tile-footer {
+        padding: 5px 10px;
+      }
+      //app-offerwizard-shoppingcart {
+      //  .tile-header {
+      //    padding: 10px 15px;
+      //  }
+      //  .tile-body {
+      //    padding: 15px;
+      //  }
+      //}
+      .tile-widget,
+      .tile-footer {
+        background-color: $bg-lighter;
+      }
+      .table td, .table th {
+        padding: 10px;
+      }
+    }
+
+    /* tables */
+    .table_lines {
+      margin-bottom: 0px;
+      td {
+        vertical-align: middle;
+      }
+      tfoot {
+        background-color: $gray-200;
+        font-weight: 600;
+      }
+    }
+
+    .tile-title {
+      margin-bottom: $grid-gutter-width/2;
+    }
+
+    .info-icon-tooltip {
+      color: #bbc3ce;
+    }
+
+    .quickOffer {
+      display: block;
+      margin-top: $grid-gutter-width/2;
+      margin-bottom: $grid-gutter-width/4;
+    }
+  }
+}

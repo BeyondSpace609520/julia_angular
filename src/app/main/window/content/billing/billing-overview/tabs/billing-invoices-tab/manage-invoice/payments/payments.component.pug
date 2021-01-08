@@ -1,0 +1,35 @@
+app-table([items]="invoice.payments")
+  ng-template(#column, let-item)
+    app-table-action(
+      [active]="item.rcId === null",
+      tooltip="BackEnd_WikiLanguage.IC_BookingEditStep004EditProductToolTip",
+      icon="pencil",
+      (click)="editPayment(item)"
+    )
+    app-table-action(
+      [active]="item.rcId === null",
+      tooltip="BackEnd_WikiLanguage.IC_BookingEditStep004DeleteProductToolTip",
+      icon="delete",
+      (click)="deletePayment(item)"
+    )
+    app-table-action(
+      [active]="item.rcId !== null",
+      tooltip="BackEnd_WikiLanguage.cancelReceiptTooltip",
+      icon="cancel",
+      (click)="cancelPayment(item)"
+    )
+  ng-template(#column, label="BackEnd_WikiLanguage.BW_PaymentType", let-item)
+    span([ngbTooltip]="item.desc + '\\n' + (item.date | ebDate : false)", tooltipClass="pre") {{item.name}}
+  ng-template(#column, label="BackEnd_WikiLanguage.BW_PaymentAmount", let-item)
+    span(appFormatNumber) {{item.amount}}
+  ng-template(#column, label="BackEnd_WikiLanguage.MW_Actions", let-item)
+    app-table-action(
+      [tooltip]="item.isCashPayment?'BackEnd_WikiLanguage.RCPT_sendCashReceiptTooltip':'BackEnd_WikiLanguage.BillVersionPaymentResendTooltip'",
+      icon="send",
+      (click)="sendReceipt(item)"
+    )
+    app-table-action(
+      [tooltip]="item.isCashPayment?'BackEnd_WikiLanguage.RCPT_printCashReceiptTooltip':'BackEnd_WikiLanguage.BillVersionPaymentPrintTooltip'",
+      icon="printer",
+      (click)="printReceipt(item)"
+    )

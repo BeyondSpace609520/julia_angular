@@ -1,0 +1,9 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+app-customer-form.form(#customerForm, [guest]="guest", [validationLevel]="validationLevel", (modifyColumns)="modifyColumns($event, consestTooltip)")
+.control-buttons
+    button.btn.btn-secondary((click)="openCopyTo()", translate) BackEnd_WikiLanguage.MW_CopyTo
+    button.btn.btn-secondary((click)="save()", [disabled]="!customerForm.form?.valid", translate) BackEnd_WikiLanguage.generic_Save
+    button.btn.btn-secondary((click)="cancel.emit()", translate) BackEnd_WikiLanguage.generic_Cancel
+
+ng-template(#consestTooltip)
+    div(translate) BackEnd_WikiLanguage.MW_gcConsentTooltip

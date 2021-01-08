@@ -1,0 +1,15 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+form(*ngIf="form", [formGroup]="form")
+  .form-group
+    label
+      span(translate) BackEnd_WikiLanguage.LM_FromDate
+      span -
+      span(translate) BackEnd_WikiLanguage.LM_UntilDate
+    app-datepicker-input.datepicker(
+      [date]="form.get('fromDate').value",
+      (dateChange)="form.get('fromDate').setValue($event)",
+      [range]="form.get('untilDate').value",
+      (rangeChange)="form.get('untilDate').setValue($event)",
+      [mandatory]="true",
+      (statusChange)="onDatepickerStatusChange($event)"
+    )

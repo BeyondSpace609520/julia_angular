@@ -1,0 +1,25 @@
+app-pricing-settings(
+  *ngIf="item",
+  #settings,
+  [source]="{ id: item.id, type: 'apartment' }",
+  [canResetGroups]="false",
+  [hasCaterings]="false",
+  [extraActionsTemplate]="extraActions",
+  [additionalInfoTemplate]="additionalInfo",
+  (saved)="edited.emit()",
+)
+  ng-template(#extraActions, let-period="period")
+    button.reset.btn.btn-secondary((click)="resetApartment(period)", translate)
+      | BackEnd_WikiLanguage.generic_Reset
+    .button-controls-right
+      button.copy-to.btn.btn-secondary((click)="copyTo(period)", translate)
+        | BackEnd_WikiLanguage.generic_copyTo
+      button.copy-to.btn.btn-secondary((click)="openTestingPriceConsole(period)", translate)
+        | BackEnd_WikiLanguage.EMA_SendTestEmailNow
+  ng-template(#additionalInfo, let-pricing='pricing')
+    .info(*ngIf="pricing.seasonPeriodId === 0; else groupLevel", translate)
+      | BackEnd_WikiLanguage.EP_RoomLevelPricing
+    ng-template(#groupLevel)
+      .info
+        .label(translate) BackEnd_WikiLanguage.EP_EntityGroupLevelPricing
+        span {{pricing.categoryName}}

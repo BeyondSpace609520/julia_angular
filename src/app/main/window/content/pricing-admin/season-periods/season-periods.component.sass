@@ -1,0 +1,25 @@
+@import "../../../shared/window-content/with-sidebar.sass"
+@import '_variables'
+
+.sidebar
+    .list-view
+        overflow-y: auto
+        flex: 1
+    .errors
+        color: red
+        padding: .5em
+        font-size: .95rem
+        line-height: 1.1
+    .bottom-buttons
+        margin-top: 0.5em
+        & > button:not(:first-child)
+            margin-left: 0.5em
+.period
+    flex: 1
+    padding: 1em
+    overflow-y: auto
+    .period-border
+        border: 0px solid $border-light
+        height: 100%
+        padding-top: 1em
+        overflow-y: auto

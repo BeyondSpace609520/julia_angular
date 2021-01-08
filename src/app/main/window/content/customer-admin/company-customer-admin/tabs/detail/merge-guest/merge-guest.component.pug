@@ -1,0 +1,17 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+form(*ngIf="form", [formGroup]="form")
+  .profiles
+    .profile(*ngFor="let profile of profiles")
+      h3(translate) {{profile.label}}
+      app-field(
+        *ngFor="let field of fields; let i = index",
+        [field]="field",
+        [control]="form.get('profiles').get(profile.id).controls[i]",
+        [resources]="selectedResources"
+      )
+  hr
+  .form-group
+    label(translate) BackEnd_WikiLanguage.CCA_MergeGuestsChooseMain
+    select(formControlName="mainGuest")
+      option([value]="null", translate, disabled) general.selectOne.text
+      option(*ngFor="let option of profiles", [value]="option.id", translate) {{option.label}}

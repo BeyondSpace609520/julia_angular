@@ -1,0 +1,12 @@
+form(*ngIf="form", [formGroup]="form")
+    .form-check
+        input(type="checkbox", formControlName="active")
+        label(translate) BackEnd_WikiLanguage.ORPA_Active
+    .form-group.title
+        label(translate) BackEnd_WikiLanguage.generic_Title
+        input(formControlName="title")
+    .form-group
+        quill-editor.editor(formControlName="message", [modules]="editorConfig")
+
+.button-controls
+    button.btn.btn-secondary((click)="save()", translate) BackEnd_WikiLanguage.generic_Save

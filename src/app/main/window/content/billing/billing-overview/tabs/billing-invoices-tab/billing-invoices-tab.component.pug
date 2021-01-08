@@ -1,0 +1,146 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+app-settings-button(moduleId="billingSettings")
+form.grid([formGroup]="form")
+  .input-section.form-group
+    input(formControlName="searchString", [placeholder]="'BackEnd_WikiLanguage.generic_Search' | translate")
+  .type-section.form-group
+    label(translate) BackEnd_WikiLanguage.blockTypeLabel
+    select(formControlName="type")
+      option(*ngFor="let item of types", [ngValue]="item.value", translate) {{item.name}}
+  .date-section.row
+    .form-group
+      select(formControlName="dateType")
+        option(*ngFor="let item of dateTypes", [ngValue]="item.value", translate) {{item.name}}
+    .form-group
+      label(translate) BackEnd_WikiLanguage.generic_From
+      app-datepicker-input([inputId]="'billing-invoices-from-date'", [date]="form.get('fromDate')?.value", (dateChange)="form.get('fromDate')?.setValue($event);")
+    .form-group
+      label(translate) BackEnd_WikiLanguage.generic_To
+      .input-group.toolbar-search
+      app-datepicker-input([inputId]="'billing-invoices-until-date'", [date]="form.get('untilDate')?.value", (dateChange)="form.get('untilDate')?.setValue($event);")
+  .outstanding-section.form-group
+    label(translate) BackEnd_WikiLanguage.BW_Outstanding
+    select.outstanding(formControlName="outstanding")
+      option(*ngFor="let item of outstandings", [ngValue]="item.value", translate) {{item.name}}
+  .submit-section.form-group
+    button.btn.btn-secondary((click)="getBillingTableData()", translate) BackEnd_WikiLanguage.generic_Search
+  .checkbox-section
+    .form-check
+      input(type="checkbox", formControlName="splitInvoices", id="splitInvoices-checkbox")
+      label(for="splitInvoices-checkbox", translate) BackEnd_WikiLanguage.BW_showSplitBillsCHK
+    .form-check
+      input(type="checkbox", formControlName="deleteInvoices")
+      label(translate) BackEnd_WikiLanguage.showDeletedInvoices
+
+
+app-table.table([items]="sortedBillingInvoices", [dblclickable]="true", (select)="openInvoiceModal($event)")
+  ng-template(#column, let-invoice)
+    app-table-action(
+      [active]="invoice.id && invoice.cancelled !== 1 && !invoice.bookingAlreadyDeleted",
+      tooltip="BackEnd_WikiLanguage.BW_OpenBooking",
+      icon="arrow-right-bold-circle",
+      (click)="openRoomplan(invoice)"
+    )
+    app-table-action(
+      [active]="invoice.bookingAlreadyDeleted && (mainService.isAdmin$ | async)",
+      tooltip="BackEnd_WikiLanguage.restoreInvoiceButtonTooltip",
+      icon="recycle",
+      (click)="openRestoreInvoiceModal(invoice)"
+    )
+    app-table-action(
+      [active]="invoice.masterBill === 0 && !invoice.bookingAlreadyDeleted",
+      tooltip="BackEnd_WikiLanguage.BW_EditProducts",
+      icon="table-edit",
+      (click)="openInvoiceModal(invoice)"
+    )
+    app-table-action(
+      [active]="invoice.masterBill === 0",
+      tooltip="BackEnd_WikiLanguage.BW_PreviewInvoice",
+      icon="file-pdf",
+      (click)="generatePDF(invoice)"
+    )
+    app-table-action(
+      [active]="invoice.billNo === '' && invoice.b_billSplit_id === null && invoice.id === 0 && invoice.masterBill === 0 && !invoice.bookingAlreadyDeleted",
+      tooltip="BackEnd_WikiLanguage.BW_DeleteBill",
+      icon="delete",
+      (click)="deleteInvoicesBill(invoice)"
+    )
+    app-table-action(
+      #resender="resender",
+      [active]="invoice.billNo && invoice.bv_creationDate && invoice.b_cancellation_b_id === null && invoice.masterBill === 0",
+      [tooltip]="resender.tooltip",
+      [icon]="resender.iconName",
+      [appResendEmail]="{billingId: invoice.billId, targetId: invoice.customerId, email: invoice.c_eMailAddress}"
+    )
+    app-table-action(
+      [active]="invoice.billNo  !== 0 && invoice.bv_creationDate && invoice.b_cancellation_b_id === null && invoice.masterBill === 0 && invoice.cancelled != 1 && !invoice.bookingAlreadyDeleted",
+      tooltip="BackEnd_WikiLanguage.cancelInvoiceButtonTooltip",
+      icon="cancel",
+      (click)="correctInvoice(invoice)"
+    )
+    app-table-action(
+      [active]="invoice.showBillSplitIcon && !invoice.bookingAlreadyDeleted",
+      tooltip="BackEnd_WikiLanguage.billSplitIconTooltip",
+      icon="arrow-expand-horizontal",
+      (click)="showBillSplitIcon(invoice)"
+    )
+
+  ng-template(#column, sortable="bookingLastNameFirstName", label="BackEnd_WikiLanguage.BW_MainGuest", let-invoice)
+    span([class]="invoice | billingInvoiceRowClasses") {{invoice.bookingLastNameFirstName}}
+
+  ng-template(#column, sortable="lastNameFirstName", label="BackEnd_WikiLanguage.BW_CustomerName", let-invoice)
+    span([class]="invoice | billingInvoiceRowClasses") {{invoice.lastNameFirstName}}
+
+  ng-template(#column, sortable="billFromDate", label="BackEnd_WikiLanguage.BW_Arrival", let-invoice)
+    span([class]="invoice | billingInvoiceRowClasses") {{invoice.billFromDate | ebDate:false}}
+
+  ng-template(#column, sortable="billUntilDate", label="BackEnd_WikiLanguage.BW_ArrivalDeparture", let-invoice)
+    span([class]="invoice | billingInvoiceRowClasses") {{invoice.billUntilDate | ebDate:false}}
+
+  ng-template(#column, sortable="billNo", label="BackEnd_WikiLanguage.BW_BillNo", let-invoice)
+    span([class]="invoice | billingInvoiceRowClasses") {{invoice.billNo}}
+
+  ng-template(#column, sortable="bv_creationDate", label="BackEnd_WikiLanguage.IE_InvoiceDate", let-invoice)
+    span([class]="invoice | billingInvoiceRowClasses") {{invoice.bv_creationDate | ebDate:false}}
+
+  ng-template(#column, sortable="b_bookingNo", label="BackEnd_WikiLanguage.BW_BookingNo", let-invoice)
+    span([class]="invoice | billingInvoiceRowClasses") {{invoice.b_bookingNo}}
+
+  ng-template(#column, sortable="totalInsuranceProductsAmount", label="BackEnd_WikiLanguage.BW_InsuranceAmount", let-invoice)
+    div([class]="invoice | billingInvoiceRowClasses : ['number']", appFormatNumber) {{invoice.totalInsuranceProductsAmount}}
+
+  ng-template(#column, sortable="totalVT", label="BackEnd_WikiLanguage.INV_visitorsTax", let-invoice)
+    div([class]="invoice | billingInvoiceRowClasses: ['number']", appFormatNumber) {{invoice.totalVT}}
+
+  ng-template(#column, sortable="totalTax", label="BackEnd_WikiLanguage.BW_Tax", let-invoice)
+    div([class]="invoice | billingInvoiceRowClasses: ['number']", appFormatNumber) {{invoice.totalTax}}
+
+  ng-template(#column, sortable="totalGross", label="BackEnd_WikiLanguage.BW_Gross", let-invoice)
+    div([class]="invoice | billingInvoiceRowClasses: ['number']", appFormatNumber) {{invoice.totalGross}}
+
+  ng-template(#column, sortable="totalPrepaidAmount", label="BackEnd_WikiLanguage.BW_PrepaidAmount", let-invoice)
+    ng-container(*ngIf="invoice.masterBill && invoice.b_billSplit_id; else withValue") --
+    ng-template(#withValue)
+      div([class]="invoice | billingInvoiceRowClasses: ['number']", appFormatNumber) {{invoice.totalPrepaidAmount}}
+
+  ng-template(#column, sortable="totalOutstanding", label="BackEnd_WikiLanguage.BW_Outstanding", let-invoice)
+    ng-container(*ngIf="invoice.masterBill && invoice.b_billSplit_id; else withValue") --
+    ng-template(#withValue)
+      div([class]="invoice | billingInvoiceRowClasses: ['number']", appFormatNumber) {{invoice.totalOutstanding}}
+  ng-template(#extra)
+    tr.bold
+      td([colSpan]="8")
+      td.number(appFormatNumber, [innerText]="total.insuranceProductsAmount")
+      td.number(appFormatNumber, [innerText]="total.VT")
+      td.number(appFormatNumber, [innerText]="total.tax")
+      td.number(appFormatNumber, [innerText]="total.gross")
+      td.number(appFormatNumber, [innerText]="total.prepaidAmount")
+      td.number(appFormatNumber, [innerText]="total.outstanding")
+
+.buttons
+  .column
+    button.btn.btn-secondary((click)="openInvoiceModal()", translate) BackEnd_WikiLanguage.newBlankBillBtn
+    button.btn.btn-secondary((click)="openView('iframeAddGuestPayments')", translate) BackEnd_WikiLanguage.TLM_addGuestPayments
+  .column
+    button.btn.btn-secondary((click)="openExportModal()",translate) BackEnd_WikiLanguage.BW_exportButton
+    button.btn.btn-secondary((click)="openView('iframeReports')", translate) BackEnd_WikiLanguage.BW_openReportsBTN

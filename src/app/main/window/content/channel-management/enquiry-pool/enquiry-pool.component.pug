@@ -1,0 +1,24 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+ng-container(*ngIf="tabsSettings")
+  app-settings-button(moduleId="enquiryPoolSettings")
+  app-tabs(
+    *ngIf="tabsSettings?.buttons?.length > 1",
+    [settings]="tabsSettings",
+    [(selected)]="activeTabId"
+  )
+  main
+    app-statistics(*ngIf="activeTabId === 'statistics'")
+    app-easybooking-enquiry-pool(
+      *ngIf="activeTabId === 'ebEnquiryPool'",
+      [fromDate]="fromDate",
+      [untilDate]="untilDate"
+    )
+    app-deskline-pool-activation(
+      *ngIf="activeTabId === 'desklineEnquiryPoolActivation'",
+      (activate)="activateDesklinePool(true)"
+    )
+    app-deskline-pool(
+      *ngIf="activeTabId === 'desklineEnquiryPool'",
+      (deactivate)="activateDesklinePool(false)"
+    )
+

@@ -1,0 +1,4 @@
+.flex-1
+    app-manage-item(#manager, [item]="item")
+.controls
+    button.btn.btn-secondary((click)="manager.save().then(onSave)", [disabled]="!manager.form.valid", translate) BackEnd_WikiLanguage.generic_Save

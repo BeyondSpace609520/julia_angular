@@ -1,0 +1,7 @@
+app-category-images-selector(
+  #picturesComponent,
+  [params]="{ id: item && item.id }",
+  (saved)="edited.emit()",
+)
+  .extra-actions
+    button.btn.btn-secondary((click)="reset()", translate) BackEnd_WikiLanguage.EP_BTNCopyPicsToRoomFromCat

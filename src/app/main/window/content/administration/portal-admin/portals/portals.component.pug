@@ -1,0 +1,23 @@
+.sidebar
+  .button-controls.right-align
+    button.btn.btn-secondary((click)="refresh()", translate) BackEnd_WikiLanguage.generic_Refresh
+  app-list-view.list-view(
+    [items]="items",
+    [selected]="selectedItem?.id",
+    (select)="selectItem($event.id)"
+  )
+    ng-template(let-item) {{item.name}}
+  .button-controls
+    button.btn.btn-secondary((click)="newPortal()", translate) BackEnd_WikiLanguage.generic_New
+    button.btn.btn-secondary.ml-3([disabled]="!selectedItem?.canDelete", (click)="selected && deletePortal(selected)", translate) BackEnd_WikiLanguage.generic_Delete
+content(*ngIf="selected")
+  app-tabs(
+    *ngIf="tabSettings.buttons.length",
+    [settings]="tabSettings",
+    [(selected)]="activeTabId"
+  )
+  .tab-container
+    app-loading.loading-bar(*ngIf="isLoading | async")
+    app-portal-config(*ngIf="activeTabId === 'config'", [portal]="selected")
+    app-portal-customers(*ngIf="activeTabId === 'customers'", [portal]="selected")
+    app-portal-categories(*ngIf="activeTabId === 'categories'", [portal]="selected")

@@ -1,0 +1,21 @@
+@import "../../../shared/window-content/with-sidebar.sass"
+@import '_variables'
+
+.sidebar
+    .list-view
+        flex: 1
+        height: 100%
+
+content
+    .charge
+        display: flex
+        flex-direction: column
+        padding: 1em
+        border: 1px solid $border-light
+        form
+            flex: 1
+            max-width: 400px
+            .grid-area .form-group
+                grid-template-columns: 1fr 3fr
+            input
+                max-width: 100px

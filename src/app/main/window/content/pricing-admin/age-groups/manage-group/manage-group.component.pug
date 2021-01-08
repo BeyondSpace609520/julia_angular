@@ -1,0 +1,14 @@
+app-loading.loading-bar(*ngIf="isGroupManaging()")
+form(*ngIf="form", [formGroup]="form")
+    .form-group
+        label(translate) BackEnd_WikiLanguage.AG_Name
+        input(formControlName="name")
+    .form-group
+        label(translate) BackEnd_WikiLanguage.AG_FromAge
+        input(type="number", min="0", max="17", decimals="0", formControlName="from")
+    .form-group
+        label(translate) BackEnd_WikiLanguage.AG_ToAge
+        input(type="number", min="1", max="17", decimals="0", formControlName="to")
+    .form-group
+        label(translate) BackEnd_WikiLanguage.AG_PercDiscount
+        input(type="text", appNumberInput, formControlName="percDiscount")

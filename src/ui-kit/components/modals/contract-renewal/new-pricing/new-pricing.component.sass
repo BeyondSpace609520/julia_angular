@@ -1,0 +1,29 @@
+\:host
+  display: block
+  position: relative
+  margin: -1rem
+  padding: 3rem 40% 3rem 3rem
+  background: url('../../../../../assets/images/roomplan_cropped_new.png') right no-repeat
+  background-size: contain
+  overflow: hidden
+
+  &:before, &:after
+    content: ''
+    display: block
+    position: absolute
+    width: 52px
+    height: 51px
+    background: url('../../../../../assets/images/firework.svg') center no-repeat
+    background-size: cover
+    z-index: 0
+
+  &:before
+    top: -11px
+    left: -8px
+
+  &:after
+    top: -16px
+    left: 60%
+
+.validity
+  font-style: italic

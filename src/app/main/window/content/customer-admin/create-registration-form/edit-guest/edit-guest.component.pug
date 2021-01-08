@@ -1,0 +1,35 @@
+.form-group.w-50
+    select.form-control(
+        [(ngModel)]="guest.guestTypeId",
+        (ngModelChange)="onChangeGuestType(+$event)",
+        [disabled]="!canEdit"
+    )
+        option(*ngFor="let option of availableGuestTypes", [value]="option.value", translate) {{option.name}}
+.form-group.w-50
+    select.form-control(
+      *ngIf="taxTypes.length",
+      [(ngModel)]="guest.taxTypeId",
+      [disabled]="!canEdit"
+    )
+        option(*ngFor="let option of taxTypes", [value]="option.id", translate) {{option.value}}
+.row.py-3
+    .col
+        .row
+            .col.form-group
+                h4(translate) BackEnd_WikiLanguage.MW_FirstName
+                .form-value {{ guest.firstName }}
+            .col.form-group
+                h4(translate) BackEnd_WikiLanguage.MW_LastName
+                .form-value {{guest.lastName}}
+        .row 
+            .col.form-group
+                label(translate) general.birthday.text
+                .form-value {{ guest.birthday | ebDate : false }}
+            .col.form-group
+                label(translate) general.age.text
+                .form-value {{guest.age}}
+    .col.editGuest
+        button.btn.btn-secondary((click)="editInformation(guest)", [disabled]="!canEdit", translate) BackEnd_WikiLanguage.MW_EditData
+.form-group(*ngIf="regFormService.registrationForm ? regFormService.registrationForm.needGuestCard : regFormService.hotel.needGuestCard")
+    label(translate) BackEnd_WikiLanguage.guestCardNumber
+    input([(ngModel)]="guest.cardNumber")

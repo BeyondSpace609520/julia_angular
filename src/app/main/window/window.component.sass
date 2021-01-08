@@ -1,0 +1,82 @@
+@import '../../../styles/_variables.scss'
+@import "_mixins"
+
+mwlResizable
+    box-sizing: border-box
+
+\:host
+    position: relative
+
+\:host(.minimized)
+    .content
+        display: none
+
+\:host(.top)
+    z-index: 10
+    display: block
+
+.window
+    position: absolute
+    width: 400px
+    height: 200px
+    color: #121621
+    box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.4)
+    border: solid 2px $secondary
+    background: white
+    display: flex
+    flex-direction: column
+    @include media-breakpoint-down(lg)
+        overflow-y: auto
+    &.ng-dragging
+        cursor: grabbing
+    .header
+        display: flex
+        padding: 0.1em 0.2em
+        background: $mdi-window-header-color
+        border: solid 1px $mdi-window-border-color
+        color: #121621
+        cursor: grab
+        .title
+            flex: 1
+            font-weight: 600
+            font-size: 1.2em
+            align-self: auto
+            display: flex
+            justify-content: flex-start
+            align-items: center
+        .mdi
+            padding: 0.2em
+            cursor: pointer
+            transition: .5s
+            margin-top: auto
+            margin-bottom: auto
+            &:hover
+                background: darken($mdi-window-header-color, 8)
+            &.mdi-help-circle
+                color: #ffffff
+                padding: 0 0.2em 0 0
+                font-size: 18px
+    .content
+        flex: 1
+        overflow: auto
+        position: relative
+
+    .ng-resizable-diagonal
+        opacity: 0
+
+
+// Fix resize and move over iframes in angular2-draggable
+$scale: 30
+.header
+    &::after
+        content: ''
+        position: absolute
+        width: 100%
+        height: 100%
+        left: 0
+        top: 0
+        z-index: -1
+    &:active::after
+        transform: scale($scale)
+.ng-resizable-handle:active
+    transform: scale($scale)

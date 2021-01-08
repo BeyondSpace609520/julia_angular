@@ -1,0 +1,20 @@
+@import 'app-globals';
+
+.alert-container {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: $zindex-alert;
+
+  &, & > .container {
+    pointer-events: none;
+  }
+
+  i.mdi-alert-circle {
+    line-height: 1;
+    font-size: 18px;
+    height: 18px;
+    display: inline-block;
+  }
+}

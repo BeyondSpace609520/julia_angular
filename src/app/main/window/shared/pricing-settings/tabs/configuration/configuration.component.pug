@@ -1,0 +1,23 @@
+.configs
+    .config.season-period
+        .title(translate) BackEnd_WikiLanguage.EP_SeasonPeriodConfig
+        app-period-config(
+            #periodConfigComponent,
+            *ngIf="periodConfig",
+            [config]="periodConfig",
+            [bookingCheckbox]="false",
+            [readonly]="true"
+        )
+    .config.source 
+        .title(translate) {{title}}
+        .max-width
+            app-period-config(
+                #sourceConfigComponent,
+                *ngIf="sourceConfig",
+                [config]="sourceConfig",
+                [bookingCheckbox]="false"
+            )
+        .form-group(*ngIf="source.type === 'apartment'")
+            label(translate) BackEnd_WikiLanguage.CTD_CleanupCharge
+            input(type="number", min="1", max="90", [formControl]="finalClean")
+        button.btn.btn-secondary.save-button(translate, (click)="save()") BackEnd_WikiLanguage.generic_Save

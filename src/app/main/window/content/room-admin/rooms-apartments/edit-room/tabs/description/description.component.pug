@@ -1,0 +1,6 @@
+form.grid-area(*ngIf="form")
+    .form-group(*ngFor="let locale of locals; let i = index")
+        label(translate) BackEnd_WikiLanguage.{{locale.name}}
+        textarea([formControl]="form.controls[i]")
+.controls
+    button.btn.btn-secondary((click)="save()", translate) BackEnd_WikiLanguage.generic_Save 

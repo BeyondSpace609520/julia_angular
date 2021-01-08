@@ -1,0 +1,9 @@
+h4 {{ 'BackEnd_WikiLanguage.generic_For' | translate }} {{ 'BackEnd_WikiLanguage.CAT_EntityGroup' | translate }}:
+.form-check(*ngFor="let category of categories")
+    input.checkbox.checkbox(
+      [id]="'category-' + category.id + '-checkbox'",
+      type="checkbox",
+      [(ngModel)]="category.checked",
+      (ngModelChange)="reset(category.name === 'All', $event)"
+    )
+    label.form-control-label(translate, [for]="'category-' + category.id + '-checkbox'") {{category.name}}

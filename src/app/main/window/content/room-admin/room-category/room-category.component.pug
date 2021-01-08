@@ -1,0 +1,27 @@
+.center
+  app-loading.loading-bar(*ngIf="isListLoading | async")
+.sidebar
+  app-list-view.list-view(
+    [items]="categories",
+    [selected]="selectedItem",
+    (select)="selectCategory($event)"
+  )
+    ng-template(let-item) {{item.name}}
+  .bottom-buttons
+    button.btn.btn-secondary((click)="newCategory()", translate) BackEnd_WikiLanguage.generic_New
+    button.btn.btn-secondary(*ngIf="selectedItem", (click)="deleteCategory(selectedItem)", translate) BackEnd_WikiLanguage.generic_Delete
+content
+  .center
+    app-loading.loading-bar(*ngIf="isSaveLoading | async")
+  app-tabs(
+    *ngIf="selectedItem",
+    [settings]="tabSettings",
+    [(selected)]="activeTabId"
+  )
+  .tab-container(*ngIf="selectedItem && companyDetails", [ngSwitch]="activeTabId")
+    app-loading.loading-bar(*ngIf="isTabLoading | async")
+    app-category-details.content(*ngSwitchCase="'details'", [category]="selectedItem", (saved)="onTabSaved()")
+    app-category-prices.content(*ngSwitchCase="'prices'", [category]="selectedItem", [companyDetails]="companyDetails", (saved)="onTabSaved()")
+    app-category-pictures.content(*ngSwitchCase="'pictures'", [category]="selectedItem", [companyDetails]="companyDetails", (saved)="onTabSaved()")
+    app-category-features.content(*ngSwitchCase="'features'", [category]="selectedItem", [companyDetails]="companyDetails", (saved)="onTabSaved()")
+    app-category-layout.content(*ngSwitchCase="'layout'", [category]="selectedItem", (saved)="onTabSaved()")

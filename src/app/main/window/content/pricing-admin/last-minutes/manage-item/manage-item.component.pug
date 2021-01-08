@@ -1,0 +1,88 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+form(*ngIf="form", [formGroup]="form")
+  .row
+    .col-md-4
+      .form-group(*ngIf="!compact")
+        label(translate) BackEnd_WikiLanguage.designation
+    .col-md-8.padding-left
+      .form-group.combine(*ngIf="!compact")
+        input(formControlName="value")
+        select(formControlName="localeId")
+          option(*ngFor="let item of locales", [ngValue]="item.value", translate) BackEnd_WikiLanguage.{{item.name}}
+  .row
+    .col-md-4(*ngIf="!compact")
+      .form-group
+        select(formControlName="periodType")
+          option(*ngFor="let item of designations", [ngValue]="item.value", translate) {{item.name}}
+    .col-md-8
+      .form-group
+        label.fixed-width
+          span(translate) BackEnd_WikiLanguage.LM_FromDate
+          span -
+          span(translate) BackEnd_WikiLanguage.LM_UntilDate
+        app-datepicker-input.datepicker(
+          [date]="form.get('fromDate').value",
+          (dateChange)="form.get('fromDate').setValue($event)",
+          [range]="form.get('untilDate').value",
+          (rangeChange)="form.get('untilDate').setValue($event)"
+        )
+  .row
+    .col-md-4(*ngIf="!compact")
+      .form-group
+        select(formControlName="limitedDiscount")
+          option(*ngFor="let item of daySamples", [ngValue]="item.value", translate) {{item.name}}
+    .col-md-8.padding-left
+      .form-group(*ngIf="!compact")
+        input.fixed-width(
+          formControlName="nights",
+          type="text",
+          appNumberInput,
+          required,
+          decimals="0",
+          min="0"
+        )
+  .row
+    .col-md-4(*ngIf="!compact")
+    .col-md-8
+      .form-group(*ngIf="compact")
+        label.fixed-width(translate) BackEnd_WikiLanguage.LM_Days
+        input.fixed-width(
+          formControlName="nights",
+          type="text",
+          appNumberInput,
+          required,
+          decimals="0",
+          min="0"
+        )
+  .row(*ngIf="compact")
+    .col-md-8
+      .form-group
+        label.fixed-width(translate) BackEnd_WikiLanguage.LM_PercDiscount
+        .input-group.fixed-width
+          input(
+            formControlName="percDiscount",
+            type="text",
+            appNumberInput,
+            required,
+            min="0",
+            max="100"
+          )
+          .input-group-append
+            span.input-group-text %
+  .row(*ngIf="!compact")
+    .col-md-4
+      .form-group
+        label(translate) BackEnd_WikiLanguage.LM_PercDiscount
+    .col-md-8.padding-left
+      .form-group
+        .input-group.fixed-width
+          input(
+            formControlName="percDiscount",
+            type="text",
+            appNumberInput,
+            required,
+            min="0",
+            max="100"
+          )
+          .input-group-append
+            span.input-group-text %

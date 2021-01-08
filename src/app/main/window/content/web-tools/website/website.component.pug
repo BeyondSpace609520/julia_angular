@@ -1,0 +1,17 @@
+app-website-iframe(*ngIf="!useBuiltInContent", (cancel)="useBuiltInContent = true")
+
+ng-container(*ngIf="useBuiltInContent")
+    .sidebar
+        .form-group
+            select([formControl]="locale")
+                option(*ngFor="let lang of locals", [value]="lang.value", translate) BackEnd_WikiLanguage.{{lang.name}}
+        app-list-view.list-view(
+            [items]="items",
+            [selected]="selectedItemId",
+            (select)="selectedItemId = $event.id"
+        )
+            ng-template(let-item) {{item.label | translate}}
+    content
+        app-pages(*ngIf="selectedItemId === 'pages'", [localeId]="locale.value")
+        app-images(*ngIf="selectedItemId === 'images'")
+        app-settings(*ngIf="selectedItemId === 'settings'")

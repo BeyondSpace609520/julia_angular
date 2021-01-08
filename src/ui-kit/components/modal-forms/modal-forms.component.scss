@@ -1,0 +1,40 @@
+.modal-header {
+  flex-wrap: wrap;
+  &.border-none {
+    border: none !important;
+  }
+  .pages {
+    display: flex;
+    margin: 0.5rem 0 1rem;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    .btn,
+    .cancellationCounter {
+      flex: none;
+      margin: 0 0.5rem;
+    }
+  }
+}
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  .price-calculation-info {
+    font-weight: bold;
+  }
+  .checkbox-for-primary-button-wrapper {
+    float: left;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+    input {
+      margin: 0 10px 0 0;
+    }
+    label {
+      margin: 0;
+    }
+  }
+}

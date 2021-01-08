@@ -1,0 +1,100 @@
+// Variables
+//
+@import 'variables';
+
+
+// Vendor
+//
+@import 'vendor/bootstrap-custom';
+@import '../../node_modules/mdi/scss/materialdesignicons';
+@import '../../node_modules/npm-font-source-sans-pro/source-sans-pro';
+
+
+// Mixins & Functions
+//
+@import 'mixins';
+
+
+// Easy booking
+@import 'components/alert';
+@import 'components/button';
+@import 'components/close';
+@import 'components/datepicker';
+@import 'components/drag-sort';
+@import 'components/dropdown';
+@import 'components/form';
+@import 'components/icon';
+@import 'components/image';
+@import 'components/list';
+@import 'components/modal';
+@import 'components/nprogress';
+@import 'components/offerwizard-TEMP';
+@import 'components/popover';
+@import 'components/quill.snow';
+@import 'components/roomplan-items';
+@import 'components/roomplan.vis';
+@import 'components/star-rating';
+@import 'components/switch';
+@import 'components/table';
+@import 'components/tabs';
+@import 'components/tooltip';
+@import 'components/uploader';
+@import 'layout';
+@import 'print';
+
+body {
+    overflow-y: hidden;
+}
+
+app-root {
+    display: inline-block;
+    height: 100%;
+    min-width: 100vw;
+    // min-height: 30em;
+    background: $background-color;
+}
+// https://github.com/ng-bootstrap/ng-bootstrap/issues/2686
+@for $i from 0 through 4 {
+    ngb-modal-window:nth-of-type(#{$i}) {
+        z-index: 1051 + $i;
+    }
+
+    ngb-modal-backdrop:nth-of-type(#{$i}) {
+        z-index: 1050 + $i !important;
+    }
+}
+
+.center {
+    display: block;
+    text-align: center;
+}
+
+input[type="checkbox"], input[type="radio"] {
+    vertical-align: text-top;
+    margin-right: 0.3em;
+    margin-top: 2px;
+}
+
+.loading-bar {
+    background: rgba(255,255,255, 0.5);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    & > * {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+    }
+}
+
+.editable-cell {
+    background: transparent;
+    border: none;
+    color: inherit;
+    width: 4em;
+    padding: 0px 0.3em;
+}

@@ -1,0 +1,37 @@
+.header
+  .main
+    h1 {{item.lastName}}, {{item.firstName}}
+    star-rating.rating(starType="svg", readOnly="true", [rating]="averageRating()")
+    .recommendation(*ngIf="hasAdditionalInfo")
+      span {{rating.recommendationPercent}} % 
+      span(translate) BackEnd_WikiLanguage.ratingRecommendation
+  .extra(*ngIf="hasAdditionalInfo")
+    span(translate) BackEnd_WikiLanguage.ratingOverallHeaderLBL
+    span :
+    star-rating(starType="svg", readOnly="true", [rating]="rating.overallRating")
+    span(translate) BackEnd_WikiLanguage.ratingNumberOfReviews
+    span : {{rating.countOfReviews}}
+hr
+.factors(*ngIf="form", [formGroup]="form")
+  .list
+    .factor(
+        *ngFor="let factor of factors; let i = index"
+    )
+      label.name(translate) {{factor.label}}
+      star-rating(
+        starType="svg",
+        [rating]="form.get('factors').get(factor.id).value",
+        (starClickChange)="onRatingChange(factor.id, $event)"
+      )
+      label(translate) BackEnd_WikiLanguage.ratingPleaseRate
+  .comment.form-group
+    label(translate) BackEnd_WikiLanguage.ratingComment
+    textarea(formControlName="comment")
+.d-flex.flex-row
+  .rate(*ngIf="form")
+    label(translate) BackEnd_WikiLanguage.ratingThumbUp
+    i.thumb.mdi.mdi-thumb-up([ngClass]="{active: form.get('thumb').value === 'up'}", (click)="form.get('thumb').setValue('up')")
+    i.thumb.mdi.mdi-thumb-down([ngClass]="{active: form.get('thumb').value === 'down'}", (click)="form.get('thumb').setValue('down')")
+  .button-controls
+    button.btn.btn-secondary(translate, (click)="cancel()") BackEnd_WikiLanguage.generic_Cancel
+    button.btn.btn-secondary(*ngIf="form", translate, [disabled]="!form.valid", (click)="save()") BackEnd_WikiLanguage.generic_Save

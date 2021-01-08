@@ -1,0 +1,75 @@
+form
+    display: grid
+    grid-template-columns: repeat(6, auto)
+    grid-template-rows: repeat(3, auto)
+
+.main
+    grid-area: 1 / 1 / 2 / 5
+    .form-group
+        grid-template-columns: 1fr 3fr
+.additional
+    grid-area: 1 / 6 / 2 / 7
+    .form-check
+        text-align: right
+.labels
+    grid-area: 2 / 1 / 3 / 7
+    display: flex
+    width: 100%
+    .col-6
+        &:nth-child(1)
+            padding-left: unset
+            align-self: flex-end
+        &:nth-child(2)
+            display: flex
+            label
+                align-self: flex-end
+                margin-right: auto
+            input
+                margin-right: 1em
+                width: auto
+.textarea
+    grid-area: 3 / 1 / 3 / 7
+    display: flex
+    margin-bottom: 1em
+    .col-6
+        &:nth-child(1)
+            padding-left: unset
+        &:nth-child(2)
+            padding-right: unset
+            .form-group
+                width: 100%
+.uploader
+    grid-area: 5 / 1 / 4 / 5
+.selectors
+    grid-area: 5 / 5 / 4 / 7
+
+.uploader
+    display: flex
+    .controls
+        margin: 1em  
+        display: flex
+        flex-direction: column
+        align-items: flex-end
+        width: 100%  
+        label
+            display: block
+    img
+        max-width: 15em
+        max-height: 7em
+        width: auto
+.package
+    grid-area: 6 / 5 / 5 / 7
+    margin-top: .5em
+
+.editor
+    width: 100%
+    min-height: 100px
+
+.mdi-information
+    vertical-align: sub
+    font-size: 22px
+    margin-left: 1em
+
+.ql-editor 
+    height: 120px
+    overflow-y: scroll

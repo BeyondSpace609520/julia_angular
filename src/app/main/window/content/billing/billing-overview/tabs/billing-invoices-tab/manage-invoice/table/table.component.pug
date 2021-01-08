@@ -1,0 +1,18 @@
+app-table([items]="invoice?.details")
+  ng-template(#column, let-item)
+    app-table-action(
+      [active]="'edit' | productPermission : item : invoice",
+      tooltip="BackEnd_WikiLanguage.generic_Edit",
+      icon="pencil",
+      (click)="editProduct(item)"
+    )
+    app-table-action(
+      [active]="'delete' | productPermission : item : invoice",
+      tooltip="BackEnd_WikiLanguage.generic_Delete",
+      icon="delete",
+      (click)="deleteProduct(item)"
+    )
+  ng-template(#column, label="BackEnd_WikiLanguage.BW_InvoiceDetailBillTextLabel", sortable="text", let-item)
+    | {{item.text}}
+  ng-template(#column, label="FrontEnd_WikiLanguage.generic_Price", sortable="totalGross", let-item)
+    span(appFormatNumber) {{item.totalGross}}

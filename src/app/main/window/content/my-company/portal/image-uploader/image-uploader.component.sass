@@ -1,0 +1,24 @@
+:host
+    display: grid
+    grid-template-columns: 1fr auto
+    grid-template-rows: auto auto
+    grid-template-areas: "title title" "image controls"
+
+.title
+    grid-area: title
+    text-align: center
+    margin-right: 5em
+
+.image
+    grid-area: image
+    width: 100%
+    min-width: 15em
+
+.controls
+    grid-area: controls
+    display: flex
+    flex-direction: column
+    margin-left: .5em
+    .btn
+        display: block
+        margin-bottom: 0.6em

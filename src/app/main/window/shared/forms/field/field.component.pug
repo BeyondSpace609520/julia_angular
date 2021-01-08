@@ -1,0 +1,58 @@
+.form-group(
+  #tooltip,
+  [ngbTooltip]="!options.icon && options.tooltip",
+  container="body",
+  [closeDelay]="3000",
+  [class.required]="options.required",
+)
+  div.label-container
+    label(
+      [class.highlight]="options.highlight",
+      [class.link]="options.onClickLabel",
+      (click)="options.onClickLabel && options.onClickLabel()",
+    ) {{ 'BackEnd_WikiLanguage.' + field[1] | translate }}
+    //- display tooltip for the icon if exist
+    i.mdi(*ngIf="options.icon", [ngClass]="iconClasses", [ngbTooltip]="options.tooltip")
+  ng-container(*ngIf="control", [ngSwitch]="field[0]", (mouseover)="tooltip.toggle()")
+    input(
+      *ngSwitchCase="'input'",
+      [formControl]="control"
+    )
+    select(
+      *ngSwitchCase="'select'",
+      [formControl]="control"
+    )
+      option(
+        *ngFor="let option of resources[options.resource]",
+        [value]="option.value",
+        [disabled]="option.disabled"
+      ) {{option.name}}
+    app-datepicker-input(
+      *ngSwitchCase="'datepicker'",
+      [date]="control.value",
+      (dateChange)="control.setValue($event)",
+      [disabled]="options.disabled",
+      [mandatory]="options.required",
+      [minDate]="options.minDate"
+    )
+    select(
+      *ngSwitchCase="'multiselect'",
+      multiple,
+      [formControl]="control"
+    )
+      option(
+        *ngFor="let option of resources[options.resource]",
+        [value]="option.value",
+        [disabled]="option.disabled"
+      ) {{option.name}}
+    input(
+      *ngSwitchCase="'checkbox'",
+      type="checkbox",
+      [formControl]="control"
+    )
+    app-auto-city-input(
+      *ngSwitchCase="'auto-city-input'",
+      [countryControl]="group | fieldDependency : 'countryId'",
+      [postCodeControl]="group | fieldDependency : 'postCode'",
+      [formControl]="control"
+    )

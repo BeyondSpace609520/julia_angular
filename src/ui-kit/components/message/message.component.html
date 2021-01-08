@@ -1,0 +1,10 @@
+<div class="icon" [ngSwitch]="type">
+  <i *ngSwitchCase="'success'" class="mdi mdi-check-circle-outline"></i>
+  <i *ngSwitchCase="'error'" class="mdi mdi-alert-circle-outline"></i>
+  <i *ngSwitchCase="'warning'" class="mdi mdi-alert-outline"></i>
+  <i *ngSwitchDefault class="mdi mdi-information-outline"></i>
+</div>
+<div class="content">
+  <p *ngIf="text" class="text">{{ text | translate }}</p>
+  <ng-content></ng-content>
+</div>

@@ -1,0 +1,14 @@
+app-tabs(
+  *ngIf="tabSettings.buttons.length",
+  [settings]="tabSettings",
+  [(selected)]="activeTabId"
+)
+content([ngSwitch]="activeTabId")
+  app-loading.loading-bar(*ngIf="isLoading | async")
+  app-detail(*ngSwitchCase="'detail'", [item]="selectedItem", [hasAdvancedPricing]="hasAdvancedPricing", (edited)="onTabEdited()")
+  app-description(*ngSwitchCase="'description'", [item]="selectedItem", (edited)="onTabEdited()")
+  app-images(*ngSwitchCase="'images'", [item]="selectedItem", (edited)="onTabEdited()")
+  //- app-calendar(*ngSwitchCase="'calendar'")
+  app-layout(*ngSwitchCase="'layout'", [item]="selectedItem", (edited)="onTabEdited()")
+  app-pricing(*ngSwitchCase="'pricing'", [item]="selectedItem", (edited)="onTabEdited()")
+

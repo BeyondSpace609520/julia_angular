@@ -1,0 +1,19 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+.sidebar
+  app-list-view.list-view(
+    [items]="periods",
+    [selected]="selectedPeriodId",
+    (select)="selectedPeriodId = $event.id"
+  )
+    ng-template(let-item)
+      | {{getPeriodLabel(item)}}
+  .errors
+    .error(*ngIf="brokenPeriod")
+      div(translate) BackEnd_WikiLanguage.SP_SeasonPeriodDateRangeWarning
+      div {{getPeriodLabel(brokenPeriod)}}
+  .bottom-buttons
+    button.btn.btn-secondary((click)="newPeriod()", translate) BackEnd_WikiLanguage.generic_New
+    button.btn.btn-secondary(*ngIf="selectedPeriodId", (click)="deletePeriod(selectedPeriodId)", translate) BackEnd_WikiLanguage.generic_Delete
+.period
+  app-edit-period(*ngIf="selectedPeriodId", [periodId]="selectedPeriodId", (edited)="onPeriodEdited($event)")
+  app-settings-button(moduleId="seasonPeriodsSettings")

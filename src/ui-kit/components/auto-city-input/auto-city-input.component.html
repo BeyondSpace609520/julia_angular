@@ -1,0 +1,11 @@
+<app-loading *ngIf="isLoading | async"></app-loading>
+<div [hidden]="cityOptions?.length > 1">
+  <input
+    type="text"
+    [formControl]="cityControl"
+  >
+</div>
+<select *ngIf="cityOptions?.length > 1" (change)="applyCitySelection($event.target.value)">
+  <option selected disabled hidden>{{ 'general.selectOne.text' | translate }}</option>
+  <option *ngFor="let city of cityOptions" [value]="city">{{ city }}</option>
+</select>

@@ -1,0 +1,5 @@
+.title {{label | translate}} (Max 400x400)
+img.image(*ngIf="imageSrc", [src]="imageSrc")
+.controls
+    button.btn.btn-secondary((click)="uploadImage()", translate) BackEnd_WikiLanguage.generic_Upload
+    button.btn.btn-secondary((click)="clearImage()", translate) BackEnd_WikiLanguage.generic_Clear

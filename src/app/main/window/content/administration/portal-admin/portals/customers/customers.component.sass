@@ -1,0 +1,22 @@
+:host
+    display: grid
+    height: 100%
+    grid-template-rows: auto 1fr auto
+    grid-template-columns: 2fr 1fr
+    grid-template-areas: 'A A' 'B C' 'D D'
+    grid-gap: 1em
+    padding: 1em 0
+
+.title
+    grid-area: A
+
+.table-container
+    grid-area: B
+
+.customer
+    grid-area: C
+    overflow-y: auto
+
+.bottom-controls
+    grid-area: D
+    margin-bottom: 1em

@@ -1,0 +1,143 @@
+.datepicker-fullwidth {
+  display: block!important;
+
+  ngb-dp-month {
+    width: 100%;
+  }
+
+  .ngb-dp-day {
+    flex: 1;
+  }
+}
+
+.datepicker-transparent {
+  input {
+    border: none!important;
+    background-color: unset!important;
+  }
+  i {
+    display: none!important;
+  }
+  .form-icon-left .form-control {
+    padding-left: 10px!important;
+    padding-right: 10px!important;
+    width: 90px;
+  }
+}
+
+app-datepicker-input {
+  .input-group .form-control {
+    width: 100%;
+  }
+}
+
+ngb-datepicker {
+  background-color: #ffffff;
+  .bg-light {
+    background-color: transparent !important;
+    &.ngb-dp-header {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    }
+  }
+
+  .ngb-dp-header {
+    padding-bottom: 0.25rem;
+    background-color: #ffffff;
+    border-bottom: 1px solid rgba(0,0,0,.125);
+  }
+  select{
+    &.custom-select {
+      background-image: url("data:image/svg+xml;charset=utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 10 6\"><path fill=\"#ced4da\" d=\"M0 1 L5 6 L10 1 L9 0 L5 4 L1 0Z\"/></svg>");
+      border: none;
+      font-size: 1rem !important;
+      &:focus {
+        box-shadow: none;
+      }
+      &:hover {
+        background-image: url("data:image/svg+xml;charset=utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 10 6\"><path fill=\"#242c3e\" d=\"M0 1 L5 6 L10 1 L9 0 L5 4 L1 0Z\"/></svg>");
+      }
+    }
+  }
+}
+
+.ngb-dp-months {
+  padding: 0.5em 1.5em;
+  .ngb-dp-weekdays {
+    border-bottom: unset;
+    background-color: #ffffff;
+    &.bg-light {
+      border-bottom: none;
+    }
+    .ngb-dp-weekday {
+      margin: 0.10rem;
+      color: $gray-900;
+      font-size: 70%;
+      font-style: normal !important;
+      font-weight: 600;
+      opacity: 0.5;
+      text-transform: uppercase;
+    }
+  }
+}
+
+.today {
+  color: #1891eb;
+}
+
+.ngb-dp-week {
+  .ngb-dp-day {
+    margin: 0.10rem;
+    font-weight: 600;
+    div {
+      border-radius: 50%;
+      &.custom-dp-day {
+        margin-left: -0.1rem;
+        margin-right: -0.1rem;
+        padding: 0;
+        width: 2.2rem;
+        height: 2rem;
+        line-height: 1.9rem;
+        background: none;
+        border: none;
+        color: #354052;
+        text-align: center;
+        &.outside {
+          opacity: 0.5;
+        }
+        &.selected{
+          background: #1891eb;
+          color: #ffffff;
+        }
+        &.isToday{
+          text-decoration: underline;
+          &:not(.selected):not(.range) {
+            color: #1891eb;
+          }
+        }
+        &.range {
+          background: #1891eb;
+          border-radius: 0;
+          color: #ffffff;
+        }
+        &.rangestart {
+          width: 2.2rem;
+          border-top-left-radius: 50%;
+          border-bottom-left-radius: 50%;
+        }
+        &.rangeend {
+          margin-right: 0;
+          width: 2.1rem;
+          border-top-right-radius: 50%;
+          border-bottom-right-radius: 50%;
+        }
+        &.rangestart.rangeend {
+          width: 2rem;
+        }
+      }
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

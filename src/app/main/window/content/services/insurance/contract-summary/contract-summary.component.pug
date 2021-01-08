@@ -1,0 +1,26 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+.bg-form
+  .form-group
+    label(translate) BackEnd_WikiLanguage.ER_MonthLabel
+    select([formControl]="month")
+      option(
+        *ngFor="let option of months",
+        [value]="option",
+        translate
+      ) {{option}}
+.m-3
+  app-table.table-responsive.d-lg-table([items]="contracts")
+    ng-template(#column, label="BackEnd_WikiLanguage.ER_BookingNo", sortable="bookingNo", let-item) {{item.bookingNo}}
+    ng-template(#column, label="BackEnd_WikiLanguage.EBP_ArrivalDate", sortable="arrivalDate", let-item) {{item.arrivalDate | ebDate:false}}
+    ng-template(#column, label="BackEnd_WikiLanguage.ER_PolicyNumber", sortable="policyNumber", let-item) {{item.policyNumber}}
+    ng-template(#column, label="BackEnd_WikiLanguage.ER_LastName", sortable="lastName", let-item) {{item.lastName}}
+    ng-template(#column, label="BackEnd_WikiLanguage.ER_FirstName", sortable="firstName", let-item) {{item.firstName}}
+    ng-template(#column, label="BackEnd_WikiLanguage.ER_Email", sortable="email", let-item) {{item.email}}
+    ng-template.right(#column, label="BackEnd_WikiLanguage.ER_Amount", sortable="amount", let-item)
+      span(appFormatNumber) {{item.amount}}
+    ng-template.right(#column, label="BackEnd_WikiLanguage.ER_BookingAmount", sortable="bookingAmount", let-item)
+      span(appFormatNumber) {{item.bookingAmount}}
+    ng-template#total(#extra)
+      td(colspan="6", translate) BackEnd_WikiLanguage.ER_Total
+      td.right(appFormatNumber, [innerText]="getTotal('amount')")
+      td.right(appFormatNumber, [innerText]="getTotal('bookingAmount')")

@@ -1,0 +1,22 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+app-search-bar([checkboxes]="[]", (search)="onSearch($event)")
+.m-3
+  app-table.table-responsive.d-xl-table([items]="offers")
+    ng-template(#column, label="BackEnd_WikiLanguage.ER_BookingNo", sortable="bookingNo", let-offer) {{offer.bookingNo}}
+    ng-template(#column, label="BackEnd_WikiLanguage.EBP_ArrivalDate", sortable="arrivalDate", let-offer) {{offer.arrivalDate | ebDate:false}}
+    ng-template(#column, label="BackEnd_WikiLanguage.ER_OfferDate", sortable="offerDate", let-offer)
+      .with-tooltip([ngClass]="{highlight: offerHighlighted(offer) }")
+        span([ngbTooltip]="offerTooltip(offer)", tooltipClass="pre")
+          app-dropdown([items]="offerDropdown", (selected)="openKeyValueModal($event, offer.offerId)") {{offer.offerDate | ebDate}}
+    ng-template.right(#column, label="BackEnd_WikiLanguage.ER_Amount", sortable="amount", let-offer)
+      .right(appFormatNumber) {{offer.amount}}
+    ng-template.right(#column, label="BackEnd_WikiLanguage.ER_BookingAmount", sortable="bookingAmount", let-offer)
+      .right(appFormatNumber) {{offer.bookingAmount}}
+    ng-template(#column, label="BackEnd_WikiLanguage.ER_ContractDate", sortable="contractDate", let-offer)
+      .with-tooltip([ngClass]="{highlight: contractHighlighted(offer) }")
+        span([ngbTooltip]="contractTooltip(offer)", tooltipClass="pre")
+          app-dropdown([items]="contractDropdown", (selected)="openKeyValueModal($event, offer.contractId)") {{offer.contractDate | ebDate}}
+    ng-template(#column, label="BackEnd_WikiLanguage.ER_PolicyNumber", sortable="policyNumber", let-offer) {{offer.policyNumber}}
+    ng-template(#column, label="BackEnd_WikiLanguage.ER_LastName", sortable="lastName", let-offer) {{offer.lastName}}
+    ng-template(#column, label="BackEnd_WikiLanguage.ER_FirstName", sortable="firstName", let-offer) {{offer.firstName}}
+    ng-template(#column, label="BackEnd_WikiLanguage.ER_Email", sortable="email", let-offer) {{offer.email}}

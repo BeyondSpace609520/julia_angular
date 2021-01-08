@@ -1,0 +1,23 @@
+form(*ngIf="form", [formGroup]="form")
+  .form-group(*ngIf="extraFields")
+    label(translate) BackEnd_WikiLanguage.designation
+    .input-group
+      input(formControlName="designation")
+      .input-group-append
+        select([formControl]="localeId")
+          option(*ngFor="let item of locals", [ngValue]="item.value", translate) BackEnd_WikiLanguage.{{item.name}}
+  .form-group(formGroupName="nights")
+    label(translate) BackEnd_WikiLanguage.LSD_FromNights
+    input(formControlName="from", type="text", appNumberInput, [min]="minNightsFrom", [max]="maxNightsFrom", decimals="0", required)
+  .form-group(formGroupName="nights")
+    label(translate) BackEnd_WikiLanguage.LSD_UntilNights
+    input(formControlName="until", type="text", appNumberInput, [min]="minNightsUntil", [max]="maxNightsUntil", decimals="0", required)
+  .form-group
+    label(translate) BackEnd_WikiLanguage.LSD_DiscountType
+    select(formControlName="discountType")
+      option(value="PricePerPersonPerNight", translate) BackEnd_WikiLanguage.generic_PricePerPersonPerNight
+      option(value="PercOnTotal", translate) BackEnd_WikiLanguage.generic_PercOnLogis
+      option(value="perDayBeforeArrival", translate) BackEnd_WikiLanguage.EBD_perDay
+  .form-group
+    label(translate) BackEnd_WikiLanguage.LSD_DiscountValue
+    input(formControlName="discount", type="text", appNumberInput, [min]="0")

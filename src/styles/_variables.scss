@@ -1,0 +1,252 @@
+// Colors
+//
+$primary: #1891eb;
+$secondary: #e4e4e4;
+$success: #6dc949;
+$danger: #d53e2f;
+$warning: #f6971c;
+$selected: #c5d3e8;
+
+$gray-100: #fafbfc;
+$gray-150: #fbfafc;
+$gray-200: #eef1f7;
+$gray-210: #ecf2f7;
+$gray-300: #dbe1ec;
+$gray-500: #adb5bd;
+$gray-600: #7f8fa3;
+$gray-700: #616f77;
+$gray-800: #465a7a;
+//$gray-900: #242c3e;
+$gray-900: #354052;
+
+$body-color: $gray-900;
+$text-muted: $gray-600;
+
+$bg-lighter: $gray-100;
+$bg-light: $gray-200;
+$bg-dark: $gray-800;
+$bg-darker: $gray-900;
+$bg-icon: #dadfea;
+$border-light: $gray-300;
+$border-lighter: $gray-200;
+
+$disabled-input: lighten($body-color, 50%);
+$disabled-input-placeholder: lighten($body-color, 60%);
+
+$ui-shadow: 0 0 6px rgba(0, 0, 0, 0.16);
+$popover-shadow: 0 0 10px rgba(0,0,0, 0.16);
+$shadow-smooth: 0 2px 4px 0 rgba(0, 0, 0, 0.16);
+$backdrop-filter: blur(12px);
+$backdrop-filter-bg: blur(255, 255, 255, 0.8);
+
+// Fonts
+//
+$font-family-sans-serif: "Source Sans Pro", sans-serif;
+$font-size-base: 0.625rem; // 10px
+$small-font-size: 80%;
+
+$headings-color: $body-color;
+$headings-font-weight: 600;
+
+$h1-font-size: $font-size-base * 2.5;
+$h2-font-size: $font-size-base * 2;
+$h3-font-size: $font-size-base * 1.5;
+$h4-font-size: $font-size-base * 1.25;
+$h5-font-size: $font-size-base * 1.25;
+$h6-font-size: $font-size-base;
+
+$display1-weight: $headings-font-weight;
+$display2-weight: $headings-font-weight;
+$display3-weight: $headings-font-weight;
+$display4-weight: $headings-font-weight;
+
+// Material Design Icons
+$mdi-font-path: '../../node_modules/mdi/fonts';
+
+// Source Sans Pro
+$FontPathSourceSansPro: '../../node_modules/npm-font-source-sans-pro/fonts';
+
+
+// Layout
+//
+$grid-gutter-width: 28px;
+$border-radius: 3px;
+
+$zindex-dropdown: 1000;
+$zindex-modal: 1040;
+$zindex-modal-backdrop: 1040;
+$zindex-ow-modal: 1035;
+$zindex-ow-modal-backdrop: 1030;
+$zindex-popover: 1060;
+$zindex-tooltip: 1070;
+$zindex-alert: 200;
+$zindex-apploading: 210;
+$zindex-nprogress: 210;
+$zindex-calendar-header: 100;
+$zindex-calendar-header-filter: 99;
+$zindex-calendar-bookings-footer: 100;
+$zindex-calendar-bookings-content: 90;
+$zindex-calendar-bookings-addbookings: 80;
+
+
+// Buttons
+//
+$buttons: () !default;
+$buttons: map-merge((
+  "primary": $primary,
+  "secondary": $secondary,
+  "warning": $warning,
+  "danger": $danger,
+  "success": $success
+), $buttons);
+
+$btn-font-weight: $headings-font-weight;
+$input-btn-border-width: 1px;
+
+$btn-padding-x: 2rem;
+$btn-padding-y: .3rem;
+$btn-icon-size: 1.3rem;
+
+$btn-padding-x-lg: 2.5rem;
+$btn-padding-y-lg: .6rem;
+$btn-icon-size-lg: 26px;
+
+$btn-padding-x-sm: .75rem;
+$btn-padding-y-sm: .5rem;
+$btn-icon-size-sm: 18px;
+
+$btn-padding-x-xs: .3333rem;
+$btn-padding-y-xs: .25rem;
+$btn-icon-size-xs: 12px;
+
+$btn-padding-x-icon: 0;
+$btn-padding-y-icon: 0;
+$btn-icon-size-icon: 15px;
+
+$btn-disabled-opacity: 0.5;
+
+$btn-outline-secondary-color: darken($secondary, 50%);
+
+// Forms
+//
+$input-padding-y:                       $btn-padding-y;
+$input-padding-x:                       .6rem;
+$input-border-color:                    $secondary;
+$input-color:                           $body-color;
+$input-placeholder-color:               $text-muted;
+
+
+// Dropdowns
+//
+$dropdown-spacer:                   .125rem;
+$dropdown-padding-y:                0;
+$dropdown-item-padding-y:           $grid-gutter-width/4;
+$dropdown-item-padding-x:           $grid-gutter-width/2;
+
+// Alerts
+//
+// Define alert colors, border radius, and padding.
+$alert-padding-x:             1.25rem;
+$alert-padding-y:             .75rem;
+$alert-margin-bottom:         $grid-gutter-width/2;
+$alert-border-width:          0;
+
+
+// Popovers
+//
+$popover-bg:                        white;
+$popover-border-width:              1px;
+$popover-border-color:              $gray-200;
+$popover-border-radius:             $border-radius;
+$popover-box-shadow:                $popover-shadow;
+
+$popover-header-padding-y:          $grid-gutter-width/2;
+$popover-header-padding-x:          $grid-gutter-width/2;
+$popover-body-padding-y:            $grid-gutter-width/2;
+$popover-body-padding-x:            $grid-gutter-width/2;
+
+$popover-arrow-width:               1rem;
+$popover-arrow-height:              .5rem;
+$popover-arrow-color:               $popover-bg;
+$popover-max-width:                 276px;
+
+
+// Tooltips
+//
+$tooltip-font-size:           $small-font-size;
+$tooltip-max-width:           200px;
+$tooltip-color:               white;
+$tooltip-bg:                  $bg-darker;
+$tooltip-border-radius:       $border-radius;
+$tooltip-opacity:             1;
+$tooltip-padding-y:           $grid-gutter-width/4;
+$tooltip-padding-x:           $grid-gutter-width/2;
+$tooltip-margin:              0;
+
+
+// Alerts
+//
+$alert-padding-x:                   1rem;
+$alert-padding-y:                   .75rem;
+
+
+// Modal
+//
+$modal-lg: 1000px;
+$modal-md: 600px;
+$modal-sm: 300px;
+
+
+// Booking items
+//
+$border-size: 2px;
+
+$enquiry: #31d68b;
+$enquiry-border: $border-size solid $enquiry;
+
+$reservation: #0f99ff;
+$reservation-border: $border-size solid $reservation;
+
+$booking: #fb2f7f;
+$booking-border: $border-size solid $booking;
+
+$block: #dfcf04;
+$block-border: $border-size solid $block;
+
+$contingent: #b735d7;
+$contingent-border: $border-size solid $contingent;
+
+$booking-with-invoice: $gray-600;
+$booking-with-invoice-border: $border-size solid $booking-with-invoice;
+
+$timeline-room-height: 49px;
+$timeline-room-height-small: 34px;
+$timeline-room-height-smaller: 24px;
+$timeline-item-height: 32px;
+$timeline-item-height-small: 20px;
+$timeline-item-height-smaller: 16px;
+
+// Radius
+//
+$border-radius:               .3rem;
+$border-radius-lg:            .3.5rem;
+$border-radius-sm:            .2.5rem;
+
+// Breakpoints
+$small-tablet-width: 576px;
+$tablet-width: 768px;
+$desktop-width: 1024px;
+
+$bp-sm: 575px;
+$bp-md: 767px;
+$bp-lg: 991px;
+$bp-xl: 1199px;
+
+// Common
+
+$background-color: #f2f4f8;
+
+// MDI Window
+
+$mdi-window-header-color: #f5a623;
+$mdi-window-border-color: #f7a700;

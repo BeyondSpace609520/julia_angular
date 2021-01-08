@@ -1,0 +1,9 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+
+app-table.table-container([items]="items", [clickable]="true")
+    ng-template(#column, label="BackEnd_WikiLanguage.CR_Customer", sortable="name", let-item) {{item.name}}
+    ng-template(#column, label="BackEnd_WikiLanguage.CR_InvoiceRecipient", sortable="invoiceRecipient", let-item) {{item.invoiceRecipient}}
+    ng-template(#column, label="BackEnd_WikiLanguage.CR_NextBillDate", sortable="nextBillDate", let-item) {{item.nextBillDate}}
+
+.button-controls
+    button.btn.btn-secondary((click)="refresh()", translate) BackEnd_WikiLanguage.generic_Refresh

@@ -1,0 +1,42 @@
+@media only print {
+	html, body, app-root, app-roomplan-window {
+		height: auto !important;
+	}
+	main {
+		position: relative !important;
+		overflow-y: visible !important;
+	}
+	app-roomplan-window {
+		display: block !important;
+	}
+
+	app-calendars-header, app-pricing-header {
+		display: none;
+	}
+
+	#timeline-wrap {
+		overflow-y: visible !important;
+	}
+
+	#timeline {
+		height: auto !important;
+		overflow: visible;
+		position: relative;
+	}
+
+	.vis-panel.vis-center, .vis-panel.vis-left, .vis-panel.vis-right {
+		overflow-y: visible;
+	}
+
+	.vis-left.vis-panel.vis-vertical-scroll {
+		display: inline-block;
+		overflow: visible;
+		position: relative;
+		height: auto !important;
+	}
+	.vis-panel.vis-center,
+	.vis-panel.vis-background.vis-vertical,
+	.vis-grid.vis-vertical {
+		height: 100% !important;
+	}
+}

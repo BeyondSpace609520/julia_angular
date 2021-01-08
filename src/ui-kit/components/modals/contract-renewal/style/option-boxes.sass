@@ -1,0 +1,36 @@
+@import "app-globals"
+
+.options
+  display: flex
+  align-items: stretch
+  justify-content: stretch
+  flex-wrap: nowrap
+  margin-left: -$grid-gutter-width/4
+  margin-right: -$grid-gutter-width/4
+
+  .option-box
+    margin: 0 $grid-gutter-width/4
+    border: 1px solid $input-border-color
+    border-radius: $border-radius
+    cursor: pointer
+    padding: 1rem
+    text-align: center
+    transition: border-color 0.2s, box-shadow 0.2s
+
+    &.selected, &:hover
+      border-color: $orange
+
+    &.selected
+      box-shadow: inset 0 0 0 1px $orange
+
+    input[type=radio]
+      position: absolute
+      visibility: hidden
+
+  &.payments, &.rewards
+    .option-box
+      width: calc(33.3333% - #{$grid-gutter-width/2})
+
+  &.payment-methods
+    .option-box
+      width: calc(50% - #{$grid-gutter-width/2})

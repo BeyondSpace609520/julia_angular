@@ -1,0 +1,17 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+.input-group.toolbar-search(*ngIf="textControl")
+  input([formControl]="textControl", (keyup.enter)="onSearch()")
+  .input-group-append
+    button.btn.btn-primary((click)="onSearch()", translate) BackEnd_WikiLanguage.generic_Search
+.table-container
+  app-table([items]="customers", [clickable]="true", (select)="customerSelected($event)")
+    ng-template(#column, label="FrontEnd_WikiLanguage.ETGEMT_CustomerSalutationNameLabel", sortable="salutation", let-item) {{item.salutation}}
+    ng-template(#column, label="FrontEnd_WikiLanguage.ETGEMT_CustomerFirstNameLabel", sortable="firstName", let-item) {{item.firstName}}
+    ng-template(#column, label="FrontEnd_WikiLanguage.ETGEMT_CustomerLastNameLabel", sortable="lastName", let-item) {{item.lastName}}
+    ng-template(#column, label="BackEnd_WikiLanguage.generic_Company", sortable="company", let-item) {{item.company}}
+    ng-template(#column, label="FrontEnd_WikiLanguage.ETGEMT_CustomerEMailAddressLabel", sortable="email", let-item) {{item.email}}
+    ng-template(#column, label="FrontEnd_WikiLanguage.ETGEMT_CustomerPhoneNoLabel", sortable="phoneNo", let-item) {{item.phoneNo}}
+    ng-template(#column, label="FrontEnd_WikiLanguage.ETGEMT_CustomerAddressLabel", sortable="address", let-item) {{item.address}}
+    ng-template(#column, label="FrontEnd_WikiLanguage.ETGEMT_CustomerPostCodeLabel", sortable="postCode", let-item) {{item.postCode}}
+    ng-template(#column, label="FrontEnd_WikiLanguage.ETGEMT_CustomerCityLabel", sortable="city", let-item) {{item.city}}
+    ng-template(#column, label="FrontEnd_WikiLanguage.ETGEMT_CustomerCountryLabel", sortable="country", let-item) {{item.country}}

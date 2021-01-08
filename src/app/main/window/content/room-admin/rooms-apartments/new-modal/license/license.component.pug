@@ -1,0 +1,14 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+.head
+  .title(translate, [translateParams]="{ value: data.maxRooms }") BackEnd_WikiLanguage.roomLicenceWarningLine1
+  .subtitle(translate) BackEnd_WikiLanguage.roomLicenceWarningLine2
+
+.table-container
+  app-table.with-tooltip([items]="data.roomStats")
+    ng-template(#column, label="BackEnd_WikiLanguage.NEP_EntityCategory", let-item)
+      span([ngClass]="{total: item.isTotal}") {{item.value}}
+    ng-template(#column, label="BackEnd_WikiLanguage.roomSlashApp", let-item)
+      span([ngClass]="{total: item.isTotal}") {{item.uniqueNo}}
+
+.info(translate, [translateParams]="{ value: data.roomsToAdd }") BackEnd_WikiLanguage.roomLicenseInfotext
+button.submit.btn.btn-primary((click)="submit()") Lizenz erhöhen

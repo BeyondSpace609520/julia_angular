@@ -1,0 +1,20 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+content
+  .pictures(*ngIf="pictures")
+    img.stub(*ngIf="!(current | async)", src="https://media.easy-booking.at/wo/Services/images/0000000000_NoImage.jpg")
+    app-image-carousel.carousel(
+      [images]="pictures",
+      (selectImage)="selectPicture($event)",
+      [current]="current | async"
+    )
+  .controls(*ngIf="current | async")
+    button.btn.btn-secondary((click)="delete()", translate) BackEnd_WikiLanguage.generic_Delete
+    input.form-control(type="text", appNumberInput, decimals="0", min="1", max="99", [formControl]="sortOrderControl")
+    button.btn.btn-secondary([disabled]="!form.valid || !form.dirty", (click)="save()", translate) BackEnd_WikiLanguage.generic_Save
+    .inline-form-controls(*ngIf="showTagField")
+      label.mr-2 Image-Tag
+      input.form-control(type="text", [formControl]="imageTagControl")
+    p(translate) BackEnd_WikiLanguage.maxSizeWarningLabel
+  .additional-controls
+    button.btn.btn-secondary((click)="newPicture()" translate) BackEnd_WikiLanguage.generic_New
+    ng-content(select=".extra-actions")

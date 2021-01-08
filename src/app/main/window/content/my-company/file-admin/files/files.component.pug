@@ -1,0 +1,26 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+.controls
+  button.btn.btn-secondary((click)="upload()", [ngbTooltip]="'BackEnd_WikiLanguage.FA_UploadFile' | translate", container="body")
+    i.mdi.mdi-upload
+
+app-table.with-tooltip(*ngIf="files", [items]="files")
+  ng-template(#column, let-file)
+    app-table-action(
+      tooltip="BackEnd_WikiLanguage.FA_AddFileToTemplate",
+      icon="email-open-outline",
+      (click)="addToTemplate(file)"
+    )
+    app-table-action(
+      tooltip="BackEnd_WikiLanguage.FA_DownloadFile",
+      icon="cloud-download",
+      (click)="downloadFile(file)"
+    )
+    app-table-action(
+      tooltip="BackEnd_WikiLanguage.FA_DeleteFile",
+      icon="delete",
+      (click)="deleteFile(file)"
+    )
+  ng-template(#column, label="BackEnd_WikiLanguage.FA_DGHeaderFileName", let-file) {{file.name}}
+  ng-template(#column, label="BackEnd_WikiLanguage.FA_DGHeaderFileSizeInKB", let-file)
+    .right(appFormatNumber) {{file.sizeInBytes / 1000}}
+  ng-template(#column, label="BackEnd_WikiLanguage.FA_DGHeaderFileUploadDate", let-file) {{file.creationDate | ebDate}}

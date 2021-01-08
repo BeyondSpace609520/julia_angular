@@ -1,0 +1,21 @@
+@import "variables"
+
+\:host
+  position: relative
+  white-space: nowrap
+  cursor: pointer
+  outline: none
+  color: #203257
+  font-weight: 400
+  font-size: 15px
+  &.initialization
+    color: white
+  &:not(.initialization):hover
+    background: #eee
+  &:not(.initialization).inactive
+    background: #f4f4f4
+    color: #aeaeae
+
+\:host-context(.submenu)
+  .submenu-indicator:before
+    transform: rotate(-90deg)

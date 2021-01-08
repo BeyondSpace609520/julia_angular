@@ -1,0 +1,26 @@
+[req]
+default_bits = 2048
+prompt = no
+default_md = sha256
+x509_extensions = v3_req
+distinguished_name = dn
+
+[dn]
+C = AT
+ST = Bgld
+L = Eisenstadt
+O = Easybooking
+OU = WebIT
+emailAddress = julia@easybooking.eu
+CN = Easybooking Local DEV
+
+[v3_req]
+subjectAltName = @alt_names
+
+[alt_names]
+DNS.1 = localhost
+DNS.2 = easybooking.dev
+DNS.3 = easy-booking.dev
+DNS.4 = eb.dev
+DNS.5 = test2
+DNS.6 = easybooking.host

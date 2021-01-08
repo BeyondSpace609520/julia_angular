@@ -1,0 +1,6 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+label(translate) BackEnd_WikiLanguage.CF_FrontEndLogo
+img(*ngIf="imageSrc", [src]="imageSrc")
+.controls
+  button.btn.btn-secondary.mr-3((click)="uploadImage()", translate) BackEnd_WikiLanguage.generic_Upload
+  button.btn.btn-secondary((click)="clearImage()", [disabled]="!picture", translate) BackEnd_WikiLanguage.generic_Clear

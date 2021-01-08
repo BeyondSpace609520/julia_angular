@@ -1,0 +1,6 @@
+app-category-images-selector(
+  [params]="{ id: category && category.id }",
+  (saved)="saved.emit()"
+)
+  .extra-actions
+    button.btn.btn-secondary((click)="copyTo()", translate) BackEnd_WikiLanguage.generic_copyTo

@@ -1,0 +1,40 @@
+<div class="modal-header">
+  <img src="assets/img/Julia@2x.png" alt="julia" class="julia-img rounded-circle">
+  <h4 class="modal-title" [ngClass]="{'bg_blue': modalType === 2}">
+    <span class="icon">
+      <i *ngIf="modalType === 1" class="mdi mdi-alert-circle"></i>
+      <i *ngIf="modalType === 2" class="mdi mdi-information"></i>
+    </span>
+    <span class="title">{{textHead | translate}}</span>
+  </h4>
+  <button class="close" [attr.aria-label]="'general.buttonClose.text' | translate" (click)="activeModal.dismiss('Cross click')" *ngIf="closable">
+    <i class="mdi mdi-close"></i>
+  </button>
+</div>
+<ng-container *ngIf="textBody">
+  <div *ngIf="!textBodyIsHTML" class="modal-body">
+    <p>{{textBody | translate}}</p>
+  </div>
+  <div *ngIf="textBodyIsHTML" class="modal-body" [innerHTML]="textBody | translate"></div>
+</ng-container>
+<div class="modal-footer">
+  <button
+    type="button"
+    class="btn"
+    [class.btn-success]="modalType === 2 || (primaryButtonColor && primaryButtonColor == 'btn-success')"
+    [class.btn-secondary]="modalType === 1 || (primaryButtonColor && primaryButtonColor == 'btn-secondary')"
+    (click)="activeModal.close(true)"
+  >
+    {{ buttonOkLabel | translate }}
+    <ng-container
+      *ngIf="autoConfirm"
+    > {{ autoConfirm }}</ng-container>
+  </button>
+  <button
+    type="button"
+    class="btn btn-secondary"
+    *ngIf="!hideSecondaryButton"
+    (click)="activeModal.close(false)"
+    [translate]="buttonCancelLabel"
+  >Cancel</button>
+</div>

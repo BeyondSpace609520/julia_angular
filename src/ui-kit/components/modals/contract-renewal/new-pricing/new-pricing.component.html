@@ -1,0 +1,3 @@
+<h1><img src="assets/images/hand.svg"> {{ contact.salutation | contractRenewalHello | translate : {name: contact.lastName} }}</h1>
+<div [innerHtml]="'BackEnd_WikiLanguage.CRF_NewPricingDescription' | translate | breakMultiline : 'paragraph'"></div>
+<p class="validity">{{ 'BackEnd_WikiLanguage.CRF_Validity' | translate : {date: validUntil} }}</p>

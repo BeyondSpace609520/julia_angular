@@ -1,0 +1,5 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+
+app-table([items]="items")
+  ng-template(#column, label="Key", sortable="key", let-item) {{item.key}}
+  ng-template(#column, label="Value",  sortable="value", let-item) {{item.value}}

@@ -1,0 +1,64 @@
+app-table([items]="categories")
+  ng-template(#column, label="BackEnd_WikiLanguage.generic_Category", let-category)
+    .name(*ngIf="{ prices: getCategoryPrices(category) } as item")
+      .form-check
+        input(type="checkbox", [id]="'category'+category.id", [checked]="item.prices", (change)="updateCategoryPricing(category, $event.target.checked)")
+        label([for]="'category'+category.id") {{category.label}}
+  ng-template(#column, *ngIf="extended", label="BackEnd_WikiLanguage.so_cateringQuota", classNames="catering", let-category)
+    ng-container(*ngIf="{ prices: getCategoryPrices(category) } as item")
+      .form-group(*ngIf="item.prices")
+        .form-icon-right
+          input(
+            [(ngModel)]="item.prices.cateringQuota",
+            type="text",
+            appNumberInput,
+            required,
+            decimals="2",
+            min="0",
+            (validChange)="onInputValidityChange('cateringQuota', category.id, $event)"
+          )
+          i.mdi %
+  ng-template(#column, label="18+", let-category)
+    ng-container(*ngIf="{ prices: getCategoryPrices(category) } as item")
+      .form-group(*ngIf="item.prices")
+        input(
+          [(ngModel)]="item.prices.adult.price",
+          type="text",
+          appNumberInput,
+          required,
+          decimals="2",
+          min="0",
+          (validChange)="onInputValidityChange('adultPrice', category.id, $event)"
+        )
+      .form-group(*ngIf="item.prices && extended")
+        input(
+          [(ngModel)]="item.prices.adult.charge",
+          type="text",
+          appNumberInput,
+          required,
+          decimals="2",
+          min="0",
+          (validChange)="onInputValidityChange('adultPrice', category.id, $event)"
+        )
+  ng-template(#column, *ngFor="let age of ageGroups; let i = index", [label]="age.from+' - '+age.to", let-category)
+    ng-container(*ngIf="{ prices: getCategoryPrices(category) } as item")
+      .form-group(*ngIf="item.prices")
+        input(
+          [(ngModel)]="findGroup(item.prices, i).price",
+          type="text",
+          appNumberInput,
+          required,
+          decimals="2",
+          min="0",
+          (validChange)="onInputValidityChange('adultPrice', category.id, $event)"
+        )
+      .form-group(*ngIf="item.prices && extended")
+        input(
+          [(ngModel)]="findGroup(item.prices, i).charge",
+          type="text",
+          appNumberInput,
+          required,
+          decimals="2",
+          min="0",
+          (validChange)="onInputValidityChange('adultPrice', category.id, $event)"
+        )

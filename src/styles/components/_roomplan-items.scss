@@ -1,0 +1,423 @@
+$padding-x: $grid-gutter-width/2;
+$padding-y: $grid-gutter-width/4;
+$icon-size: 28px;
+$icon-left: 2px;
+$darken-hover: 20%;
+$darken-selected: 30%;
+$border-width: 2px;
+
+.vis-item {
+  position: absolute;
+}
+
+.timeline.shadows {
+  .booking-item {
+    box-shadow: $shadow-smooth; // TODO: Affects performance ALOT
+  }
+}
+
+.booking-item {
+  position: relative;
+  display: flex;
+  padding: 0;
+  height: $timeline-item-height;
+  border: $border-width solid rgba(0, 0, 0, 0.1);
+  border-radius: $timeline-item-height/2;
+  color: white;
+  font-size: 0.9rem;
+
+  app-timeline.narrowLines & {
+    height: $timeline-item-height-small;
+    border-radius: $timeline-item-height-small/2;
+  }
+
+  app-timeline.ultraNarrowLines & {
+    height: $timeline-item-height-smaller;
+    border-radius: $timeline-item-height-smaller/2;
+    font-size: 0.8rem;
+  }
+
+  // Booking item types
+  &.enquiry {
+    background-color: $enquiry;
+    border: $enquiry-border;
+
+    .simple-bg {
+      background-color: $enquiry;
+    }
+
+    &:hover {
+      background-color: darken($enquiry, $darken-hover);
+      border-color: darken($enquiry, $darken-hover);
+
+      .simple-bg {
+        background-color: darken($enquiry, $darken-hover);
+      }
+    }
+
+    &.selected {
+      border-color: darken($enquiry, $darken-selected);
+    }
+  }
+
+  &.reservation {
+    background-color: $reservation;
+    border: $reservation-border;
+
+    .simple-bg {
+      background-color: $reservation;
+    }
+
+    &:hover {
+      background-color: darken($reservation, $darken-hover);
+      border-color: darken($reservation, $darken-hover);
+
+      .simple-bg {
+        background-color: darken($reservation, $darken-hover);
+      }
+    }
+
+    &.selected {
+      border-color: darken($reservation, $darken-selected);
+    }
+  }
+
+  &.booking {
+    background-color: $booking;
+    border: $booking-border;
+
+    .simple-bg {
+      background-color: $booking;
+    }
+
+    &:hover {
+      background-color: darken($booking, $darken-hover);
+      border-color: darken($booking, $darken-hover);
+
+      .simple-bg {
+        background-color: darken($booking, $darken-hover);
+      }
+    }
+
+    &.selected {
+      border-color: darken($booking, $darken-selected);
+    }
+  }
+
+  &.block {
+    background-color: $block;
+    border: $block-border;
+
+    .simple-bg {
+      background-color: $block;
+    }
+
+    &:hover {
+      background-color: darken($block, $darken-hover);
+      border-color: darken($block, $darken-hover);
+
+      .simple-bg {
+        background-color: darken($block, $darken-hover);
+      }
+    }
+
+    &.selected {
+      border-color: darken($block, $darken-selected);
+    }
+  }
+
+  &.contingent {
+    background-color: $contingent;
+    border: $contingent-border;
+
+    .simple-bg {
+      background-color: $contingent;
+    }
+
+    &:hover {
+      background-color: darken($contingent, $darken-hover);
+      border-color: darken($contingent, $darken-hover);
+
+      .simple-bg {
+        background-color: darken($contingent, $darken-hover);
+      }
+    }
+
+    &.selected {
+      border-color: darken($contingent, $darken-selected);
+    }
+  }
+
+  &.reservation.with-invoice,
+  &.booking.with-invoice {
+    background-color: $booking-with-invoice;
+    border: $booking-with-invoice-border;
+
+    .simple-bg {
+      background-color: $booking-with-invoice;
+    }
+
+    &:hover {
+      background-color: darken($booking-with-invoice, $darken-hover);
+      border-color: darken($booking-with-invoice, $darken-hover);
+
+      .simple-bg {
+        background-color: darken($booking-with-invoice, $darken-hover);
+      }
+    }
+
+    &.selected {
+      border-color: darken($booking-with-invoice, $darken-selected);
+    }
+  }
+
+  &.locked {
+    border-color: rgba(0, 0, 0, 0.2);
+
+    &:after {
+      content: '';
+      background-image: url('/assets/img/lock-stripe.png');
+      background-position: 0 0;
+      background-repeat: repeat;
+      opacity: 0.50;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      border-radius: $timeline-item-height/2 - $border-width*2;
+      position: absolute;
+      z-index: 0;
+    }
+
+    &.selected {
+      border-color: #000000;
+    }
+
+    &,
+    .vis-drag-center {
+      cursor: not-allowed;
+    }
+  }
+
+  &.room-editable {
+    cursor: ns-resize;
+  }
+
+  &.time-editable,
+  &.time-editable.room-editable {
+    cursor: move;
+  }
+
+  &.editing {
+    border-style: dashed;
+  }
+
+  &.vis-range {
+    .vis-drag-left,
+    .vis-drag-right {
+      cursor: inherit;
+    }
+  }
+
+  &.vis-range.time-editable {
+    .vis-drag-left,
+    .vis-drag-right {
+      cursor: ew-resize;
+    }
+  }
+
+  &.notDroppable {
+    background: $danger !important;
+    border-color: darken($danger, $darken-selected)!important;
+
+    .simple-bg {
+      background-color: $danger !important;
+      border-color: darken($danger, $darken-selected)!important;
+    }
+  }
+
+  &.specialoffer {
+    .vis-drag-left,
+    .vis-drag-right {
+      display: none;
+    }
+  }
+
+  &.is-overlapping {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  &.overlap-level-1 {
+    margin-top:  5px;
+    margin-left: 5px;
+    margin-right: -5px;
+    app-timeline.narrowLines & {
+      margin-top:  3px;
+      margin-left: 3px;
+      margin-right: -3px;
+    }
+    app-timeline.ultraNarrowLines & {
+      margin-top:  2px;
+      margin-left: 2px;
+      margin-right: -2px;
+    }
+  }
+
+  &.overlap-level-2 {
+    margin-top:  10px;
+    margin-left: 10px;
+    margin-right: -10px;
+    app-timeline.narrowLines & {
+      margin-top:  6px;
+      margin-left: 6px;
+      margin-right: -6px;
+    }
+    app-timeline.ultraNarrowLines & {
+      margin-top:  4px;
+      margin-left: 4px;
+      margin-right: -4px;
+    }
+  }
+
+  &.to-remove {
+    display: none;
+  }
+
+  .vis-item-content {
+    padding: 0;
+  }
+
+  .simple-bg {
+    position: relative;
+    z-index: 2;
+  }
+
+  .left-icons {
+    flex: none;
+    padding: 2px;
+    height: 28px;
+    line-height: 24px;
+    border-radius: 14px;
+
+    img {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      vertical-align: top;
+    }
+
+    app-timeline.narrowLines & {
+      padding: 1px;
+      height: 16px;
+      line-height: 14px;
+
+      img {
+        width: 14px;
+        height: 14px;
+      }
+    }
+
+    app-timeline.ultraNarrowLines & {
+      padding: 0;
+      height: 12px;
+      line-height: 12px;
+
+      img {
+        width: 12px;
+        height: 12px;
+      }
+    }
+  }
+
+  .item-label {
+    flex: auto;
+    padding: 7px 10px;
+    line-height: 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    &>span {
+      display: inline-block;
+      padding: 0 3px;
+    }
+    app-timeline.narrowLines & {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+    app-timeline.ultraNarrowLines & {
+      padding-top: 0;
+      padding-bottom: 0;
+      line-height: 12px;
+    }
+  }
+  &.with-left-icons .item-label {
+    padding-left: 2px;
+  }
+  &.with-right-icons .item-label {
+    padding-right: 2px;
+  }
+
+  .right-icons {
+    flex: none;
+    padding: 2px;
+    height: 28px;
+    line-height: 20px;
+    border-radius: 14px;
+    font-size: 20px;
+
+    .icon {
+      display: inline-block;
+      margin: 2px;
+    }
+
+    app-timeline.narrowLines & {
+      padding: 0;
+      height: 16px;
+      line-height: 16px;
+      font-size: 13px;
+
+      .icon {
+        margin: 0 2px;
+      }
+    }
+
+    app-timeline.ultraNarrowLines & {
+      padding: 0;
+      height: 12px;
+      line-height: 12px;
+      font-size: 13px;
+
+      .icon {
+        margin: 0 2px;
+      }
+    }
+  }
+
+  .popoverHelper {
+    position: absolute;
+    top: -$border-width;
+    bottom: -$border-width;
+    left: 0;
+    right: 0;
+  }
+}
+
+.enquiry-color {
+  color: $enquiry;
+}
+
+.reservation-color {
+  color: $reservation;
+}
+
+.booking-color {
+  color: $booking;
+}
+
+.contingent-color {
+  color: $contingent;
+}
+
+.block-color {
+  color: $block;
+}

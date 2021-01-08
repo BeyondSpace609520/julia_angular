@@ -1,0 +1,17 @@
+.table-row
+    cursor: pointer
+
+.detail
+    display: flex
+    .column
+        flex: 1
+        .form-group
+            display: grid
+            grid-template-columns: 1fr 1fr
+            grid-gap: .5em
+            label
+                text-align: right
+            &.bold
+                font-weight: bold
+    .column:nth-child(2) .form-value
+        text-align: right

@@ -1,0 +1,171 @@
+<form *ngIf="form" [formGroup]="form">
+  <div class="row">
+    <div class="col-md-6 pr-3" *ngIf="categoryModal">
+      <div class="form-group c1c1">
+        <label for="pricing-test-console-category-rooms">{{ 'BackEnd_WikiLanguage.NEP_EntityNumber' | translate }}</label>
+        <select formControlName="roomId" id="pricing-test-console-category-rooms">
+          <option
+            *ngFor="let room of categoryRooms"
+            [value]="room.e_id">{{ room.e_uniqueNo | translate }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div
+      class="col-md-6"
+      [class.pl-3]="categoryModal"
+      [class.pr-3]="!categoryModal"
+    >
+      <div class="form-group c1c1">
+        <label for="pricing-test-console-service-type">{{ 'BackEnd_WikiLanguage.EPP_ServiceType' | translate }}</label>
+        <select formControlName="serviceType" id="pricing-test-console-service-type">
+          <option
+            *ngFor="let serviceType of serviceTypes"
+            [value]="serviceType.st_name">{{ serviceType.stl_name }}
+          </option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 pr-3">
+      <div class="form-group c1c1">
+        <label>{{ 'BackEnd_WikiLanguage.EBP_ArrivalDate' | translate }}</label>
+        <app-datepicker-input
+          placement="bottomLeft"
+          [date]="form.get('fromDate').value"
+          (dateChange)="form.get('fromDate').setValue($event)"
+          [inputId]="'pricing-test-console-arrival-date'"
+        ></app-datepicker-input>
+      </div>
+    </div>
+    <div class="col-md-6 pl-3">
+      <div class="form-group c1c1">
+        <label for="pricing-test-console-nights">{{ 'BackEnd_WikiLanguage.EPP_NightsStay' | translate }}</label>
+        <input
+          class="form-control"
+          type="text"
+          formControlName="nights"
+          appNumberInput
+          [autoFixErrors]="true"
+          [decimals]="0"
+          [min]="1"
+          [max]="256"
+          id="pricing-test-console-nights"
+        >
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 pr-3">
+      <div class="form-group c1c1">
+        <label for="pricing-test-console-adults">{{ 'BackEnd_WikiLanguage.EPP_NoOfAdults' | translate }}</label>
+        <input
+          class="form-control"
+          type="text"
+          formControlName="adults"
+          appNumberInput
+          [autoFixErrors]="true"
+          [decimals]="0"
+          [min]="0"
+          [max]="adultsNum + actualMaxPerson"
+          id="pricing-test-console-adults"
+        >
+      </div>
+    </div>
+    <div class="col-md-6 pl-3">
+      <div class="form-group c1c1">
+        <label for="pricing-test-console-children">{{ 'BackEnd_WikiLanguage.EPP_NoOfChildren' | translate }}</label>
+        <input
+          class="form-control"
+          type="text"
+          formControlName="children"
+          appNumberInput
+          [autoFixErrors]="true"
+          [decimals]="0"
+          [min]="0"
+          [max]="childrenNum + actualMaxPerson"
+          id="pricing-test-console-children"
+        >
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <ng-container *ngFor="let child of form.get('childrenAges').controls; let i = index">
+      <div
+        class="col-md-6"
+        [class.pr-3]="i % 2 === 0"
+        [class.pl-3]="i % 2 !== 0"
+      >
+        <div class="form-group c1c1">
+          <label for="pricing-test-console-adults">{{ 'BackEnd_WikiLanguage.MW_CopyToChild' | translate }} {{ (i + 1) }}</label>
+          <app-datepicker-input
+            placement="bottomLeft"
+            [minDate]="minDateForChildren"
+            [maxDate]="maxDateForChildren"
+            [date]="child.value"
+            (dateChange)="child.setValue($event)"
+            [inputId]="'pricing-test-console-child' + i"
+          ></app-datepicker-input>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-md-6 pr-3">
+      <div class="form-group c1c1">
+        <label for="pricing-test-console-small-pets">{{ 'BackEnd_WikiLanguage.EPP_NoOfPetsSmall' | translate }}</label>
+        <input
+          class="form-control"
+          type="text"
+          formControlName="smallPets"
+          appNumberInput
+          [autoFixErrors]="true"
+          [decimals]="0"
+          [min]="0"
+          [max]="10"
+          id="pricing-test-console-small-pets"
+        >
+      </div>
+    </div>
+    <div class="col-md-6 pl-3">
+      <div class="form-group c1c1">
+        <label for="pricing-test-console-large-pets">{{ 'BackEnd_WikiLanguage.EPP_NoOfPetsLarge' | translate }}</label>
+        <input
+          class="form-control"
+          type="text"
+          formControlName="largePets"
+          appNumberInput
+          [autoFixErrors]="true"
+          [decimals]="0"
+          [min]="0"
+          [max]="10"
+          id="pricing-test-console-large-pets"
+        >
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-md-4 checkboxes">
+      <div class="form-check c1c1" *ngIf="showParkingSpace">
+        <input
+          type="checkbox"
+          formControlName="parkingSpace"
+          id="pricing-test-console-parking"
+        >
+        <label for="pricing-test-console-parking">{{ 'BackEnd_WikiLanguage.generic_garage' | translate }}</label>
+      </div>
+      <div class="form-check c1c1" *ngIf="showBabyBed">
+        <input
+          type="checkbox"
+          formControlName="babyBed"
+          id="pricing-test-console-baby-bed"
+        >
+        <label for="pricing-test-console-baby-bed">{{ 'BackEnd_WikiLanguage.generic_cot' | translate }}</label>
+      </div>
+    </div>
+    <div class="col-md-8"></div>
+  </div>
+</form>

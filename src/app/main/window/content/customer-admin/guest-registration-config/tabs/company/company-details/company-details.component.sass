@@ -1,0 +1,16 @@
+@import "app-globals"
+
+section + section
+  margin-top: $grid-gutter-width
+
+.form-group
+  label
+    flex: none
+    width: 40%
+    max-width: 200px
+    text-align: right
+  .form-control
+    margin-left: $grid-gutter-width/2
+    &[type=checkbox], &[type=radio]
+      flex-basis: 1.2em
+      flex-shrink: 1

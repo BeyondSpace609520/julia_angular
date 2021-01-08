@@ -1,0 +1,11 @@
+.checkbox-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    max-width: 45%;
+    .form-check {
+        width: auto;
+        min-width: 110px;
+    }
+}
+

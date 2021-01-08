@@ -1,0 +1,30 @@
+form
+    display: grid
+    grid-template-columns: 1fr 1fr
+    grid-template-rows: auto auto
+    .sectionA
+        grid-area: 1 / 1 / 2 / 2
+    .sectionB
+        grid-area: 2 / 1 / 3 / 2
+    .sectionC
+        grid-area: 1 / 2 / 2 / 3
+    .sectionD
+        grid-area: 2 / 2 / 3 / 3
+
+    
+    .form-value
+        display: block
+        font-size: .9rem
+        margin-bottom: 3.75px
+    .form-group
+        margin: .5em 0
+        display: grid
+        grid-template-columns: 1fr 2fr
+        grid-gap: .5em
+        label
+            text-align: right
+        textarea
+            min-height: 80px
+
+    label.clickable
+        cursor: pointer

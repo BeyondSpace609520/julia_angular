@@ -1,0 +1,20 @@
+.content
+    .login
+        img.logo(src="assets/images/logo-eb-dark.svg", alt="easybooking")
+        form
+            p(translate).signInJulia BackEnd_WikiLanguage.LS_Intro
+            .form-group
+                label(for="login-username", translate) BackEnd_WikiLanguage.LS_UserName
+                input#login-username(type="text", placeholder="User Name")
+            .form-group
+                label(for="login-password", translate) BackEnd_WikiLanguage.LS_Password
+                input#login-password(type="password", placeholder="Credentials")
+            .checkGroup
+                .text-left
+                    input#login-keep-me-signed-in(type="checkbox")
+                    label(for="login-keep-me-signed-in", translate) BackEnd_WikiLanguage.LS_KeepMeSignedIn
+                .text-right
+                    a(href="#", translate) BackEnd_WikiLanguage.LS_ForgotPassword
+            button.btn.btn-primary.btn-lg(translate) BackEnd_WikiLanguage.LS_LoginButton
+    .news
+        iframe(#iframe, src='https://news.easybooking.eu')

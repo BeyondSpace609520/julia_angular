@@ -1,0 +1,21 @@
+@import "../../../shared/window-content/with-sidebar.sass"
+@import "../../../shared/window-content/with-tabs.sass"
+@import "_variables"
+
+.sidebar
+    width: 320px
+    .tree-view
+        flex: 1
+
+.controls
+    display: flex
+    margin-bottom: 0.5em
+    button
+        margin-right: 0.5em
+        padding: 0.5em 1em
+        .mdi
+            font-size: 1.3em
+            &.mdi-close-octagon
+                color: $danger
+            &.mdi-refresh
+                color: $primary

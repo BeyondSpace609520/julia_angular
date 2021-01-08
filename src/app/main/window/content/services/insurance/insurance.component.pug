@@ -1,0 +1,10 @@
+app-advertisement(*ngIf="showAd")
+.insurance(*ngIf="!showAd")
+    app-tabs(
+        *ngIf="tabSettings.buttons.length",
+        [settings]="tabSettings",
+        [(selected)]="activeTabId"
+    )
+    .content
+        app-contract-summary([hidden]="activeTabId !== 'summary'")
+        app-offer-overview([hidden]="activeTabId !== 'overview'")

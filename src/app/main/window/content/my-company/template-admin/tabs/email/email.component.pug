@@ -1,0 +1,16 @@
+form(*ngIf="form", [formGroup]="form")
+    .title.form-group
+        label(translate) BackEnd_WikiLanguage.EMA_TestMailSubject
+        input(formControlName="subject", [placeholder]="emailSubjectPlaceholder | translate")
+    .email-text.form-group
+        label(translate) BackEnd_WikiLanguage.TA_EMailContent
+        textarea(formControlName="emailText", [placeholder]="emailTextPlaceholder | translate")
+    .variables
+        h5(translate) BackEnd_WikiLanguage.TA_EMailContentVars
+        div(*ngFor="let variable of templateVariables") {{'{'}}{{variable}}{{'}'}}
+    .buttons
+        button.btn.btn-secondary.mr-2((click)="save()")
+            span(*ngIf="!isPeriodSelectedAndDefaultTemplateUsed", translate) BackEnd_WikiLanguage.generic_Save
+            span(*ngIf="isPeriodSelectedAndDefaultTemplateUsed", translate) BackEnd_WikiLanguage.TA_SaveAndLoadDefaultTemplate
+        button.btn.btn-secondary((click)="view()", translate) BackEnd_WikiLanguage.generic_View
+        button.btn.btn-secondary(*ngIf="+period?.id && !detail.notFound", (click)="useDefault(period)", translate) BackEnd_WikiLanguage.generic_UseDefault

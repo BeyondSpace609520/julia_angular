@@ -1,0 +1,25 @@
+.menu-wrapper
+  app-menu-item.item.main(
+    *ngFor="let item of menu | menuItemsVisibility : visibleCount;let i = index",
+    [item]="item",
+    [inactive]="!(item | menuItemActive)",
+    [tabindex]="i"
+  )
+    .submenu.vertical(*ngIf="item.subItems?.length > 0")
+      app-menu-item.item(
+        *ngFor="let subItem of item.subItems",
+        [item]="subItem",
+        [inactive]="!(subItem | menuItemActive)",
+      )
+  .dropdown(*ngIf="(menu | menuItemsVisibility : visibleCount : true).length > 0")
+    i.mdi.mdi-dots-horizontal.mdi-24px
+    .submenu.vertical
+      app-menu-item.item.main(
+        *ngFor="let item of menu | menuItemsVisibility : visibleCount : true",
+        [item]="item"
+      )
+        .submenu.horizontal(*ngIf="item.subItems?.length > 0")
+          app-menu-item.item(
+            *ngFor="let subItem of item.subItems",
+            [item]="subItem"
+          )

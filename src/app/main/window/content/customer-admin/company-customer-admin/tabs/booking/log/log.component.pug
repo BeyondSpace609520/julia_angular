@@ -1,0 +1,8 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+.item(*ngFor="let log of logs | async")
+    p {{log.action}}. {{log.date | ebDate}}, {{'BackEnd_WikiLanguage.MW_ConfigUser' | translate}}: {{log.user}}
+    .fields
+        .form-group(*ngFor="let field of fieldGroups[log.action]")
+            label(translate) {{field.label}}
+            .form-value {{log[field.id]}}
+        hr

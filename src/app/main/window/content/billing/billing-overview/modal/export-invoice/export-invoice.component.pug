@@ -1,0 +1,21 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+form.grid-area(*ngIf="form", [formGroup]="form")
+  .row
+    .col-12
+      label(translate) BackEnd_WikiLanguage.dataForExport
+      .form-check
+        input(type="radio", id="onlyInvoice", name="type", value="onlyInvoice", formControlName="type")
+        label(for="onlyInvoice", translate) BackEnd_WikiLanguage.invoiceData
+      .form-check
+        input(type="radio", id="withPerformanceDetails", name="type", value="withPerformanceDetails", formControlName="type")
+        label(for="withPerformanceDetails", translate) BackEnd_WikiLanguage.invoiceDataWithPerformanceDetails
+  .row
+    .col-12
+      label(translate) BackEnd_WikiLanguage.exportFormat
+      .form-check
+        input(type="radio", id="excel", name="format", value="excel", formControlName="format")
+        label(for="excel", translate) BackEnd_WikiLanguage.excel
+      .form-check
+        input(type="radio", id="pdf", name="format", value="pdf", formControlName="format")
+        label(for="pdf", translate) BackEnd_WikiLanguage.pdf
+

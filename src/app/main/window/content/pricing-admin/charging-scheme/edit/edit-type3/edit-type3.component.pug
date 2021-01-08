@@ -1,0 +1,25 @@
+app-edit-general(#general, [data]="scheme")
+form(*ngIf="form", [formGroup]="form")
+    .form-group.row
+        .col-3.text-right.pr-0
+            label.form-control-label(translate) BackEnd_WikiLanguage.generic_Nights
+        .col-4
+            input.form-control(type="text", appNumberInput, min="1", decimals="0", formControlName="nights")
+    app-tabs(
+        *ngIf="roomCategories.length",
+        [settings]="tabSettings",
+        [(selected)]="activeTabId"
+    )
+    ng-container(*ngFor="let category of roomCategories; let i = index")
+        .tab-container(*ngIf="form.get('categoryCharges').controls[i] as activeControl", [hidden]="activeTabId != i")
+            .form-check
+                label
+                    input(type="checkbox", [formControl]="activeControl")
+                    span.form-control-label(translate) BackEnd_WikiLanguage.generic_Active
+            app-edit-charges(
+                #charges,
+                label="",
+                [hidden]="!activeControl.value",
+                [charges]="getChargeData(category.id)"
+            )
+app-edit-translations(#translations, [list]="scheme && scheme.translations")

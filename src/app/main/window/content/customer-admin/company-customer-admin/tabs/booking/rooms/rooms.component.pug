@@ -1,0 +1,16 @@
+app-table([items]="rooms", [clickable]="true", (select)="selectRoom($event)")
+    ng-template(#column, label="BackEnd_WikiLanguage.CCAB_BookingDetailEntityRoomNo", let-room) {{room.uniqueNo}}
+    ng-template(#column, label="BackEnd_WikiLanguage.CCAB_BookingDetailEntityFromDate", let-room) {{room.fromDate | ebDate:false}}
+    ng-template(#column, label="BackEnd_WikiLanguage.CCAB_BookingDetailEntityUntilDate", let-room) {{room.untilDate | ebDate:false}}
+    ng-template(#column, label="BackEnd_WikiLanguage.CCAB_BookingDetailEntityNumAdults", let-room) {{room.noOfPersons}}
+    ng-template(#column, label="BackEnd_WikiLanguage.CCAB_BookingDetailEntityNumChildren", let-room) {{room.noOfChildren}}
+    ng-template(#column, label="BackEnd_WikiLanguage.CCAB_BookingDetailEntityTotalNet", let-room)
+        span(appFormatNumber) {{room.totalNet}}
+
+.detail(*ngIf="selectedRoom && fields")
+    .column(*ngFor="let column of fields")
+        .form-group(*ngFor="let field of column", [ngClass]="field.style")
+            label(translate) {{field.label}}
+            .form-value(*ngIf="field.type === 'number'", appFormatNumber) {{selectedRoom[field.id]}}
+            .form-value(*ngIf="field.type === 'date'") {{selectedRoom[field.id] | ebDate:false}}
+            .form-value(*ngIf="field.type === 'string'") {{selectedRoom[field.id]}}

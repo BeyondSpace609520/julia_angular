@@ -1,0 +1,30 @@
+.row(*ngIf="invoice")
+  .col
+    permission([condition]="invoiceService.forceEdit | canAddProduct : invoice.existingBillNo", [dontShow]="invoice.existingBillNo")
+      button.btn.btn-secondary(
+        (click)="addProduct()",
+        [ngbTooltip]="'BackEnd_WikiLanguage.IC_BookingEditStep004DataGridAddProductBTN' | translate"
+      )
+        i.mdi.mdi-clipboard-plus
+    permission([condition]="invoice.existingBillNo", [dontShow]="!invoice.existingBillNo")
+      button.btn.btn-secondary(
+        #resender="resender",
+        [appResendEmail]="invoice.billingId | resendEmailData : invoice.customer.id : form.getFieldValue('email')",
+        [ngbTooltip]="resender.tooltip | translate",
+      )
+        i.mdi([ngClass]="resender.icon")
+    permission([condition]="invoice.existingBillNo | canGenerateInvoice : invoice.details", [dontShow]="invoice.existingBillNo")
+      button.btn.btn-secondary(
+        (click)="generateInvoice()",
+        [ngbTooltip]="'BackEnd_WikiLanguage.BW_GenerateInvoice' | translate"
+      )
+        i.mdi.mdi-note
+    permission([condition]="invoice.existingBillNo | canAnonymize : invoice.bookingId : invoice.customer.id", dontShow)
+      app-anonymize-customer([customerId]="invoice.customer.id", [email]="invoice.customer.email", (update)="refresh.emit()")
+  .col.right
+    permission([condition]="invoice.details.length > 0", dontShow)
+      button.btn.btn-secondary(
+        (click)="previewInvoice()",
+        [ngbTooltip]="'BackEnd_WikiLanguage.BW_PreviewInvoice' | translate"
+      )
+        i.mdi.mdi-file-pdf

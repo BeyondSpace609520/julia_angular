@@ -1,0 +1,50 @@
+<ng-container *ngIf="prices">
+  <div class="row">
+    <div class="col-8 shopping-cart-title">{{ 'BackEnd_WikiLanguage.Logis' | translate }} {{ 'BackEnd_WikiLanguage.EB_Adults' | translate }}</div>
+    <div class="col-3 shopping-cart-price">{{ adults }}</div>
+  </div>
+  <div class="row">
+    <div class="col-8 shopping-cart-title">{{ 'BackEnd_WikiLanguage.Logis' | translate }} {{ 'BackEnd_WikiLanguage.EB_Children' | translate }}</div>
+    <div class="col-3 shopping-cart-price">{{ children }}</div>
+  </div>
+  <div class="row">
+    <div class="col-8 shopping-cart-title">{{ 'BackEnd_WikiLanguage.EPP_PriceServiceType' | translate }}</div>
+    <div class="col-3 shopping-cart-price">{{ catering }}</div>
+  </div>
+  <div class="row">
+    <div class="col-8 shopping-cart-title">{{ 'BackEnd_WikiLanguage.EPP_PriceVisitorsTax' | translate }}</div>
+    <div class="col-3 shopping-cart-price">{{ visitorsTax }}</div>
+  </div>
+  <div class="row">
+    <div class="col-8 shopping-cart-title">{{ 'BackEnd_WikiLanguage.EPP_PricePet' | translate }}</div>
+    <div class="col-3 shopping-cart-price">{{ pet }}</div>
+  </div>
+  <div class="row">
+    <div class="col-8 shopping-cart-title">{{ 'BackEnd_WikiLanguage.INV_cleanup' | translate }}</div>
+    <div class="col-3 shopping-cart-price">{{ cleanup }}</div>
+  </div>
+  <div class="row">
+    <div class="col-8 shopping-cart-title">{{ 'BackEnd_WikiLanguage.EPP_PriceShortStay' | translate }}</div>
+    <div class="col-3 shopping-cart-price">{{ shortStay }}</div>
+  </div>
+  <div class="row">
+    <div class="col-8 shopping-cart-title">{{ 'BackEnd_WikiLanguage.EPP_PriceDiscount' | translate }}</div>
+    <div class="col-3 shopping-cart-price">{{ discount }}</div>
+  </div>
+  <div class="row">
+    <div class="col-8 shopping-cart-title">{{ 'BackEnd_WikiLanguage.EPP_PriceCot' | translate }}</div>
+    <div class="col-3 shopping-cart-price">{{ cot }}</div>
+  </div>
+  <div class="row">
+    <div class="col-8 shopping-cart-title">{{ 'BackEnd_WikiLanguage.EPP_PriceGarage' | translate }}</div>
+    <div class="col-3 shopping-cart-price">{{ garage }}</div>
+  </div>
+  <div class="row">
+    <div class="col-8 shopping-cart-title">{{ 'BackEnd_WikiLanguage.EPP_PriceChargingScheme' | translate }}</div>
+    <div class="col-3 shopping-cart-price">{{ other }}</div>
+  </div>
+  <div class="row pt-2 total">
+    <div class="col-8 shopping-cart-title">{{ titleForTotal }}</div>
+    <div class="col-3 shopping-cart-price">{{ total }}</div>
+  </div>
+</ng-container>

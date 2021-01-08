@@ -1,0 +1,6 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+form.row(*ngIf="form", [formGroup]="form")
+  .col
+    .form-group
+      label(translate) BackEnd_WikiLanguage.EBP_EMail
+      input(formControlName="email")

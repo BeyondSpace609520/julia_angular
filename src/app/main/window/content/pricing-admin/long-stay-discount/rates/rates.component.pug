@@ -1,0 +1,27 @@
+.sidebar
+    app-list-view.list-view(
+        [items]="rates",
+        [selected]="selectedId",
+        (select)="selectItem($event)"
+    )
+        ng-template(let-item) {{item.nights.from}} - {{item.nights.until}}
+    i.mdi.mdi-alert.icon(
+        *ngIf="wrongRate",
+        [ngbTooltip]="tipContent",
+        placement="right"
+    )
+        ng-template(#tipContent)
+            div(*ngIf="wrongRate")
+                span(translate) BackEnd_WikiLanguage.LSD_ValidationError
+                span  {{wrongRate.nights.from}} - {{wrongRate.nights.until}}
+    button.btn.btn-secondary((click)="addRate()", translate) BackEnd_WikiLanguage.generic_New
+content(*ngIf="selected")
+    .rates-border
+        app-manage-rate(#manage, [rate]="selected", (formStateChange)="formStateChanged($event)")
+        .control-buttons
+            button.btn.btn-secondary(
+            (click)="manage.save(selected.id, selected.discountId).then(onSave)",
+            [disabled]="!formValid",
+            translate,
+            ) BackEnd_WikiLanguage.generic_Save
+            button.btn.btn-secondary((click)="deleteRate(selected)", [disabled]="!selected", translate) BackEnd_WikiLanguage.generic_Delete

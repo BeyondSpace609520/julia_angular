@@ -1,0 +1,16 @@
+
+@import '~css-star-rating/css/star-rating';
+
+.rating {
+    &.color-negative,&.color-ok,&.color-positive {
+        // https://github.com/BioPhoton/css-star-rating/issues/44
+        // cannot use SCSS modules to customize styles
+        .star-container .star svg {
+            fill: #ffc058 !important;
+        }
+    }
+}
+
+.rating:focus {
+    outline: none;
+}

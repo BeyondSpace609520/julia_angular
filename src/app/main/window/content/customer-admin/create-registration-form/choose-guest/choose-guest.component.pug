@@ -1,0 +1,29 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+.guests
+  .form-check(*ngFor="let item of guestItems")
+    i.mdi.mdi-delete((click)="deleteManuallyAddedPerson(item.guest)", [ngStyle]="{ visibility: item.guest.manuallyAdded ? 'visible' : 'collapse' }")
+    input(
+      *ngIf="multiple",
+      [id]="'guest'+item.guest.id",
+      type="checkbox",
+      [(ngModel)]="item.value",
+      [disabled]="item.guest.alreadySent || isAlreadyAdded(item.guest)"
+    )
+    input(
+      *ngIf="!multiple",
+      [id]="'guest'+item.guest.id",
+      name="guest",
+      type="radio",
+      [value]="item.guest.id",
+      [(ngModel)]="selectedItem",
+      [disabled]="item.guest.alreadySent || isAlreadyAdded(item.guest)"
+    )
+    label([for]="'guest'+item.guest.id")
+      | {{item.name}}
+      | {{isLeader(item.guest) ? '(' + ('BackEnd_WikiLanguage.MW_CurrentTourleader' | translate) + ')' : ''}}
+      | {{item.guest.alreadySent ? '(' + ('BackEnd_WikiLanguage.MW_AlreadyRegistered' | translate) + ')' : ''}}
+      | {{isAlreadyAdded(item.guest) ? '(' + ('BackEnd_WikiLanguage.MW_AlreadyAdded' | translate) + ')' : ''}}
+
+.additional-buttons(*ngIf="regFormService.isChannelManager")
+  button.btn.btn-secondary((click)="addGuest(true)", translate) BackEnd_WikiLanguage.MW_addAdult
+  button.btn.btn-secondary((click)="addGuest(false)", translate) BackEnd_WikiLanguage.MW_addChild

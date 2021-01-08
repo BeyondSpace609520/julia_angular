@@ -1,0 +1,30 @@
+app-image.pdf-image(
+    [path]="images && images.headerImage",
+    [exist]="recordExist",
+    title="BackEnd_WikiLanguage.emailTemplateImageLabelTop"
+    subtitle="(1200 x XXX)",
+    (upload)="upload($event, 'headerImage')",
+    (clear)="clear('headerImage')",
+    (star)="openCopyTo('headerImage')"
+)
+app-image.image(
+    [path]="images && images.image",
+    [exist]="recordExist",
+    title="BackEnd_WikiLanguage.emailTemplateImageLabelMiddle"
+    subtitle="(575 x XXX)",
+    (upload)="upload($event, 'image')",
+    (clear)="clear('image')",
+    (star)="openCopyTo('image')"
+)
+app-image.image(
+    [path]="images && images.footerImage",
+    [exist]="recordExist",
+    title="BackEnd_WikiLanguage.emailTemplateImageLabelBottom"
+    subtitle="(790 x 80)",
+    (upload)="upload($event, 'footerImage')",
+    (clear)="clear('footerImage')",
+    (star)="openCopyTo('footerImage')"
+)
+.buttons-container
+    button.btn.btn-secondary((click)="copyDefault()", translate) BackEnd_WikiLanguage.generic_Save
+    button.btn.btn-secondary(*ngIf="recordExist && period", (click)="useDefault(period)", translate) BackEnd_WikiLanguage.generic_UseDefault

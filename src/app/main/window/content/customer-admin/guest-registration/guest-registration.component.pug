@@ -1,0 +1,69 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+form.filters(*ngIf="form", [formGroup]="form")
+  .d-flex.flex-row.mb-3
+    .main.inline-form-controls
+      .form-group
+        label(translate) BackEnd_WikiLanguage.A_Name
+        input(formControlName="name")
+      .form-group.fromDate-datepicker-wrap
+        label(translate) {{ 'BackEnd_WikiLanguage.generic_From' | translate }} - {{ 'BackEnd_WikiLanguage.generic_To' | translate }}
+        app-datepicker-input.bottomLeft(
+          [date]="form.get('fromDate').value",
+          (dateChange)="onDateChange('fromDate', $event)",
+          [range]="form.get('untilDate').value",
+          (rangeChange)="onDateChange('untilDate', $event)",
+          placement="bottomLeft"
+        )
+      button.search-button.btn.btn-secondary((click)="search()", translate) BackEnd_WikiLanguage.generic_Search
+      button.btn.btn-secondary.btn-sm((click)="tabComponent.exportCSV()", [ngbTooltip]="'BackEnd_WikiLanguage.MW_csvExportToolTip' | translate", container="body")
+        i.mdi.mdi-file-delimited
+      button.btn.btn-secondary.btn-sm((click)="tabComponent.exportExcel()", [ngbTooltip]="'BackEnd_WikiLanguage.MW_excelExportToolTip' | translate", container="body")
+        i.mdi.mdi-file-excel
+      button.btn.btn-secondary.btn-sm((click)="printRegForm()", [ngbTooltip]="'BackEnd_WikiLanguage.BlankoRegformBTNToolTip' | translate", container="body")
+        i.mdi.mdi-printer
+    app-settings-button(moduleId="guestRegistrationConfig")
+  .d-flex.flex-row.mb-2
+    .inline-form-controls
+      .form-group(*ngIf="activeTabId === ViewMode.OVERVIEW")
+        label(translate) BackEnd_WikiLanguage.EQP_status
+        select(formControlName="status")
+          option(value="all", translate) BackEnd_WikiLanguage.MW_FilterAll
+          option(value="arrived", translate) BackEnd_WikiLanguage.MW_overviewFilterArrived
+          option(value="departed", translate) BackEnd_WikiLanguage.MW_overviewFilterDeparted
+          option(value="notArrived", translate) BackEnd_WikiLanguage.MW_overviewFilterNotArrived
+      .form-group(*ngIf="activeTabId !== ViewMode.OVERVIEW")
+        label(translate) BackEnd_WikiLanguage.MW_RegFormType
+        select(formControlName="type", (change)="search()")
+          option(value="all", translate) BackEnd_WikiLanguage.MW_FilterAll
+          option(*ngFor="let type of registrationTypes", [value]="type.value") {{type.name}}
+      .form-group(*ngIf="activeTabId | hasNumberRange")
+        label(translate) BackEnd_WikiLanguage.MW_NumberFrom
+        input(type="text", appNumberInput, decimals="0", formControlName="numberFrom")
+      .form-group(*ngIf="activeTabId | hasNumberRange")
+        label(translate) BackEnd_WikiLanguage.MW_NumberUntil
+        input(type="text", appNumberInput, decimals="0", formControlName="numberTo")
+    .ml-auto
+      .form-group.mr-0(*ngIf="hotelRecords.length > 1")
+        label(translate) BackEnd_WikiLanguage.MW_Hotelname
+        select(formControlName="hotel", (change)="search()")
+          option(*ngFor="let hotel of hotelRecords", [value]="hotel.id") {{hotel.name}}
+.margin-3
+  app-tabs(
+    *ngIf="hotelRecords.length",
+    [settings]="tabSettings",
+    [selected]="activeTabId",
+    (selectedChange)="selectTab($event)"
+  )
+  app-overview-tab.tab-content(
+    #tabComponent,
+    *ngIf="form && activeTabId === ViewMode.OVERVIEW",
+    [hotel]="hotelRecords | selectedHotelRecord : selectedHotelId",
+    (tabLoad)="onTabLoad($event)"
+  )
+  app-guests-tab.tab-content(
+    #tabComponent,
+    *ngIf="form && activeTabId !== ViewMode.OVERVIEW",
+    [mode]="activeTabId",
+    [hotel]="hotelRecords | selectedHotelRecord : selectedHotelId",
+    (tabLoad)="onTabLoad($event)"
+  )

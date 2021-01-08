@@ -1,0 +1,60 @@
+// table {
+//   @extend .table, .table-striped;
+// }
+
+// .table {
+//     border: 1px solid #d2d2d2;
+//     table-layout: fixed;
+//     thead {
+//         color: #495057;
+//         background: linear-gradient(to bottom,#fefefe 0,#e4e4e4 100%);
+//         transform: inherit!important;
+//         font-weight: 800;
+//     }
+//     tr {
+//         border: 1px solid #d2d2d2;
+//     }
+//     td, th {
+//         padding: 0.3rem;
+//         border-right: 1px solid #d2d2d2;
+//         text-overflow: ellipsis;
+//         overflow: hidden;
+//         white-space: nowrap;
+//     }
+//     tbody tr:hover {
+//         background-color: #B2E1FF!important;
+//     }
+
+//     tr.clickable {
+//         cursor: pointer;
+//         &.selected {
+//             background: $selected;
+//         }
+//         &:hover {
+//             background: #f0f6ff
+//         }
+//     }
+// }
+// .table-striped tbody tr:nth-of-type(odd) {
+//     background-color: #F7F7F7
+// }
+
+// td.numeric {
+//   text-align: right;
+//   font-variant-numeric: tabular-nums;
+// }
+
+// th[sortable], th[ng-reflect-sortable] {
+//   padding-right: 1.75em;
+//   background-position: right 0.75rem center;
+//   background-repeat: no-repeat;
+//   background-size: 1rem;
+
+//   &.sorted.asc {
+//     background-image: url('data:image/svg+xml;charset=utf8,<svg xmlns="https://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="%23000000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>');
+//   }
+
+//   &.sorted.desc {
+//     background-image: url('data:image/svg+xml;charset=utf8,<svg xmlns="https://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="%23000000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>');
+//   }
+// }

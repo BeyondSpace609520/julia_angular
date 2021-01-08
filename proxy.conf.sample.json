@@ -1,0 +1,21 @@
+{
+    "/api/*": {
+        "target": "https://test-eb-3.easy-booking.at/easybooking/index.php/juliaAngular",
+        "pathRewrite": {
+          "^/api": ""
+        },
+        "secure": false,
+        "changeOrigin": true
+    },
+    "/wo/Services/*": {
+        "target": "https://test-eb-3.easy-booking.at/",
+        "secure": false,
+        "changeOrigin": true
+    },
+    "/easybooking/*": {
+        "target": "https://test-eb-3.easy-booking.at/",
+        "secure": false,
+        "changeOrigin": true
+    }
+}
+

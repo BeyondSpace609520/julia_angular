@@ -1,0 +1,11 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+
+.form-group
+  .input-group
+    input([(ngModel)]="text", (keyup)="onKeyUp($event)")
+    .input-group-append
+      button.btn.btn-secondary((click)="search()", translate) BackEnd_WikiLanguage.generic_Search
+
+app-table.table-container([items]="customers", [clickable]="true", (select)="selectedId = $event.customerId; selectCustomer.emit($event.customerId)")
+  ng-template(#column, label="BackEnd_WikiLanguage.POA_Database", sortable="dbName", let-item) {{item.dbName}}
+  ng-template(#column, label="BackEnd_WikiLanguage.POA_Customer", sortable="name", let-item) {{item.name}}

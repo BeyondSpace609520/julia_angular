@@ -1,0 +1,33 @@
+@import "app-globals"
+
+main
+  display: flex
+  margin: $grid-gutter-width/2 (-$grid-gutter-width/2)
+
+  > *
+    width: 50%
+    padding: 0 $grid-gutter-width/2
+
+  .active-range
+    .last-used
+      display: flex
+      margin: 0 (-$grid-gutter-width/2)
+
+      > *
+        width: 50%
+        padding: 0 $grid-gutter-width/2
+
+  .range
+    display: flex
+    margin: $grid-gutter-width/2 (-$grid-gutter-width/2)
+
+    .form-group
+      display: flex
+      width: 50%
+      padding: 0 $grid-gutter-width/2
+
+      label
+        width: 30%
+
+      input
+        width: 70%

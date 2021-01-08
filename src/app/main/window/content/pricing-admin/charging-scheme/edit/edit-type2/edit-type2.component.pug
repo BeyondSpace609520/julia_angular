@@ -1,0 +1,15 @@
+app-edit-general(#general, [data]="scheme")
+form(*ngIf="form", [formGroup]="form")
+    .form-group.row
+        .col-md-3.text-right.pr-0
+            label.form-control-label(translate) BackEnd_WikiLanguage.CS_ECOP_ChargeType
+        .col-md-6
+            select.form-control.custom-select(formControlName="chargeType")
+                option(value="PricePerPersonPerNight", translate) BackEnd_WikiLanguage.generic_PricePerPersonPerNight
+                option(value="PercOnTotal", translate) BackEnd_WikiLanguage.generic_PercOnLogis
+    app-edit-charges(
+        #charges,
+        [label]="chargeLabel",
+        [charges]="scheme && scheme.charges"
+    )
+app-edit-translations(#translations, [list]="scheme && scheme.translations")

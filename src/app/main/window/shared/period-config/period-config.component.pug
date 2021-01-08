@@ -1,0 +1,40 @@
+form(*ngIf="form", [formGroup]="form")
+  .row
+    .col
+      .form-group
+        label(translate) BackEnd_WikiLanguage.SP_MinStay
+        input(formControlName="minStay")
+  .row
+    .col
+      .form-group
+        label(translate) BackEnd_WikiLanguage.SP_MaxStay
+        input(formControlName="maxStay")
+  .form-group.row
+    .minwidth
+      label(translate) BackEnd_WikiLanguage.SP_Arrival
+    .minwidth
+      input(type="checkbox", formControlName="allDaysChecked")
+    .minwidth
+      label(translate) BackEnd_WikiLanguage.SP_Departure
+  .form-group.row(*ngFor="let day of days, let i = index", formArrayName="days")
+    .minwidth
+      input(type="checkbox", [formControl]="getDayControl(i,'arrival')")
+    .minwidth
+      label(translate) general.{{day}}Short.text
+    .minwidth
+      input(type="checkbox", [formControl]="getDayControl(i,'departure')")
+  .form-check.mt-4
+    label
+      input(type="checkbox", formControlName="useNightsMultiple")
+      span(translate) BackEnd_WikiLanguage.SP_UseNightsMultiple
+  .form-check
+    label
+      input(type="checkbox", formControlName="allowEnquiry")
+      span(translate) BackEnd_WikiLanguage.SP_AllowEnquiry
+  .form-check
+    label
+      input(type="checkbox", formControlName="allowReservation")
+      span(translate) BackEnd_WikiLanguage.SP_AllowReservation
+  .form-check(*ngIf="bookingCheckbox")
+    input(type="checkbox", disabled, formControlName="allowBooking")
+    label.disabled(translate) BackEnd_WikiLanguage.SP_AllowBooking

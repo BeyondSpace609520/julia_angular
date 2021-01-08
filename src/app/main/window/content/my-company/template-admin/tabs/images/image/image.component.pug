@@ -1,0 +1,24 @@
+.image-container
+    img(*ngIf="exist", [src]="src")
+.buttons
+    label(*ngIf="subtitle") {{subtitle}}
+    .btn-group
+        button.btn.btn-secondary(
+            (click)="onUpload()",
+            [ngbTooltip]="'BackEnd_WikiLanguage.generic_Upload' | translate",
+            container="body"
+        )
+            i.mdi.mdi-upload
+        button.btn.btn-secondary(
+            (click)="onClear()",
+            [ngbTooltip]="'BackEnd_WikiLanguage.generic_Clear' | translate",
+            container="body"
+        )
+            i.mdi.mdi-close-octagon
+        button.btn.btn-secondary(*ngIf="exist", 
+            (click)="onStar()",
+            [ngbTooltip]="'BackEnd_WikiLanguage.generic_UpdateForAllTemplatesForAllLanguages' | translate",
+            container="body"
+        )
+            i.mdi.mdi-star
+    h5(translate) {{title}}

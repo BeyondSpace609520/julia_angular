@@ -1,0 +1,14 @@
+app-manage-list(
+  (langChange)="load($event)",
+  (new)="addItem(+$event)",
+  (save)="save(+$event)",
+  [disabled]="isLoading | async"
+)
+app-loading.loading-bar(*ngIf="isLoading | async")
+br
+.list.row
+  .item.form-group(*ngFor="let reason of reasons")
+    label {{reason.vr_name}}
+    .form-group
+      input([(ngModel)]="reason.vrl_value")
+      i.mdi.mdi-close((click)="deleteItem(reason)")

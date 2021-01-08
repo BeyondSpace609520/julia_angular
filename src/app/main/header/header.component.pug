@@ -1,0 +1,27 @@
+header([class.limited]="isFullServiceCustomer")
+  ng-container(*ngIf="!isFullServiceCustomer")
+    app-menu.menu(
+      [refreshSizes]="refreshMenuSizes"
+    )
+    a((click)="openMessageCenter()")
+      i.mdi.mdi-bell-outline(
+        [ngbTooltip] = "'BackEnd_WikiLanguage.Header_TooltipNotifications' | translate",
+        tooltipClass="nowrap",
+        placement="bottom"
+      )
+        .new-messages {{ mainService.messageCenterCount }}
+    a((click)="openQualityCenter()")
+      i.mdi.mdi-trending-up.qc-icon(
+        [ngbTooltip] = "'BackEnd_WikiLanguage.Header_TooltipQualityCenter' | translate",
+        tooltipClass="nowrap",
+        placement="bottom"
+      )
+  app-customer-selector(
+    *ngIf="isMultiUser",
+    [user]="user",
+    (customerSelectorReady)="refreshMenuSizes.emit()"
+  )
+  app-my-account-menu(
+    [currentVersion]="mainService.currentVersion",
+    (myAccountMenuReady)="refreshMenuSizes.emit()"
+  )

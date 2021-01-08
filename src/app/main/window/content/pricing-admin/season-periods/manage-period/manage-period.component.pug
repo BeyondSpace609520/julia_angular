@@ -1,0 +1,53 @@
+form.container(*ngIf="form", [formGroup]="form")
+  .row
+    .col-md-5
+      .grid-area
+        .form-group
+          label(translate) BackEnd_WikiLanguage.SP_Name
+          input(formControlName="name")
+        .form-group
+          label(translate) BackEnd_WikiLanguage.SP_FromDate
+          app-datepicker-input.fit-content([date]="form.get('fromDate').value", (dateChange)="form.get('fromDate').setValue($event)", placement="bottomLeft", [inputId]="'season-period_from-date'")
+        .form-group
+          label(translate) BackEnd_WikiLanguage.SP_UntilDate
+          app-datepicker-input.fit-content([date]="form.get('untilDate').value", (dateChange)="form.get('untilDate').setValue($event)", placement="bottomLeft", [inputId]="'season-period_until-date'")
+    .col-md-5
+      .grid-area
+        .form-group(*ngIf="copyList && copyList.length > 0")
+          label(translate) BackEnd_WikiLanguage.SP_AsCopyOfSeasonPeriod
+          select(formControlName="copyFromId")
+            option([value]="")
+            option(*ngFor="let item of copyList", [value]="item.id", translate) {{item.fromDate | ebDate:false}} - {{item.untilDate | ebDate:false}}, {{item.name}}
+  .row(*ngIf="!form.get('copyFromId').value")
+    .col.red
+      .red-form
+        app-period-config(#periodConfig, [config]="detail")
+    .col.blue
+      .blue-form
+        .form-check
+          label
+            input(type="checkbox", formControlName="active")
+            span(translate) BackEnd_WikiLanguage.SP_ShortStayActive
+        .form-group
+          label(translate) BackEnd_WikiLanguage.SP_ShortStayMinUnit
+          input(type="number", formControlName="minUnit")
+        .form-group
+          label(translate) BackEnd_WikiLanguage.SP_ShortStayChargeType
+          select(formControlName="chargeType")
+            option(value="PricePerPersonPerNight", translate) BackEnd_WikiLanguage.generic_PricePerPersonPerNight
+            option(value="PercOnTotal", translate) BackEnd_WikiLanguage.generic_PercOnLogis
+        .form-group
+          label(translate) BackEnd_WikiLanguage.generic_Value
+          input(formControlName="charge")
+      permission.gap-info.form-group(id="gapFillEnabled", dontShow)
+        span(*ngIf="detail", [ngbTooltip]="'BackEnd_WikiLanguage.SP_gapFillerInfoTooltip' | translate")
+          i.mdi.mdi-close.text-danger([hidden]="detail.gapFillEnabled")
+          i.mdi.mdi-check.text-success([hidden]="!detail.gapFillEnabled")
+          span(translate) BackEnd_WikiLanguage.SP_gapFill
+          span &nbsp;
+          span(translate) BackEnd_WikiLanguage.{{detail.gapFillEnabled?'generic_On':'generic_Off'}}
+        .form-check(*ngIf="!detail")
+          label
+            input(type="checkbox", formControlName="gapFill")
+            span.v-auto(translate) BackEnd_WikiLanguage.SP_gapFill
+

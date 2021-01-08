@@ -1,0 +1,77 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+.colors.row(*ngIf="settings")
+  .col
+    .color
+      .pick-color([(colorPicker)]="settings.colors.enquiry", [style.background]="settings.colors.enquiry")
+      label(translate) BackEnd_WikiLanguage.CCA_Enquiry
+    .color
+      .pick-color([(colorPicker)]="settings.colors.reservation", [style.background]="settings.colors.reservation")
+      label(translate) BackEnd_WikiLanguage.CCA_Reservation
+    .color
+      .pick-color([(colorPicker)]="settings.colors.booking", [style.background]="settings.colors.booking")
+      label(translate) BackEnd_WikiLanguage.CCA_Booking
+    .color
+      .pick-color([(colorPicker)]="settings.colors.block", [style.background]="settings.colors.block")
+      label(translate) BackEnd_WikiLanguage.CCA_Block
+    .color
+      .pick-color([(colorPicker)]="settings.colors.contingent", [style.background]="settings.colors.contingent")
+      label(translate) BackEnd_WikiLanguage.CCA_Contingent
+    .color
+      .pick-color([(colorPicker)]="settings.colors.invoiceCreatedIndicator", [style.background]="settings.colors.invoiceCreatedIndicator")
+      label(translate) BackEnd_WikiLanguage.CCA_InvoiceCreatedIndicatorColor
+  .col
+    .color
+      .pick-color([(colorPicker)]="settings.weeksColor.monday", [style.background]="settings.weeksColor.monday")
+      label Monday
+    .color
+      .pick-color([(colorPicker)]="settings.weeksColor.tuesday", [style.background]="settings.weeksColor.tuesday")
+      label Tuesday
+    .color
+      .pick-color([(colorPicker)]="settings.weeksColor.wednesday", [style.background]="settings.weeksColor.wednesday")
+      label Wednesday
+    .color
+      .pick-color([(colorPicker)]="settings.weeksColor.thursday", [style.background]="settings.weeksColor.thursday")
+      label Thursday
+    .color
+      .pick-color([(colorPicker)]="settings.weeksColor.friday", [style.background]="settings.weeksColor.friday")
+      label Friday
+    .color
+      .pick-color([(colorPicker)]="settings.weeksColor.saturday", [style.background]="settings.weeksColor.saturday")
+      label Saturday
+    .color
+      .pick-color([(colorPicker)]="settings.weeksColor.sunday", [style.background]="settings.weeksColor.sunday")
+      label Sunday
+  .col.d-flex
+    .form-check
+      input(type="checkbox", id="calendarcolor-checkbox", [(ngModel)]="settings.useSpecialColoring")
+      label(for="calendarcolor-checkbox", translate) BackEnd_WikiLanguage.calendarColorsEnabling
+
+.periods(*ngIf="settings")
+  table.nocolor
+    thead
+      tr
+        th
+        th(translate) BackEnd_WikiLanguage.CalendarColorPeriod
+        th
+          span(translate) BackEnd_WikiLanguage.CalendarColorStart
+          span -
+          span(translate) BackEnd_WikiLanguage.CalendarColorEnd
+        th
+          button.btn.btn-success((click)="addNewItem()")
+            i.mdi.mdi-plus
+    tbody
+      tr(*ngFor="let period of settings.periodsColor")
+        td([attr.data-id]="period.id")
+          .pick-color([attr.data-id]="period.id", [(colorPicker)]="period.color", [style.background]="period.color")
+        td
+          .input-group
+            input.form-control([(ngModel)]="period.name", [attr.data-id]="period.id")
+        td
+          .input-group
+            app-datepicker-input.w-100([(date)]="period.fromDate", [(range)]="period.untilDate", [inputId]="'periodsColor' + (period.id ? period.id : period._tempId)")
+        td([attr.data-id]="period.id", (click)="deleteItem(period)")
+          button.btn.btn-secondary([attr.data-id]="period.id")
+            i.mdi.mdi-close
+.buttons-container
+  button.btn.btn-secondary((click)="save()", translate) BackEnd_WikiLanguage.generic_Save
+  button.btn.btn-secondary.mt-3((click)="onICSImport()", translate) calendarSettings.icsImportation.text

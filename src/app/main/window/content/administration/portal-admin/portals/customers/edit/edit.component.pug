@@ -1,0 +1,13 @@
+form(*ngIf="form", [formGroup]="form")
+    p {{customer.dbName}}
+    p {{customer.name}}
+    .form-group
+        label(translate) BackEnd_WikiLanguage.POA_RemoteId
+        input(formControlName="remoteId")
+    .form-group
+        textarea(formControlName="comment")
+    .form-check
+        input#edit-customer-active(type="checkbox", formControlName="active")
+        label(for="edit-customer-active", translate) BackEnd_WikiLanguage.POA_Active
+.bottom-buttons
+    button.btn.btn-primary((click)="save()", translate) BackEnd_WikiLanguage.generic_Save

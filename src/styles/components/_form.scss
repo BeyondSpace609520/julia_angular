@@ -1,0 +1,186 @@
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+  background-color: rgb(255, 255, 255) !important;
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+textarea:-webkit-autofill:active,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus,
+select:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.form-control {
+  font-size: .9rem;
+  color: $gray-900;
+  padding: 0rem 0.5rem;
+  &.ng-invalid {
+    border-color: $danger;
+  }
+
+  &:disabled, &[readonly] {
+    color: $disabled-input;
+    &::placeholder {
+      color: $disabled-input-placeholder;
+    }
+  }
+}
+
+.form-control-label {
+  font-size: .9rem;
+  margin-bottom: $grid-gutter-width/8;
+  padding-right: 5px;
+}
+
+.form-group {
+  margin-bottom: 0.3rem;
+  display: flex;
+  align-items: center;
+}
+
+.form-check {
+  padding-left: unset;
+  display: block;
+  label {
+    margin-bottom: 0px;
+  }
+}
+
+.form-group, .form-check, .input-group {
+  label {
+    @extend .form-control-label;
+  }
+  input:not([type='checkbox']):not([type='radio']), textarea {
+    @extend .form-control;
+  }
+  select {
+    @extend .form-control, .custom-select;
+    padding-right: 22px;
+  }
+}
+
+label[for] {
+  cursor: pointer;
+}
+
+.grid-area .form-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: .5em;
+    label {
+        text-align: right;
+  }
+}
+.input-group {
+  .btn {
+    padding-top: .285rem;
+    padding-bottom: .285rem;
+  }
+  .form-control.date-input:not(:last-child) {
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+  }
+}
+
+.input-group-prepend {
+  .btn {
+    margin: 0;
+  }
+}
+
+.input-group-append {
+  .custom-select {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+  }
+}
+
+.form-icon-left, .form-icon-right {
+  position: relative;
+
+  i {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    line-height: 1.3rem;
+    height: 1.3rem;
+    color: $text-muted;
+    font-size: 1.3rem;
+    font-style: normal;
+  }
+}
+
+.form-icon-left {
+  .form-control {
+    padding-left: $input-padding-x + 1.3rem + $input-padding-x/2;
+  }
+
+  i {
+    left: $input-padding-x;
+  }
+}
+
+.form-icon-right {
+  .form-control {
+    padding-right: $input-padding-x + 1.3rem + $input-padding-x/2;
+  }
+
+  i {
+    right: $input-padding-x;
+  }
+}
+
+select, input {
+  &.form-control:not([size]):not([multiple]):not([type=checkbox]):not([type=radio]) {
+    height: 27px;
+  }
+}
+
+select.custom-select {
+  background-image: url('data:image/svg+xml;charset=utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"  width="24" height="24" viewBox="0 0 12 24"%3E%3Cpath fill="%23354052" d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /%3E%3C/svg%3E');
+  background-size: 16px 16px;
+}
+
+ngb-datepicker select.custom-select {
+  background-image: url('data:image/svg+xml;charset=utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 6"%3E%3Cpath fill="%23ced4da" d="M0 1 L5 6 L10 1 L9 0 L5 4 L1 0Z"/%3E%3C/svg%3E');
+}
+ngb-datepicker select.custom-select:hover {
+  background-image: url('data:image/svg+xml;charset=utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 6"%3E%3Cpath fill="%23242c3e" d="M0 1 L5 6 L10 1 L9 0 L5 4 L1 0Z"/%3E%3C/svg%3E');
+}
+
+input[appformattednumberinput] {
+  text-align: right;
+}
+
+quill-editor {
+  .ql-toolbar.ql-snow {
+    border: 1px solid $input-border-color;
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+    padding: 4px;
+  }
+  .ql-container.ql-snow {
+    border: 1px solid $input-border-color;
+    border-bottom-left-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+  }
+  .ql-disabled {
+    background: $bg-light;
+  }
+  .ql-editor {
+    max-height: 150px;
+    overflow-y: scroll;
+  }
+}
+
+app-main-tab quill-editor .ql-editor {
+  height: 120px;
+}

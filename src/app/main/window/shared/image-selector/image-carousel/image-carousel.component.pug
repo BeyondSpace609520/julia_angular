@@ -1,0 +1,9 @@
+.wrapper([ngClass]="wrapperStyles")
+  .picture(
+    *ngFor="let image of images",
+    [ngClass]="{ current: image === current }",
+    (click)="selectImage.emit(image)"
+  )
+    .img-container
+      img([src]="image.path")
+      img.reflection([src]="image.path")

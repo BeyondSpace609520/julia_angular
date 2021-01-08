@@ -1,0 +1,30 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+.tabs-container
+  app-tabs.tabs(
+    [settings]="tabSettings",
+    [(selected)]="activeTabId"
+  )
+  .periods-selector
+    label.form-control-label(translate) BackEnd_WikiLanguage.EP_ChooseSeasonPeriod
+    select.form-control.custom-select([(ngModel)]="selectedPeriodId")
+      option([ngValue]="null") ...
+      option(*ngFor="let period of periods", [ngValue]="period.id")
+        | {{period.fromDate | ebDate:false}} - {{period.untilDate | ebDate:false}}, {{period.name}}
+.tab-container(*ngIf="selectedPeriod && source", [ngSwitch]="activeTabId")
+  app-prices-main-tab.content(
+    *ngSwitchCase="'prices'",
+    [period]="selectedPeriod",
+    [source]="source",
+    [hasCaterings]="hasCaterings",
+    [canResetGroups]="canResetGroups",
+    [saveForAllByDefault]="saveForAllByDefault",
+    [extraActionsTemplate]="extraActionsTemplate",
+    [additionalInfoTemplate]="additionalInfoTemplate",
+    (saved)="saved.emit()"
+  )
+  app-prices-configuration-tab.content(
+    *ngSwitchCase="'configuration'",
+    [period]="selectedPeriod",
+    [source]="source",
+    (saved)="saved.emit()"
+  )

@@ -1,0 +1,43 @@
+@import '_variables'
+
+\:host
+  display: inline-block
+
+  &.loading
+    animation: spinner 2s infinite
+
+.btn
+  width: 25px
+  padding: 0
+  position: relative
+
+.mdi-cancel
+  color: $danger
+.mdi-close
+  color: $danger
+.mdi-arrow-right
+  color: #FA8300
+.mdi-file-pdf
+  color: #940B02
+.mdi-redo, .mdi-send, .mdi-file-plus
+  color: $success
+.mdi-email-open-outline, .mdi-printer
+  color: #000000
+.mdi-account-edit, .mdi-pencil
+  color: $warning
+.mdi-door
+  color: #9195A1
+
+.sub-icon
+  position: absolute
+  right: 0
+  bottom: 0
+  height: auto
+  line-height: 1em
+  font-size: 0.8rem
+
+@keyframes spinner
+  0%
+    transform: rotate(0)
+  100%
+    transform: rotate(360deg)

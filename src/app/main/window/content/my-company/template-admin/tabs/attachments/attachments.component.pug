@@ -1,0 +1,6 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+ng-container(*ngIf="attachments")
+  app-table([items]="attachments")
+    ng-template(#column, label="BackEnd_WikiLanguage.FA_DGHeaderFileName", sortable="filename", let-attachment) {{ attachment.filename }}
+    ng-template(#column, label="BackEnd_WikiLanguage.FA_DGHeaderFileSizeInKB", sortable="sizeInKB", let-attachment) {{ attachment.sizeInKB }}
+    ng-template(#column, label="BackEnd_WikiLanguage.FA_DGHeaderFileUploadDate", sortable="creationDate", let-attachment) {{ attachment.creationDate | ebDate }}

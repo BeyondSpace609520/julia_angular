@@ -1,0 +1,43 @@
+<ng-container *ngIf="form">
+  <form [formGroup]="form">
+    <h1>{{ 'BackEnd_WikiLanguage.CRF_SEPAAuthorizationTitle' | translate }}</h1>
+    <section>
+      <h4>{{ 'BackEnd_WikiLanguage.CRF_SEPACreditor' | translate }}</h4>
+      <p>Zadego GmbH<br>
+        Hypo-Passage 2<br>
+        6020 Innsbruck<br>
+        AT {{ 'BackEnd_WikiLanguage.GeneralCountryAustria' | translate }}</p>
+      <p><strong>{{ 'BackEnd_WikiLanguage.CRF_SEPACreditorID' | translate }}</strong>: {{ creditorId }}</p>
+    </section>
+    <section class="inputs">
+      <div class="form-group">
+        <label for="sepaAccountHolder">{{ 'BackEnd_WikiLanguage.CRF_SEPAFormAccountHolder' | translate }}</label>
+        <input id="sepaAccountHolder" class="form-control" formControlName="accountHolder">
+      </div>
+      <div class="form-group">
+        <label for="sepaIBAN">{{ 'BackEnd_WikiLanguage.CRF_SEPAFormIBAN' | translate }}</label>
+        <input id="sepaIBAN" class="form-control" formControlName="iban">
+      </div>
+      <div class="form-group">
+        <label for="sepaPostCode">{{ 'BackEnd_WikiLanguage.CRF_SEPAFormPostCode' | translate }}</label>
+        <input id="sepaPostCode" class="form-control" formControlName="postCode">
+      </div>
+      <div class="form-group">
+        <label for="sepaCity">{{ 'BackEnd_WikiLanguage.CRF_SEPAFormCity' | translate }}</label>
+        <input id="sepaCity" class="form-control" formControlName="city">
+      </div>
+      <div class="form-group">
+        <label for="sepaAddress">{{ 'BackEnd_WikiLanguage.CRF_SEPAFormAddress' | translate }}</label>
+        <input id="sepaAddress" class="form-control" formControlName="address">
+      </div>
+      <div class="form-group">
+        <label for="sepaCountry">{{ 'BackEnd_WikiLanguage.CRF_SEPAFormCountry' | translate }}</label>
+        <select id="sepaCountry" formControlName="country">
+          <option *ngFor="let country of countries" [value]="country.c_id">{{ country.cl_name }}</option>
+        </select>
+      </div>
+      <div class="error-message" *ngIf="errorMessage">{{ errorMessage | translate }}</div>
+    </section>
+    <section class="terms" [innerHtml]="'BackEnd_WikiLanguage.CRF_SEPATerms' | translate | breakMultiline : 'paragraph'"></section>
+  </form>
+</ng-container>

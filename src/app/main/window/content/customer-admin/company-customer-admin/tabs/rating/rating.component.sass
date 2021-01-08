@@ -1,0 +1,68 @@
+@import "_mixins"
+
+:host
+    padding: 1em 3em
+    display: flex
+    flex-direction: column
+
+.header
+    display: flex
+    h1
+        font-weight: 300
+        font-size: 1.5em
+    .main
+        flex: 1
+        .rating
+            display: inline-block
+        .recommendation
+            font-weight: bold
+            color: orange
+
+.factors
+    display: flex
+    .list
+        flex: 2
+        +mt(4)
+        .factor
+            display: flex
+            white-space: nowrap
+            +pb(2)
+            +pr(2)
+            & > *
+                margin: 0 0.5em
+            .name
+                flex: 1
+    .comment
+        display: block
+        flex: 1
+        textarea
+            height: 87%
+
+.rate
+    margin: 2em 0
+    .thumb
+        font-size: 2.2em
+        padding: .5em
+        cursor: pointer
+        color: grey
+        &:hover
+            opacity: 0.7
+    .mdi-thumb-up
+        &.active
+            color: green
+    .mdi-thumb-down
+        &.active
+            color: red
+.d-flex.flex-row
+    +mt(4)
+    justify-content: space-between
+.button-controls
+    text-align: right
+    +my(auto)
+    & > button
+        margin: 0.3em
+
+hr
+    width: 80%
+    +mt(4)
+    +mb(4)

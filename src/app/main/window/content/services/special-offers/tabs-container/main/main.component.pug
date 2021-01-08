@@ -1,0 +1,53 @@
+form(*ngIf="form", [formGroup]="form")
+    .main.grid-area
+        .form-group
+            label(translate) BackEnd_WikiLanguage.EBP_Title
+            input(formControlName="title")
+        .form-group
+            label {{'BackEnd_WikiLanguage.SO_SpecialOfferId' | translate}} 
+            label.text-left {{offer.id}}
+    .additional
+        .form-group
+            select([formControl]="locale")
+                option(*ngFor="let lang of locals", [value]="lang.value", translate) BackEnd_WikiLanguage.{{lang.name}}
+        .form-check
+            label(for="active", translate) BackEnd_WikiLanguage.ProductOnline
+            input(type="checkbox", id="active", formControlName="active")
+    .labels
+        .col-6
+            label.form-control-label(translate) BackEnd_WikiLanguage.SO_ShortDesc
+        .col-6
+            label.form-control-label(translate) BackEnd_WikiLanguage.SO_LongDesc
+            .form-group
+                label(translate) BackEnd_WikiLanguage.generic_SortOrder
+                input(formControlName="sortOrder")
+    .textarea
+        .col-6
+            .form-group
+                quill-editor.editor(formControlName="shortDesc", [modules]="editorConfig")
+        .col-6
+            .form-group
+                quill-editor.editor(formControlName="longDesc", [modules]="editorConfig")
+    .uploader
+        .controls
+            label(translate) BackEnd_WikiLanguage.maxSizeWarningLabel
+            button.btn.btn-secondary.mb-2((click)="uploadImage()", translate) BackEnd_WikiLanguage.generic_Upload
+            button.btn.btn-secondary((click)="clearImage()", translate) BackEnd_WikiLanguage.generic_Clear
+        img(*ngIf="imageSrc", [src]="imageSrc")
+    .selectors.grid-area
+        .form-group
+            label(translate) BackEnd_WikiLanguage.SO_ServiceType
+            select(formControlName="serviceTypeId")
+                option(*ngFor="let type of serviceTypes", [value]="type.id", translate) {{type.name}}
+        .form-group
+            label(translate) BackEnd_WikiLanguage.generic_Category
+            select(formControlName="categoryId")
+                option([value]="null") -
+                option(*ngFor="let category of categories", [value]="category.value", translate) {{category.name}}
+    .package
+        .form-check
+            i.mdi.mdi-information.text-primary([ngbTooltip]="'BackEnd_WikiLanguage.infoIconHighlightSpecialOffer' | translate")
+            input(type="checkbox", id="highlighted", formControlName="highlighted")
+            label(for="highlighted",translate) BackEnd_WikiLanguage.SO_highlighted
+.bottom-controls
+    button.btn.btn-secondary((click)="save()", translate) BackEnd_WikiLanguage.generic_Save

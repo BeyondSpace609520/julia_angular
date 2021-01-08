@@ -1,0 +1,62 @@
+:host
+    display: block
+    height: 100%
+    overflow-y: auto
+    
+content
+    display: grid
+    grid-template-columns: 3fr 1fr
+    grid-template-rows: auto auto 1fr auto
+    grid-template-areas: "features locale" "features image1" "categories image1" "classification image2"
+    grid-gap: 0 1em
+    padding: 1em
+    .locale
+        grid-area: locale
+        justify-content: flex-end
+        &.form-group
+            margin-bottom: unset
+        select
+            width: auto
+
+    .features
+        grid-area: features
+
+    .categories
+        grid-area: categories
+
+    .classification
+        grid-area: classification
+        
+        .inputs
+            display: grid
+            grid-gap: 1em
+            grid-template-columns: repeat(4, auto)
+            .form-check
+                margin-top: .5em
+        .textareas
+            display: grid
+            grid-template-columns: 1fr 1fr
+            grid-gap: 1em
+                
+
+    .image1
+        grid-area: image1
+
+    .image2
+        grid-area: image2
+        display: flex
+        align-items: flex-end
+
+.checkboxes
+    .form-check
+        display: inline-block
+        width: 25%
+        min-width: 10em
+
+.buttons-container
+    padding: 0 1em
+
+h3
+    font-size: 1.1rem
+    margin-top: 0.5em
+    font-weight: 700

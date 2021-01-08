@@ -1,0 +1,17 @@
+@import '_mixins'
+@import '_variables'
+
+:host
+    display: flex
+    flex-direction: column
+    position: relative
+    height: 100%
+    padding: 1em
+    border: 1px solid $border-light
+    overflow-y: auto 
+
+.main  
+    +pb(3)
+
+.rates
+    flex: 1

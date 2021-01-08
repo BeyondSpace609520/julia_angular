@@ -1,0 +1,14 @@
+.head-controls
+    button.btn.btn-secondary((click)="refresh()", translate) BackEnd_WikiLanguage.generic_Refresh
+
+app-table.table-container([items]="categories", [clickable]="true", (select)="selectItem($event)")
+    ng-template(#column, label="ID", let-item) {{item.id}}
+    ng-template(#column, label="Identifier", let-item) {{item.identifier}}
+
+.detail
+    app-edit-category(*ngIf="mode === 'edit' && selected", [category]="selected", (update)="refresh()")
+    app-edit-category(*ngIf="mode === 'create'", [category]="null", (update)="refresh(); mode = null")
+
+.foot-controls
+    button.btn.btn-secondary((click)="addCategory()", translate) BackEnd_WikiLanguage.generic_New
+    button.btn.btn-secondary.ml-3([disabled]="!selected", (click)="selected && deleteCategory(selected)", translate) BackEnd_WikiLanguage.generic_Delete

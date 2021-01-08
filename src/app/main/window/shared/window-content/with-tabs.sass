@@ -1,0 +1,21 @@
+@import "_variables"
+@import "_mixins"
+
+content
+    display: flex
+    flex-direction: column
+    overflow-y: auto
+    flex: 1
+    .tab-container
+        overflow-y: auto
+        padding: 0 1em
+        flex: 1
+        position: relative
+        +m(2)
+        margin-top: unset
+        border: 1px solid $border-light
+        border-top: unset
+        & > .content
+            overflow-y: auto
+            height: 100%
+            display: block

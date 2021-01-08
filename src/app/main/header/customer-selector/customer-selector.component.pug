@@ -1,0 +1,25 @@
+button.header-dropdown-toggle(
+  [class.active]="opened",
+  [ngbTooltip]="opened ? null : user.database",
+  tooltipClass="nowrap",
+  placement="bottom-right",
+  (click)="toggle()"
+)
+  span.label {{ user.hotelName }}
+  i.mdi.mdi-chevron-down(*ngIf="!opened")
+  i.mdi.mdi-chevron-up(*ngIf="opened")
+.header-dropdown-menu
+  input.search(
+    #searchInput,
+    type="text",
+    [(ngModel)]="search",
+    (ngModelChange)="filterList()",
+    (keyup)="keyPressed($event)"
+  )
+  .list
+    a(
+      *ngFor="let customer of customers; let customerIndex = index",
+      [class.highlighted]="customerIndex === highlightedIndex",
+      (mouseenter)="highlightedIndex = customerIndex",
+      (click)="selectCustomer(customerIndex)"
+    ) {{ customer.databaseName }} / {{ customer.companyName }}

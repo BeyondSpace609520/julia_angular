@@ -1,0 +1,79 @@
+[
+  {
+    "label": "BackEnd_WikiLanguage.CM_ChannelManagement",
+    "subItems": ["channelAvailabilityAdmin", "enquiryPool", "channelStatistics"]
+  },
+  {
+    "label": "BackEnd_WikiLanguage.IC_TAB",
+    "subItems": ["calendarHTML", "calendarSettings"]
+  },
+  {
+    "label": "BackEnd_WikiLanguage.TLM_CompanyCustomerAdmin",
+    "subItems": [
+      "companyCustomerAdmin",
+      "interactionReport",
+      "guestRegistration",
+      "guestMap"
+    ]
+  },
+  {
+    "label": "BackEnd_WikiLanguage.TLM_Billing",
+    "subItems": ["billingWorkbench", "iframeReports", "iframeAddGuestPayments"]
+  },
+  {
+    "label": "BackEnd_WikiLanguage.TopMenuServices",
+    "subItems": ["productAdmin", "specialOffers", "insuranceProductWorkbench"]
+  },
+  {
+    "id": "pricingTop",
+    "label": "BackEnd_WikiLanguage.TLM_PriceAdmin",
+    "subItems": [
+      "seasonPeriods",
+      "catering",
+      "visitorsTax",
+      "extraCharges",
+      "ageGroups",
+      "lastMinutes",
+      "longStayDiscount",
+      "earlyBirdDiscount",
+      "chargingScheme"
+    ]
+  },
+  {
+    "id": "entityAdminTop",
+    "label": "BackEnd_WikiLanguage.TLM_EntityAdmin",
+    "subItems": ["entityGroup", "stdRoomsAndApartments", "wishRoomModule"]
+  },
+  {
+    "label": "BackEnd_WikiLanguage.TopMenuMyHotel",
+    "subItems": [
+      "hotelManagement",
+      "portalAAT",
+      "portal",
+      "fileAdmin",
+      "templateAdmin",
+      "roomOwnerConfig",
+      "payment"
+    ]
+  },
+  {
+    "label": "BackEnd_WikiLanguage.TopMenuWebTools",
+    "subItems": ["openBookingTools", "cms"]
+  },
+  {
+    "label": "BackEnd_WikiLanguage.TLM_support",
+    "subItems": ["iframedSupportFormNew", "myAccount"]
+  },
+  {
+    "label": "Administration",
+    "subItems": [
+      "ebCustomerAdmin",
+      "customerReporting",
+      "portalAdmin",
+      "validateDBReport",
+      "adminMessageCenter",
+      "multiUser",
+      "legaldocs"
+    ]
+  }
+]

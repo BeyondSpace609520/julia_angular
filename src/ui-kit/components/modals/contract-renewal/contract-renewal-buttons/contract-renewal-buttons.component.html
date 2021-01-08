@@ -1,0 +1,8 @@
+<ng-container *ngFor="let button of buttons">
+  <button
+    *ngIf="formState | contractRenewalButtonVisibility : button.type"
+    class="btn btn-{{ button.buttonClass }}"
+    type="button" [disabled]="button.disableOnInvalidForm && !formState.valid"
+    (click)="buttonPress.emit(button.type)"
+  >{{ button.label| translate }}</button>
+</ng-container>

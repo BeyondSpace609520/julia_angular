@@ -1,0 +1,37 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+ng-container(*ngIf="guestRegistrationConfigService.providers")
+  main
+    .form-group.providers
+      label(for="providers", translate) BackEnd_WikiLanguage.MW_ProviderLabel
+      select#providers(
+        [ngModel]="selectedProviderId",
+        (ngModelChange)="selectedProviderId = +$event"
+      )
+        option(*ngFor="let provider of guestRegistrationConfigService.providers", [value]="provider.id") {{ provider.name }}
+    h4.available-title(translate) BackEnd_WikiLanguage.MW_AvailableGuestTypes
+    app-list-view.available-list(
+      [items]="guestTypes | filterList : selectedProviderId : false",
+      itemIdField="globalId",
+      [selected]="selectedGuestTypeId",
+      (select)="selectedGuestTypeId = $event.globalId"
+    )
+      ng-template(let-item) {{ item.value }}
+    .controls
+      button.btn.btn-secondary.btn-sm.add(
+        [disabled]="'add' | disableControl : guestTypes : selectedGuestTypeId : guestRegistrationConfigService.providers : providerId",
+        (click)="setGuestTypeUsed(true)"
+      )
+        i.mdi.mdi-arrow-right
+      button.btn.btn-secondary.btn-sm.remove(
+        [disabled]="'remove' | disableControl : guestTypes : selectedGuestTypeId : guestRegistrationConfigService.providers : providerId",
+        (click)="setGuestTypeUsed(false)"
+      )
+        i.mdi.mdi-arrow-left
+    h4.selected-title(translate) BackEnd_WikiLanguage.MW_MyGuestTypes
+    app-list-view.selected-list(
+      [items]="guestTypes | filterList : null : true",
+      itemIdField="globalId",
+      [selected]="selectedGuestTypeId",
+      (select)="selectedGuestTypeId = $event.globalId"
+    )
+      ng-template(let-item) {{ item.value }}

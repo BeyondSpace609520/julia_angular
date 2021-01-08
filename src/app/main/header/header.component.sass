@@ -1,0 +1,51 @@
+@import "_mixins"
+
+header
+  display: flex
+  box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.1)
+  background: white
+  align-items: center
+  z-index: 60
+  position: relative
+
+  &.limited
+    justify-content: flex-end
+
+  .menu
+    flex: 1
+    max-height: 48px
+  .mdi-bell-outline
+    position: relative
+
+  > *
+    +mr(3)
+
+  $size: 35px
+
+  i
+    display: flex
+    align-items: center
+    justify-content: center
+    border-radius: 2px
+    cursor: pointer
+    width: $size
+    height: $size
+    text-align: center
+    font-size: $size / 1.5
+
+    &:hover
+      transition: .5s
+      opacity: .7
+    .new-messages
+      width: 18px
+      height: 15px
+      background-color: #fc16ea
+      position: absolute
+      top: 3px
+      right: 2px
+      border-radius: 26%
+      color: #ffffff
+      font-size: 0.8rem
+
+  app-my-account-menu
+    height: $size

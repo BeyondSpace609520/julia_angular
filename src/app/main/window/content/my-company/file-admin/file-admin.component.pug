@@ -1,0 +1,18 @@
+app-loading.loading-bar(*ngIf="isLoading| async")
+.sidebar
+  .controls
+    button.btn.btn-secondary((click)="selected && addFolder(selected)", [disabled]="!selected", [ngbTooltip]="'BackEnd_WikiLanguage.FA_NewFolder' | translate", container="body")
+      i.mdi.mdi-folder-plus
+    button.btn.btn-secondary((click)="selected && renameFolder(selected)", [disabled]="!selected", [ngbTooltip]="'BackEnd_WikiLanguage.FA_RenameFolder' | translate", container="body")
+      i.mdi.mdi-rename-box
+    button.btn.btn-secondary((click)="selected && deleteFolder(selected)", [disabled]="!selected", [ngbTooltip]="'BackEnd_WikiLanguage.FA_DeleteFolder' | translate", container="body")
+      i.mdi.mdi-close-octagon
+    button.btn.btn-secondary((click)="refreshTree()", [ngbTooltip]="'BackEnd_WikiLanguage.FA_RefreshTree' | translate", container="body")
+      i.mdi.mdi-refresh
+  app-tree-view.tree-view(
+    [tree]="tree",
+    [selected]="selected && selected.id",
+    (select)="selectItem($event)"
+  )
+content(*ngIf="selected")
+  app-files([folder]="selected", (update)="load()")

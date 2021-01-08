@@ -1,0 +1,9 @@
+app-tabs(
+  [settings]="tabSettings",
+  [(selected)]="activeTabId"
+)
+app-loading.loading-bar(*ngIf="isLoading | async")
+.tab-container
+  app-main-tab(*ngIf="activeTabId === 'main'", [offer]="offer", (saved)="onTabSaved()")
+  app-pricing-tab(*ngIf="activeTabId === 'pricing'", [offer]="offer", (saved)="onTabSaved()")
+  app-period-tab(*ngIf="activeTabId === 'period'", [offer]="offer", (saved)="onTabSaved()")

@@ -1,0 +1,27 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+form(*ngIf="form", [formGroup]="form")
+  .dropdown.form-group(*ngIf="roomTypes")
+    label(translate) BackEnd_WikiLanguage.NEP_EntityType
+    select(formControlName="roomType")
+      option(*ngFor="let item of roomTypes", [ngValue]="item.id", translate) BackEnd_WikiLanguage.generic_{{item.name}}
+  .form-group
+    label(translate) general.number.text
+    input(
+      type="number",
+      formControlName="number",
+      min="1",
+      max="50"
+    )
+  .rooms
+    .room-control(*ngFor="let index of roomsRange")
+      ng-container(*ngIf="addedRoomControl(index) as control")
+        .form-group.roomNo
+          label(translate) BackEnd_WikiLanguage.NEP_EntityNumber
+          input([formControl]="control.get('no')")
+        .form-group(*ngIf="roomCategories")
+          label(translate) BackEnd_WikiLanguage.NEP_EntityCategory
+          select([formControl]="control.get('category')")
+            option(*ngFor="let item of roomCategories", [ngValue]="item.value", translate) {{item.name}}
+        .form-check.checkbox
+          input(type="checkbox", [id]="'notBookable'+index", [formControl]="control.get('notBookable')")
+          label([for]="'notBookable'+index", translate) BackEnd_WikiLanguage.ETD_AdminOnly

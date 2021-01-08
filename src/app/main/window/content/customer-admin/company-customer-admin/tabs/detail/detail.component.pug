@@ -1,0 +1,114 @@
+.container-fluid
+    form.row(*ngIf="detail")
+        .col-md-5.form-group
+            label(translate) BackEnd_WikiLanguage.INV_accountNo
+            label.text-left {{detail.accountNo}}
+    form.row(*ngIf="form", [formGroup]="form", (ngSubmit)="onSubmit()")
+        .col-md-5
+            .form-group
+                label(translate) BackEnd_WikiLanguage.EBP_Salutation
+                select(formControlName="salutation")
+                    option(
+                        *ngFor="let option of salutations",
+                        [value]="option.value",
+                        translate
+                    ) {{option.name}}
+            .form-group
+                label(translate) BackEnd_WikiLanguage.EBP_Title
+                input(formControlName="title")
+            .form-group
+                label(translate) BackEnd_WikiLanguage.EBP_FirstName
+                input(formControlName="firstName")
+            .form-group
+                label(translate) BackEnd_WikiLanguage.EBP_LastName
+                input(formControlName="lastName")
+            .form-group
+                label(translate) BackEnd_WikiLanguage.EBP_EMail
+                input(formControlName="email")
+            .form-group
+                label(translate) BackEnd_WikiLanguage.EBP_EMail
+                input(formControlName="email2")
+            .form-group
+                label(translate) BackEnd_WikiLanguage.channelEmailLabel
+                input(formControlName="channelEmail")
+            .form-group
+                label(translate) BackEnd_WikiLanguage.EBP_PhoneNo
+                input(formControlName="phoneNo")
+            .form-group
+                label(translate) BackEnd_WikiLanguage.EBP_PhoneNo2
+                input(formControlName="phoneNo2")
+            .form-group
+                label(translate) BackEnd_WikiLanguage.EBP_Address
+                input(formControlName="address")
+            .form-group
+                label(translate) BackEnd_WikiLanguage.EBP_PostCodeCity
+                .form-group.mb-0
+                    input(#postCode, formControlName="postCode")
+                    app-auto-city-input(
+                      [countryControl]="form.get('country')",
+                      [postCodeControl]="form.get('postCode')",
+                      [formControl]="cityControl"
+                    )
+            .form-group
+                label(translate) BackEnd_WikiLanguage.EBP_Country
+                select(#country, formControlName="country")
+                    option(*ngFor="let c of countries", [value]="c.value") {{c.name}}
+            .form-group
+                label(translate) BackEnd_WikiLanguage.EBP_Locale
+                select(formControlName="locale")
+                    option(*ngFor="let lang of locals", [value]="lang.value", translate) BackEnd_WikiLanguage.{{lang.name}}
+            .form-group
+                label(translate) BackEnd_WikiLanguage.POA_IP
+                label.text-left {{detail.ip}}
+            .form-group
+                label(translate) BackEnd_WikiLanguage.RCAD_creationDate
+                label.text-left {{detail.creationDate}}
+        .col-md-6
+            .form-group
+                label(translate) BackEnd_WikiLanguage.CCAD_BirthDay
+                app-datepicker-input(
+                    [date]="form.get('birthday').value",
+                    (dateChange)="form.get('birthday').setValue($event)",
+                    [minDate]="minBirthdayDate"
+                    )
+            .form-group
+                label(translate) BackEnd_WikiLanguage.CCAD_Identification
+                input(formControlName="identNo")
+            .form-group
+                label(translate) BackEnd_WikiLanguage.CCAD_TaxNo
+                input(formControlName="taxNumber")
+            .form-group
+                label(translate) BackEnd_WikiLanguage.IC_InternalInformation
+                textarea(formControlName="internalInformation")
+            .form-group
+                .empty
+                .checkboxes
+                    .form-check
+                        input(type="checkbox", formControlName="sendNewsletter", id="sendNewsletter")
+                        label(for="sendNewsletter", translate) BackEnd_WikiLanguage.CCAD_SendNewsletter
+                    .form-check
+                        input(type="checkbox", formControlName="sendSafeEmail", id="sendSafeEmail")
+                        label(for="sendSafeEmail", translate) BackEnd_WikiLanguage.WF_SafeJourney
+                    .form-check
+                        input(type="checkbox", formControlName="sendThankyouEmail", id="sendThankyouEmail")
+                        label(for="sendThankyouEmail", translate) BackEnd_WikiLanguage.CCAD_SendThankYouMail
+                    .form-check
+                        input(type="checkbox", formControlName="sendPaymentsEmail", id="sendPaymentsEmail")
+                        label(for="sendPaymentsEmail", translate) BackEnd_WikiLanguage.CCAD_SendSafeJourneyPlusPaymentsMail
+                    permission(id="setAttachEvents", dontShow)
+                        .form-check
+                            input(type="checkbox", formControlName="sendRegionalEvents", id="sendRegionalEvents")
+                            label(for="sendRegionalEvents", translate) BackEnd_WikiLanguage.CCAD_sendEvents
+                    .form-check
+                        label(translate) BackEnd_WikiLanguage.export_anonymizationDate
+                        label.font-weight-bold {{form.get('allowAutoAnonymization').value ? detail.anonymizationDate : ('BackEnd_WikiLanguage.generic_never' | translate)}}
+                    .form-check(*ngIf="mainSerivice.getCompanyDetails().c_autoAnonymize === '1'")
+                        input(type="checkbox", formControlName="allowAutoAnonymization", id="allowAutoAnonymization")
+                        label(for="allowAutoAnonymization", translate) BackEnd_WikiLanguage.allowAutoAnonymization
+    .row(*ngIf="form")
+        .col.button-controls
+            button.btn.btn-secondary((click)="onSubmit()", [disabled]="!form.valid", translate) BackEnd_WikiLanguage.generic_Save
+            app-anonymize-customer(*ngIf="item", [customerId]="item.id", [email]="detail.email", (update)="loadForm(); update.emit()")
+            button.btn.btn-secondary(*ngIf="item", (click)="openProvision()", [disabled]="!detail.id", translate) BackEnd_WikiLanguage.dsgvoInfoButtonLabel
+            button.btn.btn-secondary(*ngIf="item", (click)="openMergeGuestProfile()", translate) BackEnd_WikiLanguage.CCA_MergeGuestsTitle
+            button.btn.btn-secondary(*ngIf="item", (click)="openMoreInformation()", translate) BackEnd_WikiLanguage.CCA_MoreInformation

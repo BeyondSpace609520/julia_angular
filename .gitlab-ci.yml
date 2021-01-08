@@ -1,0 +1,59 @@
+variables:
+  DEST: $CI_PROJECT_DIR/dist/julia
+  UPLOAD_BASE_DIR: /var/www/html
+  SERVER_DEVELOP: test-eb-3.easy-booking.at
+  SERVER_PRODUCTION1: gsrv001.easy-booking.at
+  SERVER_PRODUCTION2: gsrv002.easy-booking.at
+  DEPLOY_DIR_DEVELOP: julia_DEV
+  DEPLOY_DIR_PRODUCTION: julia
+
+before_script:
+  - node -v
+  - npm -v
+  - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+  - mkdir -p ~/.ssh
+  - eval $(ssh-agent -s)
+  - 'echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  - ssh-add <(echo "$SSH_PRIVATE_KEY")
+  - npm install
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - node_modules/
+
+build_test:
+  only:
+  - test1
+  stage: deploy
+  before_script:
+  - npm install
+  script:
+  - npm run build:staging
+
+deploy_develop:
+  only:
+    - develop
+  stage: deploy
+  script:
+    - npm run build
+    - rsync -av -e ssh $DEST/ $SSH_USER@$SERVER_DEVELOP:$UPLOAD_BASE_DIR/$DEPLOY_DIR_DEVELOP
+
+deploy_staging:
+  only:
+    - staging
+  stage: deploy
+  script:
+    - npm run build:staging
+    - rsync -av -e ssh $DEST/ $SSH_USER@$SERVER_DEVELOP:$UPLOAD_BASE_DIR/$DEPLOY_DIR_PRODUCTION
+
+deploy_production:
+  only:
+    - master
+  stage: deploy
+  script:
+    - npm run build:prod-gsrv001
+    - rsync -av -e ssh $DEST/ $SSH_USER@$SERVER_PRODUCTION1:$UPLOAD_BASE_DIR/$DEPLOY_DIR_PRODUCTION
+    - npm run build:prod-gsrv002
+    - rsync -av -e ssh $DEST/ $SSH_USER@$SERVER_PRODUCTION2:$UPLOAD_BASE_DIR/$DEPLOY_DIR_PRODUCTION
+
+

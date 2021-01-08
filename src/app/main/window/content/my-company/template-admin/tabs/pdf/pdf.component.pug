@@ -1,0 +1,14 @@
+form(*ngIf="form", [formGroup]="form")
+    .grid-area
+        .form-group
+            quill-editor.editor(formControlName="headerText", [modules]="editorConfig")
+            label(translate) BackEnd_WikiLanguage.TA_HeaderText
+        .form-group(*ngIf="hasSummaryInfo")
+            input(formControlName="withoutCommitmentLabel")
+            label(translate) BackEnd_WikiLanguage.pricingSummaryHint
+        .form-group
+            quill-editor.editor(formControlName="footerText", [modules]="editorConfig")
+            label(translate) BackEnd_WikiLanguage.TA_FooterText
+        .buttons
+            button.btn.btn-secondary((click)="save()", [disabled]="!form.valid", translate) BackEnd_WikiLanguage.generic_Save
+            button.btn.btn-secondary(*ngIf="+period?.id && !detail.notFound", (click)="useDefault(period)", translate) BackEnd_WikiLanguage.generic_UseDefault

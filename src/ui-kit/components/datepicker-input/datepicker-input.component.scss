@@ -1,0 +1,27 @@
+.form-icon-left {
+  width: 100%;
+}
+
+.datepicker-wrap {
+  left: 50%;
+  transform: translateX(-50%);
+  top: 108%;
+  position: absolute;
+  background-color: #FFFFFF;
+  z-index: 4;
+  &.top {
+    top: auto;
+    bottom: 108%;
+  }
+  &.bottomLeft {
+    bottom: auto;
+    left: 0;
+    transform: none;
+  }
+  &.bottomRight {
+    bottom: auto;
+    left: unset;
+    right: 0;
+    transform: none;
+  }
+}

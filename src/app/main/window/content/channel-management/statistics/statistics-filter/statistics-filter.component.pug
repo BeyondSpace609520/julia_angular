@@ -1,0 +1,17 @@
+form.row(*ngIf="form", [formGroup]="form")
+  .column.form-group
+    select(formControlName="expiry")
+      option(
+        *ngFor="let option of expiryOptions",
+        [value]="option.value"
+      ) {{ option.label | translate }}
+  .column.refresh-button
+    button.btn.btn-secondary((click)="onFilter()")
+      i.mdi.mdi-refresh
+  .column.ml-auto
+    button.btn.btn-secondary(
+      (click)="onExportExcel()",
+      [ngbTooltip]="'BackEnd_WikiLanguage.MW_excelExportToolTip' | translate",
+      placement="bottom",
+    )
+      i.mdi.mdi-file-excel

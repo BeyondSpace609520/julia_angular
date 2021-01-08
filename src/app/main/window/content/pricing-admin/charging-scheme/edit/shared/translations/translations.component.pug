@@ -1,0 +1,5 @@
+form(*ngIf="form", [formGroup]="form")
+    h3(translate) BackEnd_WikiLanguage.EG_DisplayName
+    .form-group(*ngFor="let lang of locals; let i = index")
+        label.form-control-label(translate) BackEnd_WikiLanguage.{{lang.name}} 
+        input.form-control([formControl]="form.controls[i]")

@@ -1,0 +1,30 @@
+@import "../style/option-boxes"
+
+.input-fields
+  display: flex
+  flex-wrap: wrap
+  margin: $grid-gutter-width/2 (-$grid-gutter-width/4) 0
+
+  .form-group
+    display: block
+    margin: 0 $grid-gutter-width/4 $grid-gutter-width/2
+    min-width: calc(33.3333% - #{$grid-gutter-width/2})
+
+    label
+      display: block
+
+    input
+      width: 100%
+
+.conditions-anchor
+  &:after
+    content: ' *'
+
+.conditions
+  margin-top: 0.5rem
+  font-style: italic
+
+  &:before
+    content: '* '
+    margin-right: 0.2rem
+    float: left

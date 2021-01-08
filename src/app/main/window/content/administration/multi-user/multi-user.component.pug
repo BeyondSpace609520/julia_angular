@@ -1,0 +1,18 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+form(*ngIf="form", [formGroup]="form")
+  .form-group.row
+    label.col-md-3(for="multiuserUsername") Username
+    .col-md-5
+      input#multiuserUsername(type="text", formControlName="username")
+  .form-group.row
+    label.col-md-3(for="multiuserPassword") Passwort
+    .col-md-5
+      input#multiuserPassword(type="password", formControlName="password")
+  .form-group.row
+    label.col-md-3(for="multiuserDatabases") DBs
+    .col
+      input#multiuserDatabases(type="text", formControlName="databases")
+  .text-right
+    button.btn.btn-secondary(
+      (click)="onCreateMultiuser()",
+    ) Anlegen

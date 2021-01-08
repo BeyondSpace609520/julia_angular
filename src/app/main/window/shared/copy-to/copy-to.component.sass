@@ -1,0 +1,34 @@
+@import "_variables"
+
+.source
+    label
+        font-weight: bold
+        margin-right: 1em
+
+.sections
+    display: flex
+    margin-top: 1em
+    justify-content: space-between
+    flex-wrap: wrap
+    .section
+        margin-right: 1em
+        margin-bottom: 2rem
+        .title
+            font-weight: bold
+        .grid-area
+            display: grid
+            grid-template-columns: 1fr 1fr
+        .item
+            display: inline-flex
+            white-space: nowrap
+            &.main
+                margin-top: 1em
+                margin-bottom: 1em
+            label
+                font-weight: normal
+                text-overflow: ellipsis
+                overflow: hidden
+                &.readonly
+                    color: $gray-500
+        .item:not(:last-child)
+            margin-right: 1em

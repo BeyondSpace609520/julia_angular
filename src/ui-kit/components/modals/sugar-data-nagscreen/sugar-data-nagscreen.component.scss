@@ -1,0 +1,30 @@
+@import '_variables';
+
+.header {
+    display: flex;
+    padding: 0.2em 0.3em;
+    background: $mdi-window-header-color;
+    border: solid 1px $mdi-window-border-color;
+    color: #121621;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+.grid-area .form-group {
+    grid-template-columns: 1fr 2fr;
+}
+.btn-grey {
+    background-color: #999999;
+    color: #fff;
+    padding: .5rem 3rem;
+    border-radius: 0px;
+    &:hover {
+        background-color: #e97c00;
+    }
+}
+.button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 2rem;
+}

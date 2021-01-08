@@ -1,0 +1,25 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+.source
+  ng-container(*ngIf="source")
+    label(translate) BackEnd_WikiLanguage.CTD_Source
+    .title {{source}}
+  .title(*ngIf="description", translate) {{description}}
+form.sections(*ngIf="form", [formGroup]="form")
+  .section(*ngFor="let section of formStruct; let i = index")
+    .title(translate) {{section.label}}
+    .item.main
+      input([id]="'all'+i", type="checkbox", [formControl]="form.controls[i].get('all')")
+      label.form-control-label([for]="'all'+i", translate) BackEnd_WikiLanguage.generic_All
+    .grid-area
+      .item(*ngFor="let item of section.items; let j = index")
+        label.mb-0
+          input(
+            type="checkbox",
+            [formControl]="form.controls[i].get('items').controls[j]",
+            [readonly]="item.readonly"
+          )
+          span.form-control-label(
+            [ngbTooltip]="item.tooltip || null",
+            [ngClass]="{ readonly: item.readonly }",
+            translate
+          ) {{item.label}}

@@ -1,0 +1,13 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+.sidebar
+  app-list-view.list-view(
+    [items]="list",
+    [selected]="selectedId",
+    (select)="selectItem($event)"
+  )
+    ng-template(let-item) {{item.fromDate | ebDate:false}} - {{item.untilDate | ebDate:false}}
+  .bottom-buttons
+    button.btn.btn-secondary((click)="addItem()", translate) BackEnd_WikiLanguage.generic_New
+    button.btn.btn-secondary((click)="selected && deleteItem(selected)", [disabled]="!selected", translate) BackEnd_WikiLanguage.generic_Delete
+content
+  app-edit-item(*ngIf="selected", [item]="selected", (edit)="onItemEdited()")

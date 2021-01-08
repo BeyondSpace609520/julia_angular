@@ -1,0 +1,176 @@
+html, body {
+  height: 100%;
+  position: relative;
+}
+
+html {
+  font-size: 13px;
+  overflow: hidden;
+}
+
+body {
+  font-size: 1rem;
+  color: $gray-700;
+  text-rendering: optimizeLegibility !important;
+  -moz-osx-font-smoothing: grayscale !important;
+}
+
+hr {
+  height: 1px;
+  background-color: $border-light;
+}
+
+.fullscreen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.shadow {
+  box-shadow: $popover-shadow;
+}
+
+.shadow-smooth {
+  box-shadow: $shadow-smooth;
+}
+
+.fullwidth {
+  width: 100%;
+}
+
+.small {
+  font-size: 0.9rem
+}
+
+h2 {
+  font-size: 1.28rem;
+  padding: 4px 0;
+}
+
+h4 {
+  font-size: 1.171875rem;
+}
+
+h5 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+b, strong {
+  font-weight: 600;
+}
+
+th {
+  font-weight: 600;
+}
+
+.col-0-5 {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 4.16666666%;
+  flex: 0 0 4.16666666%;
+  max-width: 4.16666666%;
+}
+.col-1-5 {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 12.5%;
+  flex: 0 0 12.5%;
+  max-width: 12.5%;
+}
+.col-2-5 {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 20.83333333%;
+  flex: 0 0 20.83333333%;
+  max-width: 20.83333333%;
+}
+.col-4-5 {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 37.5%;
+  flex: 0 0 37.5%;
+  max-width: 37.5%;
+}
+.col-5-5 {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 45.83333333%;
+  flex: 0 0 45.83333333%;
+  max-width: 45.83333333%;
+}
+.col-7-5 {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 62.5%;
+  flex: 0 0 62.5%;
+  max-width: 62.5%;
+}
+
+.eb-table {
+  border: 1px solid $border-light;
+  border-radius: $border-radius;
+  background-color: white;
+  .row {
+    margin: 0;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    border-bottom: 1px solid $border-light;
+    font-weight: 400;
+    color: $gray-900;
+    &:last-child {
+      border-bottom: none;
+    }
+    &:hover:not(.labels) {
+      background-color: $gray-200;
+    }
+    &.labels {
+      color: $gray-600;
+      font-weight: 600;
+    }
+    div[class^="col"]{
+      padding-left: 7px;
+      padding-right: 7px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  }
+}
+.tooltip-inner {
+  max-width: 250px;
+}
+.flexbox-column {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+app-enquiry-pool app-search-bar .checkbox-list .form-check {
+  min-width: 180px
+}
+
+app-offer-overview app-search-bar .row {
+  padding: 1rem 1rem 0rem 5rem;
+  .column:not(:empty) {
+    min-width: 150px;
+  }
+}
+
+app-early-bird-discount app-discount-details label{
+  text-align: right;
+}
+
+app-early-bird-discount app-discount-details .form-group{
+  grid-template-columns: 120px 2fr!important;
+}
+
+app-period-tab app-age-groups .header {
+    height: fit-content;
+    margin-right: .5em;
+}
+
+app-modal-forms app-manage-item .form-group{
+  padding-left: unset!important;
+  label {
+    min-width: 50px;
+  }
+}

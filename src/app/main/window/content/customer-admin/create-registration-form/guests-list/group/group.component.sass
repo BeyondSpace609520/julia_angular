@@ -1,0 +1,9 @@
+@import "../guests-list.component.sass"
+@import "variables"
+
+.group-guests
+    display: grid
+    grid-template-columns: auto 1fr 1fr 1fr
+    grid-template-rows: calc(1rem + $grid-gutter-width/8) auto
+    grid-template-rows: repeat(auto-fill, auto)
+    grid-gap: 0.5em

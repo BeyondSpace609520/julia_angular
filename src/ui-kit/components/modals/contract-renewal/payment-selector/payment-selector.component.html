@@ -1,0 +1,51 @@
+<ng-container *ngIf="form">
+  <form [formGroup]="form">
+    <section>
+      <h4>{{ 'BackEnd_WikiLanguage.CRF_Greeting' | translate }}</h4>
+      <p class="intro" [innerHtml]="'BackEnd_WikiLanguage.CRF_Intro' | translate"></p>
+      <p class="validity">{{ 'BackEnd_WikiLanguage.CRF_Validity' | translate : {date: validUntilDate} }}</p>
+    </section>
+    <section>
+      <h4>{{ 'BackEnd_WikiLanguage.CRF_PaymentOptions' | translate }}</h4>
+      <div class="options payments">
+        <label
+          *ngFor="let option of paymentOptions"
+          class="option-box"
+          [class.selected]="selectedOption?.years === option.years"
+        >
+          <input formControlName="selectedOption" type="radio" [value]="option.years">
+          {{ option.label | translate }}
+          <br>{{ option.unitPrice }} {{ 'BackEnd_WikiLanguage.CRF_PerYear' | translate }}
+          <ng-container *ngIf="option.discountPercent">
+            <br><span class="small" [innerHtml]="'BackEnd_WikiLanguage.CRF_SavePercent' | translate : {percent: option.discountPercent}"></span>
+          </ng-container>
+        </label>
+      </div>
+      <div *ngIf="selectedOption" class="info-box">
+        <p *ngIf="selectedOption.discountPercent > 0" [innerHtml]="'BackEnd_WikiLanguage.CRF_SavingInfo' | translate : selectedOption"></p>
+        <p>{{ 'BackEnd_WikiLanguage.CRF_PriceInfo' | translate : selectedOption }}</p>
+      </div>
+    </section>
+    <section *ngIf="paymentMethods?.length > 1">
+      <h4>{{ 'BackEnd_WikiLanguage.CRF_PaymentMethod' | translate }}</h4>
+      <div class="options payment-methods">
+        <label
+          *ngFor="let paymentMethod of paymentMethods"
+          class="option-box"
+          [class.selected]="selectedPaymentMethod?.type === paymentMethod.type"
+        >
+          <input formControlName="selectedPaymentMethod" type="radio" [value]="paymentMethod.type">
+          {{ paymentMethod.label | translate }}
+        </label>
+      </div>
+    </section>
+    <section>
+      <div class="accept-terms">
+        <label class="radio-label">
+          <input formControlName="termsAccepted" type="checkbox">
+          <span [innerHtml]="'BackEnd_WikiLanguage.CRF_AcceptTerms' | translate"></span>
+        </label>
+      </div>
+    </section>
+  </form>
+</ng-container>

@@ -1,0 +1,11 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+form(*ngIf="form", [formGroup]="form")
+  .form-group
+    label Identifier
+    input(formControlName="identifier")
+  .grid-area
+    .form-group(*ngFor="let lang of languages; let i = index")
+      label(translate) BackEnd_WikiLanguage.{{lang.name}}
+      input([formControl]="form.get('translations').controls[i]")
+.bottom-controls
+  button.btn.btn-secondary([disabled]="!form?.valid", (click)="save()", translate) BackEnd_WikiLanguage.generic_Save

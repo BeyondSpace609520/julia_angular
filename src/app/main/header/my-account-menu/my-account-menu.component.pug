@@ -1,0 +1,18 @@
+button.header-dropdown-toggle(
+  [class.active]="opened",
+  [ngbTooltip]="opened ? null : ('BackEnd_WikiLanguage.Header_TooltipMyAccount' | translate)",
+  tooltipClass="nowrap",
+  placement="bottom-right",
+  (click)="toggle()"
+)
+  i.main-icon.mdi.mdi-account-circle
+  i.mdi.mdi-chevron-down(*ngIf="!opened")
+  i.mdi.mdi-chevron-up(*ngIf="opened")
+.header-dropdown-menu
+  .name #[i.mdi.mdi-home] {{ customerName }}
+  hr
+  a(translate, (click)="openCompanySettings()") BackEnd_WikiLanguage.Header_CompanySettings
+  a(translate, (click)="openChangePasswordModal()") BackEnd_WikiLanguage.Header_ChangePassword
+  a.logout(translate, (click)="logout()") BackEnd_WikiLanguage.Header_SignOut
+  hr
+  .version(*ngIf="currentVersion") {{ 'BackEnd_WikiLanguage.Header_Version' | translate : {version: currentVersion.short} }}

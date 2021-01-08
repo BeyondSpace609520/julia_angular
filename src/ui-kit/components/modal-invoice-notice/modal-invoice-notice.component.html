@@ -1,0 +1,17 @@
+<div class="invoice-notice">
+  <div class="header">
+    {{ 'modal.invoiceNoticeOpenAccount.text' | translate}}
+  </div>
+  <div class="d-flex flex-row mt-3">
+    <div class="mx-3">
+      <i class="mdi mdi-alert-circle"></i>
+    </div>
+    <div class="border-left px-3">
+      <h1>{{ 'modal.invoiceNoticeAttention.text' | translate}}</h1>
+      <h2>{{ 'modal.invoiceNoticeSalutation.text' | translate}}</h2>
+      <p [innerHtml]="'modal.invoiceNoticeText.text' | translate">
+      </p>
+    </div>  
+  </div>
+  <button type="button" class="btn btn-secondary" [disabled]="disableClose" (click)="close()">{{ 'modal.invoiceNoticeClose.text' | translate}} <span *ngIf="this.closeAfterXSeconds > 0">({{closeAfterXSeconds}})</span></button>
+</div>

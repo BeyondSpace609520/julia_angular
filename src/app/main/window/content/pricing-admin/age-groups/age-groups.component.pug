@@ -1,0 +1,40 @@
+app-loading.loading-bar(*ngIf="isGroupsLoading()")
+.sidebar
+    app-list-view.list-view(
+        [items]="groups",
+        [selected]="selected?.id",
+        (select)="selectItem($event)"
+    )
+        ng-template(let-item) {{item.name}} ({{item.from}} - {{item.to}})
+    .bottom-buttons
+        button.btn.btn-secondary(
+          (click)="newGroup()",
+          translate
+        ) BackEnd_WikiLanguage.generic_New
+        button.btn.btn-secondary(
+          *ngIf="canSaveForAll",
+          (click)="saveForAll()",
+          [ngbTooltip]="'BackEnd_WikiLanguage.AG_saveAllTooltip' | translate",
+          translate
+        ) BackEnd_WikiLanguage.generic_SaveForAll
+        button.btn.btn-secondary(
+          (click)="deleteGroup(selected)",
+          [disabled]="!selected",
+          translate
+        ) BackEnd_WikiLanguage.generic_Delete
+        i.mdi.mdi-alert.icon(
+            *ngIf="isWrongStartGroup || isWrongEndGroup || !!wrongSequenceGroup",
+            [ngbTooltip]="tipContent"
+        )
+            ng-template(#tipContent)
+                div(*ngIf="isWrongStartGroup", translate) BackEnd_WikiLanguage.AG_ValidationMissing0Start
+                div(*ngIf="isWrongEndGroup", translate) BackEnd_WikiLanguage.AG_ValidationMustEndAt17
+                div(*ngIf="wrongSequenceGroup")
+                    span(translate) BackEnd_WikiLanguage.AG_ValidationError
+                    span  {{wrongSequenceGroup.name}}
+content
+    ng-container(*ngIf="selected")
+        .flex-1
+            app-manage-group(#manageGroup, [group]="selected")
+            .button-controls
+                button.btn.btn-secondary(translate, [disabled]="!manageGroup.form.valid", (click)="save()") BackEnd_WikiLanguage.generic_Save

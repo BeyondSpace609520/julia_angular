@@ -1,0 +1,20 @@
+select.control.form-control.custom-select(
+  [(ngModel)]="lang",
+  (ngModelChange)="langChange.emit($event)",
+  [disabled]="disabled",
+)
+  option(
+      *ngFor="let option of languages",
+      [value]="option.value",
+      translate
+  ) {{option.name}}
+ng-content
+button.control.btn.btn-secondary(
+  (click)="new.emit(lang)",
+  [disabled]="disabled",
+  translate) BackEnd_WikiLanguage.generic_New
+button.control.btn.btn-secondary(
+  (click)="save.emit(lang)",
+  [disabled]="disabled",
+  translate
+) BackEnd_WikiLanguage.generic_Save

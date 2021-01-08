@@ -1,0 +1,30 @@
+.header
+  .form-control-label(translate) BackEnd_WikiLanguage.generic_AgeGroups
+  button.btn.btn-secondary.btn-sm((click)="add()", [disabled]="!canAdd") +
+  button.btn.btn-secondary.btn-sm((click)="remove()") -
+
+.items
+  .item(*ngFor="let age of ageGroups")
+    .form-group
+      input(
+        [(ngModel)]="age.from",
+        (ngModelChange)="onInputValidityChange()",
+        type="text",
+        appNumberInput,
+        required,
+        decimals="0",
+        min="0",
+        max="17",
+      )
+    .delimiter -
+    .form-group
+      input(
+        [(ngModel)]="age.to",
+        (ngModelChange)="onInputValidityChange()",
+        type="text",
+        appNumberInput,
+        required,
+        decimals="0",
+        min="0",
+        max="17"
+      )

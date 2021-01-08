@@ -1,0 +1,41 @@
+<section>
+  <h1>{{ 'BackEnd_WikiLanguage.CRF_SuccessTitle' | translate }}</h1>
+  <div [innerHtml]="'BackEnd_WikiLanguage.CRF_SuccessMessage' | translate | breakMultiline : 'paragraph'"></div>
+</section>
+<section>
+  <h2>{{ 'BackEnd_WikiLanguage.CRF_RecommendationTitle' | translate }}</h2>
+  <div [innerHtml]="'BackEnd_WikiLanguage.CRF_RecommendationDescription' | translate | breakMultiline : 'paragraph'"></div>
+</section>
+<section>
+  <form *ngIf="form" [formGroup]="form">
+    <h4>{{ 'BackEnd_WikiLanguage.CRF_RecommendationFormTitle' | translate }}</h4>
+    <fieldset class="input-fields">
+      <div class="form-group">
+        <label for="recommendationCompany">{{ 'BackEnd_WikiLanguage.CRF_RecommendationFormCompany' | translate }}</label>
+        <input id="recommendationCompany" class="form-control" type="text" formControlName="company">
+      </div>
+      <div class="form-group">
+        <label for="recommendationCity">{{ 'BackEnd_WikiLanguage.CRF_RecommendationFormCity' | translate }}</label>
+        <input id="recommendationCity" class="form-control" type="text" formControlName="city">
+      </div>
+      <div class="form-group">
+        <label for="recommendationContact">{{ 'BackEnd_WikiLanguage.CRF_RecommendationFormContact' | translate }}</label>
+        <input id="recommendationContact" class="form-control" type="text" formControlName="contact">
+      </div>
+    </fieldset>
+    <fieldset>
+      <h4 class="conditions-anchor">{{ 'BackEnd_WikiLanguage.CRF_RecommendationReward' | translate }}</h4>
+      <div class="options rewards">
+        <label
+          *ngFor="let voucher of vouchers"
+          class="option-box"
+          [class.selected]="selectedVoucher?.id === voucher.id"
+        >
+          <input formControlName="voucher" type="radio" [value]="voucher.id">
+          <span [innerHTML]="voucher.label | translate | breakMultiline"></span>
+        </label>
+      </div>
+      <div id="recommendation-conditions" class="conditions" [innerHtml]="'BackEnd_WikiLanguage.CRF_RecommendationRewardConditions' | translate | breakMultiline : 'paragraph'"></div>
+    </fieldset>
+  </form>
+</section>

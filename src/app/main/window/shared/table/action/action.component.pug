@@ -1,0 +1,12 @@
+div(
+  [style.display]="active ? 'block' : 'none'",
+  [ngbTooltip]="tooltip | translate",
+  [placement]="rightTooltip?'right-top':'left-top'",
+  container="body"
+)
+  button.btn.btn-link.btn-primary(
+    [disabled]="disabled",
+    (click)="clicked.emit($event)",
+  )
+    i.main-icon.mdi([ngClass]="'mdi-' + icon")
+    i.sub-icon.mdi(*ngIf="subIcon", [ngClass]="'mdi-' + subIcon")

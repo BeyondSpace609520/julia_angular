@@ -1,0 +1,58 @@
+<div class="input-group">
+  <div class="form-icon-left">
+    <i class="addon mdi mdi-calendar-blank"></i>
+    <input
+      type="text"
+      class="form-control date-input daterange-input with-icon"
+      #inputField
+      #dateModel="ngModel"
+      autocomplete="nope"
+      [(datepickerOpened)]="opened"
+      [datepickerRef]="datepicker"
+      [disabled]="disabled"
+      [id]="inputId"
+      [ngModel]="inputValue"
+      [pattern]="inputPattern"
+      [placeholder]="placeholder || ''"
+      [required]="mandatory"
+      [ngClass]="{'ng-dirty ng-invalid ng-touched': signAsInvalid}"
+      (ngModelChange)="setInputValue($event)"
+      (focus)="open()"
+      appCloseDatepickerOnOutsideClick
+      (keyup)="onInputKeyUp($event)"
+    />
+  </div>
+  <div
+    class="datepicker-wrap"
+    [class.top]="placement === 'top'"
+    [class.bottomLeft]="placement === 'bottomLeft'"
+    [class.bottomRight]="placement === 'bottomRight'"
+    [hidden]="!opened"
+  >
+    <ngb-datepicker
+      #datepicker
+      (select)="onChange($event)"
+      [dayTemplate]="customDay"
+      [maxDate]="maxDateStruct"
+      [minDate]="minDateStruct"
+    ></ngb-datepicker>
+    <ng-template #customDay let-currentDate="date" let-focused="focused" let-currentMonth="currentMonth" let-disabled="disabled">
+      <div
+        [attr.data-cy]="inputId + '-datepickerDay-' + (currentDate.month === currentMonth ? 'current' : 'outside') + '-' + currentDate.day"
+        class="btn btn-light custom-dp-day"
+        [class.outside]="currentDate.month !== currentMonth"
+        [class.text-muted]="disabled"
+        [class.focused]="focused"
+        [class.range]="isDateRangeFrom(currentDate) || isDateRangeTo(currentDate) || isDateRangeInside(currentDate) || isDateRangeHovered(currentDate)"
+        [class.faded]="isDateRangeHovered(currentDate) || isDateRangeInside(currentDate)"
+        [class.custom-dp-range]="isRangeDatePicker()"
+        [class.rangestart]="isDateRangeFrom(currentDate)"
+        [class.rangeend]="isDateRangeTo(currentDate)"
+        [class.hovered]="isDateRangeHovered(currentDate)"
+        [class.isToday]="isToday(currentDate)"
+        (mouseenter)="hoveredDate = convertDateStructToDate(currentDate)"
+        (mouseleave)="hoveredDate = null"
+      >{{ currentDate.day }}</div>
+    </ng-template>
+  </div>
+</div>

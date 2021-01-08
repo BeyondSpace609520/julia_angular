@@ -1,0 +1,10 @@
+{
+    "name": "easybooking-ui-kit",
+    "version": "0.1.0",
+    "dependencies": {
+        "rxjs-compat": "6.5.2",
+        "date-fns": "1.30.1",
+        "mobile-detect": "1.4.3",
+        "ngx-ui-switch": "8.1.0"
+    }
+}

@@ -1,0 +1,24 @@
+.flexbox-column
+    .sidebar
+        app-list-view.list-view(
+            [items]="list",
+            [selected]="selectedItemId",
+            (select)="selectItem($event)"
+        )
+            ng-template(let-item)
+                .item([ngClass]="{ highlight: !item.fromDate }") {{item.bookingNo}}
+                    ng-container(*ngIf="item.fromDate") , {{item.fromDate | ebDate:false}}
+        .form-group(*ngIf="customerService.advancedMode")
+            input(type="checkbox", id="showDeletedEntried", [formControl]="showDeletedEntries")
+            label(for="showDeletedEntried", translate) BackEnd_WikiLanguage.CCAB_ShowDeletedEntries
+    content
+        app-loading.loading-bar(*ngIf="isLoading | async")
+        app-tabs(
+            *ngIf="selected",
+            [settings]="tabSettings",
+            [(selected)]="activeTabId"
+        )
+        .tab-container(*ngIf="selected")
+            app-booking-detail.content(*ngIf="activeTabId == 'detail'", [item]="selected")
+            app-booking-rooms.content(*ngIf="activeTabId == 'rooms'", [item]="selected")
+            app-booking-log.content(*ngIf="activeTabId == 'log'", [item]="selected")

@@ -1,0 +1,4 @@
+.form-group([ngStyle]="{ float: direction }")
+    label(translate) {{label}}
+    select([(ngModel)]="ngModel")
+        option(*ngFor="let option of classificationOptions", [value]="option.value", translate) {{option.name}}

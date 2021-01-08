@@ -1,0 +1,62 @@
+app-table.with-tooltip([items]="items")
+  ng-template(
+    *ngFor="let field of fields",
+    #column,
+    [sortable]="field.name",
+    [label]="field.label",
+    [width]="field.width",
+    [widthIsPercent]="field.widthIsPercent",
+    let-item
+  )
+    ng-container([ngSwitch]="field.type")
+      ng-container(*ngSwitchCase="'date'") {{ item[field.name] | ebDate : false }}
+      ng-container(*ngSwitchDefault) {{ item[field.name] }}
+  ng-template(#column, label="BackEnd_WikiLanguage.MW_GuestData", let-item)
+    app-table-action(
+      [active]="item.completeGuestData",
+      tooltip="BackEnd_WikiLanguage.MW_TooltipGuestDataComplete",
+      [rightTooltip]="false",
+      icon="check"
+    )
+    app-table-action(
+      tooltip="BackEnd_WikiLanguage.MW_TooltipEditGuestdata",
+      [rightTooltip]="false",
+      icon="account-edit",
+      (click)="editGuest(item)"
+    )
+    app-table-action(
+      tooltip="BackEnd_WikiLanguage.MW_TooltipOpenBooking",
+      [rightTooltip]="false",
+      icon="open-in-app",
+      (click)="openBooking(item)"
+    )
+  ng-template(#column, label="BackEnd_WikiLanguage.MW_registrationForms", let-item)
+    app-table-action(
+      [active]="item.screwedRgExists",
+      tooltip="BackEnd_WikiLanguage.MW_connectivityProblemTooltip2",
+      [rightTooltip]="false",
+      icon="message-alert"
+    )
+    ng-container(*ngIf="!item.screwedRgExists")
+      ng-container(*ngFor="let reg of item.regForms")
+        app-table-action(
+          *ngIf="reg.errorMessage || reg.restoreInformation",
+          [tooltip]="reg.restoreInformation ? 'BackEnd_WikiLanguage.MW_connectivityProblemTooltip' : 'BackEnd_WikiLanguage.MW_connectivityProblemErrorMSG'",
+          [rightTooltip]="false",
+          icon="message-alert",
+          (click)="openRegForm(item, reg, reg.errorMessage)"
+        )
+        app-table-action(
+          *ngIf="!reg.errorMessage && !reg.restoreInformation",
+          [tooltip]="('BackEnd_WikiLanguage.MW_TooltipRegFormNumber' | translate)+' '+reg.number+' '+('BackEnd_WikiLanguage.MW_TooltipViewAndEdit' | translate)",
+          [rightTooltip]="false",
+          icon="pencil",
+          (click)="openRegForm(item, reg)"
+        )
+      app-table-action(
+        *ngIf="item.canCreateRegForm",
+        tooltip="BackEnd_WikiLanguage.MW_TooltipCreateRegform",
+        [rightTooltip]="false",
+        icon="file-plus",
+        (click)="openRegForm(item)"
+      )

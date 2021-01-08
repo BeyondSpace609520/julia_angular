@@ -1,0 +1,14 @@
+.general
+    app-tabs(
+        *ngIf="tabSettings.buttons.length",
+        [settings]="tabSettings",
+        [(selected)]="activeTabId"
+    )
+    content
+        app-interests(*ngIf="activeTabId === 'interests'")
+        app-travel(*ngIf="activeTabId === 'travel'")
+        app-arrival(*ngIf="activeTabId === 'arrival'")
+        app-identification(*ngIf="activeTabId === 'identification'")
+        app-guest-rating(*ngIf="activeTabId === 'guest-rating'")
+        app-sources(*ngIf="activeTabId === 'sources'")
+        app-gdpr(*ngIf="activeTabId === 'gdpr'")

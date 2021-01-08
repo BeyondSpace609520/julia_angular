@@ -1,0 +1,6 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+div {{bodyText}}
+form
+  .form-group
+    label(translate) BackEnd_WikiLanguage.A_EMail
+    input([formControl]="email")

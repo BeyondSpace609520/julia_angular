@@ -1,0 +1,10 @@
+app-tabs(
+  *ngIf="tabSettings.buttons.length",
+  [settings]="tabSettings",
+  [(selected)]="activeTabId"
+)
+app-category-images-selector.image-selector(
+  #picturesComponent,
+  [params]="{ source: activeTabId }",
+  [showTagField]="true"
+)

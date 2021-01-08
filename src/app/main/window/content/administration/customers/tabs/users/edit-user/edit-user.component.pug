@@ -1,0 +1,19 @@
+form(*ngIf="form", [formGroup]="form")
+    .form-group
+        label(translate) BackEnd_WikiLanguage.RCAU_UserName
+        input(formControlName="username")
+    .form-check
+        label(translate) BackEnd_WikiLanguage.generic_Active
+        input(type="checkbox", formControlName="active")
+
+label
+    | {{'BackEnd_WikiLanguage.RCAU_LastLoggedInOn' | translate}}
+    | {{user.lastLogin | ebDate}}
+    | {{'BackEnd_WikiLanguage.generic_From' | translate}}
+    | {{user.lastIP}}
+
+.bottom-buttons
+    button.btn.btn-secondary((click)="save()", translate) BackEnd_WikiLanguage.generic_Save
+    button.btn.btn-secondary.ml-3((click)="delete()", translate) BackEnd_WikiLanguage.generic_Delete
+    button.btn.btn-secondary.ml-3((click)="resetPassword()", translate) BackEnd_WikiLanguage.resetPassword
+    i.mdi.mdi-check.tick(*ngIf="showTick")

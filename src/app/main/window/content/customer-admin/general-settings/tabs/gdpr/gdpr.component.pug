@@ -1,0 +1,85 @@
+form(*ngIf="form", [formGroup]="form")
+  .form-content
+    h2 {{ 'BackEnd_WikiLanguage.guestAdmin' | translate }}:
+    .form-check
+      input(
+        type="checkbox",
+        formControlName="hideAnonymizedGuests",
+        id="general-settigs-hide-anonymized-guest"
+        )
+      label(
+        for="general-settigs-hide-anonymized-guest",
+        translate
+        ) BackEnd_WikiLanguage.showAnonymizedGuests
+    .form-check.with-info
+      input(
+        type="checkbox",
+        formControlName="autoAnonymize",
+        id="general-settings-auto-anonymize"
+        )
+      label(
+        for="general-settings-auto-anonymize",
+        translate
+        ) BackEnd_WikiLanguage.autoAnonymizeActive
+      i.mdi.mdi-information.mdi-18px.text-primary(
+        [ngbTooltip]="'BackEnd_WikiLanguage.autoAnonymizeTooltip1' | translate",
+        placement="right"
+        )
+    section.auto-anonymize-details(*ngIf="autoAnonymize")
+      .form-group.auto-anonymization-days
+        label(
+          for="general-settings-auto-anonymization-days",
+          translate
+          ) BackEnd_WikiLanguage.autoAnonymizeDaysLabel
+        input(
+          type="text",
+          formControlName="autoAnonymizationDays",
+          appNumberInput,
+          [autoFixErrors]="true",
+          [decimals]="0",
+          [min]="180",
+          id="general-settings-auto-anonymization-days"
+          )
+        span(translate) BackEnd_WikiLanguage.autoAnonymizeDays
+      .form-check
+        input(
+          type="checkbox",
+          formControlName="autoAnonymizeEmailToGuest",
+          id="general-settings-auto-anonymize-email"
+          )
+        label(
+          for="general-settings-auto-anonymize-email",
+          translate
+          ) BackEnd_WikiLanguage.autoAnonymizeEmailToGuest
+      .form-group.mt-5.with-info
+        label(translate) BackEnd_WikiLanguage.autoAnonymizeDownloadButtonLabel
+        i.mdi.mdi-information.mdi-18px.text-primary(
+          [ngbTooltip]="'BackEnd_WikiLanguage.autoAnonymizeTooltip2' | translate",
+          placement="right"
+          )
+      .form-group
+        button.control.btn.btn-secondary(
+          (click)="downloadGuestList()",
+          translate
+        ) BackEnd_WikiLanguage.autoAnonymizeDownloadButton
+    h2(translate) iCalendar:
+    .form-check.with-info
+      input(
+        type="checkbox",
+        formControlName="anonymizeIcal",
+        id="general-settigs-anonymize-ical"
+        )
+      label(
+        for="general-settigs-anonymize-ical",
+        translate
+        ) BackEnd_WikiLanguage.anonymizeGuestData
+      i.mdi.mdi-information.mdi-18px.text-primary(
+        [ngbTooltip]="'BackEnd_WikiLanguage.infoAnonymizeIcal' | translate",
+        placement="right"
+        )
+  .form-navigation
+    button.control.btn.btn-secondary(
+      (click)="saveForm()",
+      translate
+    ) BackEnd_WikiLanguage.generic_Save
+app-loading.loading-bar(*ngIf="isLoading | async")

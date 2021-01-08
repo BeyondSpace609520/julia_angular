@@ -1,0 +1,44 @@
+.sidebar
+    app-list-view.list-view(
+        [items]="list",
+        [selected]="selectedItemId",
+        (select)="selectItem($event.id)"
+    )
+        ng-template(let-item)
+            span(translate) {{item.name}}
+.content
+    ng-container(*ngIf="selectedItemId === 'leader' && group.leader")
+        app-edit-guest(
+            [guest]="group.leader",
+            [canEdit]="!regFormService.registrationForm?.arrived",
+            [arrived]="arrived",
+            [isGroupGuest]="true",
+            [mainGuestId]="group.leader.id"
+        )
+        button.btn.btn-secondary(
+            (click)="changeLeader(group.leader)",
+            [disabled]="regFormService.registrationForm?.arrived",
+            translate
+        ) BackEnd_WikiLanguage.MW_OtherTourLeader
+
+    ng-container(*ngIf="selectedItemId === 'guest'")
+        .group-guests
+            th
+            th(translate) BackEnd_WikiLanguage.MW_GuestType
+            th(translate) BackEnd_WikiLanguage.MW_SourceCountry
+            th
+                label(translate) BackEnd_WikiLanguage.MW_Count
+                i.mdi.mdi-information([ngbTooltip]="(isAVSProvider ? 'BackEnd_WikiLanguage.MW_TooltipPersonCountExcl' : 'BackEnd_WikiLanguage.MW_TooltipPersonCount') | translate")
+            ng-container(*ngFor="let guest of guests")
+                button.delete-button.btn.btn-sm.btn-secondary((click)="clear(guest)")
+                    i.mdi.mdi-delete
+                .tax-field.form-group
+                    select.form-control(*ngIf="taxTypes.length", [(ngModel)]="guest.taxTypeId")
+                        option(*ngFor="let option of taxTypes", [value]="option.id", translate) {{option.value}}
+                .country-field.form-group
+                    select.form-control([(ngModel)]="guest.countryId")
+                        option(*ngFor="let option of countries", [value]="option.value", translate) {{option.name}}
+                .count-field.form-group
+                    input([(ngModel)]="guest.count")
+.button-controls
+    button.btn.btn-primary((click)="onSave()", [disabled]="regFormService.registrationForm?.departed", translate) BackEnd_WikiLanguage.generic_Save

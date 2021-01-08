@@ -1,0 +1,29 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "resolveJsonModule": true,
+    "strictNullChecks": true,
+    "esModuleInterop": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "paths": {
+      "@/*": ["src/*"],
+      "easybooking-ui-kit/*": ["src/ui-kit/*"]
+    },
+    "lib": [
+      "es2018",
+      "dom"
+    ]
+  }
+}

@@ -1,0 +1,47 @@
+@import '_mixins'
+@import '_variables'
+
+form
+    display: flex
+    width: 100%
+    white-space: nowrap
+    +px(3)
+    +m(0)
+
+.form-group
+    +my(auto)
+    @include make-col(12)
+    @include media-breakpoint-up(sm)
+        @include make-col(2)
+
+.column:not(:empty)
+    padding: 0.5em
+    min-width: 100px
+
+.refresh-button
+    @include media-breakpoint-down(lg)
+        @include make-col(12)
+        margin-top: unset
+    +my(auto)
+    button
+        +mb(2)
+        @include media-breakpoint-up(lg)
+            +mb(0)
+
+.search-button
+    +my(auto)
+    @include media-breakpoint-down(md)
+        margin-top: unset
+        width: 100%
+
+.checkbox-list
+    +my(auto)
+
+.middleslot
+    display: flex
+    +my(auto)
+    @include make-col-ready()
+    @include media-breakpoint-up(md)
+        @include make-col-auto()
+
+

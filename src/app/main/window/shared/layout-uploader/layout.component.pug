@@ -1,0 +1,8 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+content
+  img.image(*ngIf="imageSrc", [src]="imageSrc")
+  .controls
+    button.btn.btn-secondary((click)="upload()")
+      i.mdi.mdi-upload
+    button.btn.btn-secondary((click)="remove()")
+      i.mdi.mdi-close-circle

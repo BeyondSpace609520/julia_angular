@@ -1,0 +1,7 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+app-manage-item(
+  #manage,
+  [item]="null",
+  [extraFields]="false",
+  (formStateChange)="formStateChange.emit($event)"
+)

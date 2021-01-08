@@ -1,0 +1,15 @@
+form(*ngIf="form", [formGroup]="form")
+  .form-check
+    input(type="checkbox", formControlName="active", id="generalsettings-active")
+    label(for="generalsettings-active", translate) BackEnd_WikiLanguage.generic_Active
+  br
+  .form-check
+    input(type="checkbox", formControlName="share", id="generalsettings-share")
+    label(for="generalsettings-share", translate) BackEnd_WikiLanguage.GR_grShareRatings
+  .form-check
+    input(type="checkbox", formControlName="showNetwork", id="generalsettings-showNetwork")
+    label(for="generalsettings-showNetwork", translate) BackEnd_WikiLanguage.GR_grUseNetworkRatings
+  .form-check
+    input(type="checkbox", formControlName="showBooking", id="generalsettings-showBooking")
+    label(for="generalsettings-showBooking", translate) BackEnd_WikiLanguage.GR_grShowRatingInBookingEdit
+app-loading.loading-bar(*ngIf="isLoading | async")

@@ -1,0 +1,65 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+form.row(*ngIf="pricing && form", [formGroup]="form")
+  .col-8
+    .caterings(*ngIf="hasCaterings")
+      label(translate) BackEnd_WikiLanguage.CATER_Header
+      app-caterings-table(
+        #cateringsTable,
+        [pricing]="pricing"
+      )
+    .row.dropdowns
+      .col.form-group
+        label(translate) BackEnd_WikiLanguage.EP_PricingScheme
+        select.form-control.custom-select(formControlName="pricingSchemeId")
+          option(*ngFor="let scheme of pricingLangSchemes", [ngValue]="scheme.value") {{scheme.name}}
+      .col.form-group(*ngIf="hasCateringsScheme")
+        label(translate) BackEnd_WikiLanguage.CATER_Header
+        i.exclamation.mdi.mdi-alert-circle(
+          [ngbTooltip]="'BackEnd_WikiLanguage.EP_fullPayer_tooltip' | translate"
+        )
+        select.form-control.custom-select(formControlName="cateringScheme")
+          ng-container(*ngFor="let catering of cateringSchemes")
+            option([ngValue]="catering.typeId")
+              | {{pricesService.getCateringName(catering) | async}}
+
+    app-persons-table(
+      #personsTable,
+      [pricing]="pricing",
+      [displayMode]="personsDisplayMode",
+      [fullPayers]="form.get('fullPayers').value",
+      [pricingSchemeId]="form.get('pricingSchemeId').value",
+      [stdPricePosition]="form.get('stdPricePosition').value",
+      [cateringTypeId]="hasCateringsScheme ? form.get('cateringScheme').value : 0"
+    )
+  .col-4
+    ng-container(*ngTemplateOutlet="additionalInfoTemplate; context: outletContext")
+    app-age-groups(
+      *ngIf="showAgeGroups",
+      [pricing]="pricing",
+      [canReset]="canResetGroups",
+      (resetGroups)="resetGroups()"
+    )
+    //- TODO avoid direct source type checking
+    .grid-area
+      .form-group(*ngIf="source.type === 'category' && cleanUpChargeActive")
+        label(translate) BackEnd_WikiLanguage.CTD_CleanupCharge
+        input(type="number", min="1", max="90", formControlName="finalClean")
+      .form-group
+        label(translate) BackEnd_WikiLanguage.EP_MinPersons
+        input(type="number", min="1", max="90", formControlName="minPersons")
+      .form-group
+        label(translate) BackEnd_WikiLanguage.EP_MaxPersons
+        input(type="number", min="1", max="90", formControlName="maxPersons")
+      .form-group(*ngIf="!isRoomLevel")
+        label(translate) BackEnd_WikiLanguage.EP_StdPricePosition
+        input(type="number", min="1", max="90", formControlName="stdPricePosition")
+      .form-group(*ngIf="!isRoomLevel")
+        label(translate) BackEnd_WikiLanguage.EP_fullPayer
+        input(type="number", min="0", formControlName="fullPayers")
+      .form-group(*ngIf="isRoomLevel")
+        label(translate) BackEnd_WikiLanguage.EP_childUnderXForfree
+        input(type="number", min="0", max="17", formControlName="childrenFree")
+.button-controls
+  button.btn.btn-secondary((click)="savePricing(saveForAllByDefault)", translate)
+    | BackEnd_WikiLanguage.generic_Save
+  ng-container(*ngTemplateOutlet="extraActionsTemplate; context: outletContext")

@@ -1,0 +1,46 @@
+form(*ngIf="form", [formGroup]="form")
+    .container
+        .row
+            .col.grid-area
+                .form-group
+                    label(translate) BackEnd_WikiLanguage.NEP_EntityNumber
+                    input(formControlName="roomNo")
+                .form-group
+                    label(translate) BackEnd_WikiLanguage.ETD_EntityGroup
+                    select(formControlName="group")
+                        option(*ngFor="let item of roomCategories", [value]="item.value", translate) {{item.name}}
+            .col.grid-area
+                .form-group
+                    label(translate) BackEnd_WikiLanguage.ETD_SortOrder
+                    input(formControlName="sortOrder")
+                .form-group(*ngIf="calendarLink")
+                    label(translate) BackEnd_WikiLanguage.icalLabel
+                    .d-flex
+                        input(
+                            #calendarLinkInput,
+                            (click)="calendarLinkInput.select()",
+                            readonly,
+                            [value]="calendarLink",
+                            triggers="click", [autoClose]="'outside'",
+                            [ngbTooltip]="'BackEnd_WikiLanguage.icalTooltip' | translate"
+                        )
+                        i.mdi.mdi-information.mdi-18px.text-primary([ngbTooltip]="'BackEnd_WikiLanguage.icalTooltipInfoIcon' | translate", placement="right")
+                .form-group.text-right Id: {{details.id}}
+            .col(*ngIf="hasAdvancedPricing")
+                .child-rooms(*ngIf="showChildsRoom; else childRoomsReplacement")
+                    label.form-control-label(translate) BackEnd_WikiLanguage.ETD_ChildRooms
+                    .list
+                        .item.form-check(*ngFor="let room of form.get('childRooms').controls; let i = index")
+                            input(type="checkbox", [id]="'childRoom'+i", [formControl]="room")
+                            label(translate, [for]="'childRoom'+i") {{details.childRooms[i].uniqueNo}}
+                ng-template(#childRoomsReplacement)
+                    .parent-rooms
+                        span(translate) BackEnd_WikiLanguage.ETD_ChildOfRoom
+                        span {{details.parentEntity}}
+        .form-check.pl-3
+            input(type="checkbox", formControlName="notBookable", id="detail-notBookable-checkbox")
+            label(for="detail-notBookable-checkbox", translate) BackEnd_WikiLanguage.ETD_AdminOnly
+            i.mdi.mdi-information.mdi-18px.text-primary([ngbTooltip]="'BackEnd_WikiLanguage.ETD_AdminOnlyTooltipInfoIcon' | translate")
+        app-shared-room-features(*ngIf="hasAdvancedPricing && details", #roomFeatures [data]="details.features")
+.controls
+    button.btn.btn-secondary((click)="save()", translate) BackEnd_WikiLanguage.generic_Save 

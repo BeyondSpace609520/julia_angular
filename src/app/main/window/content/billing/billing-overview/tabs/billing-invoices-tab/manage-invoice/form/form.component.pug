@@ -1,0 +1,72 @@
+form.row.grid-area(*ngIf="form", [formGroup]="form")
+  .col-md-4
+    .form-group
+      label(translate) BackEnd_WikiLanguage.EBP_Salutation
+      select(formControlName="salutation")
+        option(translate, disabled, [value]="null") general.selectOne.text
+        option(
+          *ngFor="let option of salutations",
+          [value]="option.value",
+          translate
+        ) {{option.name}}
+    .form-group(*ngIf="!isCompanyType")
+      label(translate) BackEnd_WikiLanguage.EBP_Title
+      input(formControlName="title")
+    .form-group
+      label(translate) BackEnd_WikiLanguage.EBP_FirstName
+      input(formControlName="firstName")
+    .form-group
+      label.link((click)="openChooseGuestModal()", translate) BackEnd_WikiLanguage.EBP_LastName
+      input(formControlName="lastName", (keydown)="searchGuest($event)")
+    .form-group(*ngIf="isCompanyType")
+      label(translate) BackEnd_WikiLanguage.generic_Company
+      input(formControlName="company")
+    .form-group
+      label(translate) BackEnd_WikiLanguage.EBP_EMail
+      input(formControlName="email")
+    .form-group
+      label(translate) BackEnd_WikiLanguage.EBP_Address
+      input(formControlName="address")
+    .form-group
+      label(translate) BackEnd_WikiLanguage.EBP_PostCodeCity
+      .row
+        .col
+          input(formControlName="postCode")
+        .col
+          input(formControlName="city")
+  .col-md-4
+    .form-group
+      label(translate) BackEnd_WikiLanguage.SI_InvoiceNumberLabel
+      input(formControlName="billNo")
+    .form-group
+      label(translate) BackEnd_WikiLanguage.SI_CustomerRegNoLabel
+      .input-group
+        input(formControlName="regNo")
+        permission.input-group-append(id="seeRegistrationNumbers", [dontShow]="invoice && invoice.bookingId === null", [condition]="invoice && invoice.bookingId !== null")
+          button.btn.btn-secondary((click)="openRegForms()", [ngbTooltip]="'BackEnd_WikiLanguage.MW_InvoiceTooltip' | translate")
+            i.mdi.mdi-account
+    .form-group
+      label(translate) BackEnd_WikiLanguage.SI_CustomerAccountNoLabel
+      input(formControlName="accountNo")
+    .form-group
+      label(translate) BackEnd_WikiLanguage.CCAD_TaxNo
+      input(formControlName="taxNo")
+    .form-group
+      label(translate) BackEnd_WikiLanguage.EBP_Locale
+      select(formControlName="locale")
+        option(*ngFor="let lang of locals", [value]="lang.value", translate) BackEnd_WikiLanguage.{{lang.name}}
+    .form-group
+      label(translate) BackEnd_WikiLanguage.EBP_Country
+      select(formControlName="country")
+        option(*ngFor="let c of countries", [value]="c.value", [disabled]="c.disabled") {{c.name}}
+  .col-md-4
+    .form-group
+      label(translate) BackEnd_WikiLanguage.IE_InvoiceDate
+      app-datepicker-input([date]="form.get('date').value", (dateChange)="form.get('date').setValue($event)", [inputId]="'invoice-date'")
+    .form-group
+      label(translate) BackEnd_WikiLanguage.IE_InvoiceFromDate
+      app-datepicker-input([date]="form.get('fromDate').value", (dateChange)="form.get('fromDate').setValue($event)", [inputId]="'invoice-from-date'")
+    .form-group
+      label(translate) BackEnd_WikiLanguage.IE_InvoiceDueDate
+      app-datepicker-input([date]="form.get('untilDate').value", (dateChange)="form.get('untilDate').setValue($event)", [inputId]="'invoice-due-date'")
+    button.new-recipient.btn.btn-secondary((click)="resetForm()", translate) BackEnd_WikiLanguage.BW_newInvoiceRcpBTN

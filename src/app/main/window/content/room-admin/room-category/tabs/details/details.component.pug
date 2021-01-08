@@ -1,0 +1,18 @@
+form.form.grid-area(*ngIf="form", [formGroup]="form")
+  .borderbottom
+    .form-group
+        label(translate) BackEnd_WikiLanguage.EGN_SystemValue
+        .d-flex
+          input(formControlName="systemText")
+          label.id Id: {{category.id}}
+    .form-group
+      label(translate) BackEnd_WikiLanguage.EG_SystemSortOrder
+      input(formControlName="sortOrder")
+  .langs
+    app-category-lang-form.lang-section(
+      *ngFor="let locale of locals; let i = index",
+      [label]="'BackEnd_WikiLanguage.'+locale.name | translate",
+      [form]="form.get('langs').controls[i]"
+    )
+  .buttons
+    button.btn.btn-secondary((click)="save()", [disabled]="!form.valid", translate) BackEnd_WikiLanguage.generic_Save

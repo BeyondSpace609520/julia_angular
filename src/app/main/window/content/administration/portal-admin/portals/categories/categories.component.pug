@@ -1,0 +1,17 @@
+.categories-list
+  ng-container(*ngIf="labels && categories")
+    ng-container(*ngFor="let label of labels")
+      .form-check(*ngIf="categories[label.value] as category")
+        input(type="checkbox", [(ngModel)]="category.active")
+        label((click)="selectItem({ label: label.name, category: category })", translate) {{ label.name }}
+
+.category
+  ng-container(*ngIf="selected")
+    h4 {{ selected.label }}
+    .controls
+      button.btn.btn-secondary((click)="uploadImage(selected.category)", translate) BackEnd_WikiLanguage.generic_Upload
+      button.btn.btn-secondary((click)="clearImage(selected.category)", translate) BackEnd_WikiLanguage.generic_Clear
+    img(*ngIf="imageSrc", [src]="imageSrc")
+
+.controls
+  button.btn.btn-secondary((click)="save()", translate) BackEnd_WikiLanguage.generic_Save

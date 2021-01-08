@@ -1,0 +1,24 @@
+<app-loading class="loading-bar" *ngIf="isLoading | async"></app-loading>
+<app-new-pricing
+  *ngIf="formState.view === 'newPricing'"
+  [contact]="data.contact"
+  [validUntilDate]="data.validUntil"
+></app-new-pricing>
+<app-payment-selector
+  *ngIf="formState.view === 'paymentSelector'"
+  [data]="data"
+  [(formData)]="renewalFormData"
+  (formStateChange)="updateFormState($event)"
+></app-payment-selector>
+<app-sepa-authorization
+  *ngIf="formState.view === 'sepa'"
+  [(formData)]="renewalFormData.sepa"
+  (formStateChange)="updateFormState({valid: $event})"
+  [errorMessage]="sepaErrorMessage"
+></app-sepa-authorization>
+<app-success-page
+  *ngIf="formState.view === 'success'"
+  [(formData)]="recommendationFormData"
+  (formStateChange)="updateFormState({valid: $event})"
+></app-success-page>
+<app-error-page *ngIf="formState.view === 'error'"></app-error-page>

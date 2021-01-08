@@ -1,0 +1,10 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+.form-group
+  label(translate) BackEnd_WikiLanguage.BW_InvoiceDetailBillTextLabel
+  input([formControl]="invoiceText")
+.form-group
+  label(translate) BackEnd_WikiLanguage.BW_InvoiceDetailTotalGrossLabel
+  input(readonly, [value]="detail.totalGross")
+.form-group
+  label(translate) BackEnd_WikiLanguage.BW_InvoiceDetailProductLabel
+  input(readonly, [value]="detail.insuranceProductName")

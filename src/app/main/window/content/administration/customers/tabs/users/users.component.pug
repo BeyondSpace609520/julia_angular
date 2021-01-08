@@ -1,0 +1,10 @@
+.sidebar
+    app-list-view.list-view(
+        [items]="users",
+        [selected]="selectedUser",
+        (select)="selectedUser = $event"
+    )
+        ng-template(let-item) {{item.username}}
+    button.save-button.btn.btn-secondary((click)="newUser()", translate) BackEnd_WikiLanguage.generic_New
+content
+    app-edit-user(*ngIf="selectedUser", [user]="selectedUser", (update)="load()")

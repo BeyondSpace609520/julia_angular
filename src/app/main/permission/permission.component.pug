@@ -1,0 +1,7 @@
+.content-wrap(*ngIf="!hidden")
+  ng-content
+.tooltip(
+  *ngIf="!disabled",
+  [ngbTooltip]="tooltip",
+  placement="right"
+)

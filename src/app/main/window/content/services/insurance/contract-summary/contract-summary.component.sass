@@ -1,0 +1,22 @@
+@import "_variables"
+@import "_mixins"
+
+:host
+    position: relative
+    display: block
+
+.bg-form
+    padding: 1rem 1rem 0rem 5rem
+    .form-group
+        @include media-breakpoint-up(md)
+            @include make-col(4)
+        select
+            width: 90px
+
+
+#total
+    background: #CCCCCC
+    font-weight: bold
+
+.right // TODO use global .numeric class
+    text-align: right

@@ -1,0 +1,34 @@
+app-table(
+  *ngIf="ageGroupsForm", 
+  [items]="ageService.sortedAgeGroups",
+  (select)="selectGroup($event, item)",
+  clickable="true"
+)
+  ng-template(#column, 
+    [label]="'BackEnd_WikiLanguage.generic_AgeGroups'",
+    let-item)
+    input.editable-cell(
+      type="text",
+      [formControl]="getGroupForm(item).get('from')"
+    )
+    span - 
+    input.editable-cell(
+      type="text",
+      [formControl]="getGroupForm(item).get('to')"
+    )
+  ng-template(#column, 
+    [label]="'BackEnd_WikiLanguage.LM_PercDiscount'",
+    let-item)
+    span (
+    input.editable-cell(
+      type="text",
+      [formControl]="getGroupForm(item).get('percDiscount')"
+    )
+    span %)
+.buttons
+  button.btn.btn-secondary((click)="addGroup()") +
+  button.btn.btn-secondary(*ngIf="canReset",
+    (click)="resetGroups.emit()",
+    [ngbTooltip]="'BackEnd_WikiLanguage.generic_MessageResetPricingAgeGroups' | translate"
+  ) |
+  button.btn.btn-secondary([disabled]="!selectedGroup", (click)="selectedGroup && removeGroup(selectedGroup)") -

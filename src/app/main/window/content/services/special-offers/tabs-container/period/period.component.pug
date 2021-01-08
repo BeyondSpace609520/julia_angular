@@ -1,0 +1,27 @@
+app-list-view.list-view(
+  [items]="periods",
+  [selected]="selectedPeriodId",
+  (select)="selectItem($event)"
+)
+  ng-template(let-item)
+    span.not-child(*ngIf="!item.isChild") *
+    ng-container(*ngTemplateOutlet="itemTemplate; context: { $implicit: item }")
+
+content(*ngIf="selected")
+  app-loading.loading-bar(*ngIf="isLoading | async")
+  h3.title
+    ng-container(*ngTemplateOutlet="itemTemplate; context: { $implicit: selected, hasStar: false }")
+    span.not-child(*ngIf="!selected.isChild") *
+  ng-container(*ngIf="details")
+    app-prices.prices(
+      [prices]="details.prices",
+      [ageGroups]="details.ageGroups",
+      [individualCatering]="offer.individualCatering"
+    )
+    app-age-groups.age-groups([(ageGroups)]="details.ageGroups")
+    .controls
+      button.btn.btn-secondary((click)="save(selected, details)", translate) BackEnd_WikiLanguage.generic_Save
+      button.btn.btn-secondary(*ngIf="!selected.isChild", (click)="reset(selected)", translate) BackEnd_WikiLanguage.generic_Reset
+
+ng-template(#itemTemplate, let-item)
+  span {{item.fromWeekDay.label | translate}}, {{item.fromDate | ebDate:false}} - {{item.untilWeekDay.label | translate}}, {{item.untilDate | ebDate:false}}

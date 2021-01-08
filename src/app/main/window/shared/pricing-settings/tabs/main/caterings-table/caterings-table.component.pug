@@ -1,0 +1,31 @@
+app-table(*ngIf="caterings && displayPrice", [items]="pricing.caterings")
+  ng-template(#column, label="BackEnd_WikiLanguage.CATER_Header", let-catering) {{pricesService.getCateringName(catering) | async}}
+
+  ng-template(#column, [label]="('BackEnd_WikiLanguage.generic_Active' | translate)+'/Std'", let-i="rowIndex")
+    ng-container(*ngIf="caterings.controls[i].get('active') as activeControl")
+      input(type="checkbox", [formControl]="activeControl")
+      input(type="radio", name="displayPrice", [attr.disabled]="activeControl.value?null:''", [value]="i", [formControl]="displayPrice")
+
+  ng-template(#column, label="BackEnd_WikiLanguage.generic_AdultPrice", let-i="rowIndex")
+    input.editable-cell(
+      AutoSizeInput,
+      [setParentWidth]="true",
+      [includePadding]="false",
+      type="text",
+      appNumberInput,
+      [formControl]="caterings.controls[i].get('adultPrice')"
+    )
+    span(*ngIf="!visibleAges || (displayPrice.value === i && percentageOutOfRoomPrice)") %
+
+  ng-container(*ngFor="let group of ageService.sortedAgeGroups")
+    ng-template(#column, *ngIf="visibleAges", [label]="group | ageGroupFormat", let-i="rowIndex")
+      input.editable-cell(
+        *ngIf="createNewControl(i, group) && (displayPrice.value !== i || !percentageOutOfRoomPrice)",
+        AutoSizeInput,
+        [setParentWidth]="true",
+        [includePadding]="false",
+        type="text",
+        appNumberInput,
+        [readonly]="displayPrice.value === i",
+        [formControl]="getGroupForm(i, group)"
+      )

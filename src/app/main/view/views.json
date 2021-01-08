@@ -1,0 +1,800 @@
+[
+  {
+    "id": "channelAvailabilityAdmin",
+    "label": "Channelmanager",
+    "contentSource": {
+      "window": {
+        "moduleId": "channelManager",
+        "selector": "app-channel-manager"
+      },
+      "academyScreenId": "channelmanager"
+    }
+  },
+  {
+    "id": "enquiryPool",
+    "label": "BackEnd_WikiLanguage.ORPEA_OfferRequestPoolEventAdmin",
+    "contentSource": {
+      "window": {
+        "moduleId": "enquiryPool",
+        "selector": "app-enquiry-pool"
+      },
+      "initial": {
+        "width": 1300,
+        "height": 640
+      },
+      "academyScreenId": "enquiryPool"
+    }
+  },
+  {
+    "id": "channelStatistics",
+    "label": "BackEnd_WikiLanguage.validUntilSTAT_validUntilReservationsTitle",
+    "contentSource": {
+      "window": {
+        "moduleId": "statistics",
+        "selector": "app-statistics"
+      }
+    }
+  },
+  {
+    "id": "calendarHTML",
+    "label": "BackEnd_WikiLanguage.calendarMenuItem",
+    "permission": "seeHtmlCalendar",
+    "contentSource": {
+      "window": {
+        "moduleId": "calendarHTML",
+        "selector": "app-calendar-html"
+      },
+      "initial": {
+        "state": "maximized"
+      },
+      "academyScreenId": "roomplan"
+    }
+  },
+  {
+    "id": "calendarSettings",
+    "label": "BackEnd_WikiLanguage.roomplanSettingsTitle",
+    "permission": "seeHtmlCalendar",
+    "contentSource": {
+      "window": {
+        "moduleId": "calendarSettings",
+        "selector": "app-calendar-settings"
+      },
+      "initial": {
+        "width": 540,
+        "height": 600
+      }
+    }
+  },
+  {
+    "id": "companyCustomerAdmin",
+    "label": "BackEnd_WikiLanguage.TLM_CompanyCustomerAdmin",
+    "contentSource": {
+      "window": {
+        "moduleId": "companyCustomerAdmin",
+        "selector": "app-company-customer-admin"
+      },
+      "initial": {
+        "width": 1110,
+        "height": 625
+      },
+      "academyScreenId": "customerAdmin"
+    }
+  },
+  {
+    "id": "interactionReport",
+    "label": "BackEnd_WikiLanguage.interactionReport_TAB",
+    "contentSource": {
+      "window": {
+        "moduleId": "guestInteraction",
+        "selector": "app-guest-interaction"
+      },
+      "initial": {
+        "width": 1100,
+        "height": 500
+      },
+      "academyScreenId": "guestInteraction"
+    }
+  },
+  {
+    "id": "guestRegistration",
+    "label": "BackEnd_WikiLanguage.Meldewesen",
+    "permission": "guestRegistration",
+    "contentSource": {
+      "window": {
+        "moduleId": "guestRegistration",
+        "selector": "app-guest-registration"
+      },
+      "initial": {
+        "width": 1077,
+        "height": 550
+      },
+      "academyScreenId": "registrationFormService"
+    }
+  },
+  {
+    "id": "guestMap",
+    "label": "BackEnd_WikiLanguage.TLM_guestMap",
+    "permission": "guestMap",
+    "contentSource": {
+      "window": {
+        "moduleId": "guestMap",
+        "selector": "app-guest-map"
+      },
+      "initial": {
+        "width": 860,
+        "height": 500
+      },
+      "academyScreenId": "guestMap"
+    }
+  },
+  {
+    "id": "billingWorkbench",
+    "label": "BackEnd_WikiLanguage.BW_BillingWorkbenchMenuItem",
+    "contentSource": {
+      "window": {
+        "moduleId": "BillingOverviewModule",
+        "selector": "app-billing-overview"
+      },
+      "initial": {
+        "width": 1150,
+        "height": 565
+      },
+      "academyScreenId": "billingOverview"
+    }
+  },
+  {
+    "id": "iframeReports",
+    "label": "BackEnd_WikiLanguage.reportsAndLists_MenuItem",
+    "contentSource": {
+      "window": {
+        "moduleId": "reportAndListModule",
+        "selector": "app-report-and-list"
+      },
+      "initial": {
+        "width": 1140,
+        "height": 480
+      },
+      "academyScreenId": "reports"
+    }
+  },
+  {
+    "id": "iframeAddGuestPayments",
+    "label": "BackEnd_WikiLanguage.TLM_addGuestPayments",
+    "contentSource": {
+      "window": {
+        "moduleId": "addGuestPaymentsModule",
+        "selector": "app-add-guest-payments"
+      },
+      "initial": {
+        "width": 860,
+        "height": 515
+      },
+      "academyScreenId": "addGuestPayments"
+    }
+  },
+  {
+    "id": "productAdmin",
+    "label": "BackEnd_WikiLanguage.PA_Products",
+    "contentSource": {
+      "window": {
+        "moduleId": "productAdmin",
+        "selector": "app-product"
+      },
+      "initial": {
+        "width": 1190,
+        "height": 610
+      },
+      "academyScreenId": "products"
+    }
+  },
+  {
+    "id": "specialOffers",
+    "label": "BackEnd_WikiLanguage.PAT_SpecialOffers",
+    "contentSource": {
+      "window": {
+        "moduleId": "specialOffers",
+        "selector": "app-special-offers"
+      },
+      "initial": {
+        "width": 1060,
+        "height": 550
+      },
+      "academyScreenId": "specialOffers"
+    }
+  },
+  {
+    "id": "insuranceProductWorkbench",
+    "label": "BackEnd_WikiLanguage.ER_WorkbenchMenuItem_New",
+    "permission": {
+      "id": "seeInsurance",
+      "visible": true
+    },
+    "contentSource": {
+      "window": {
+        "moduleId": "insurance",
+        "selector": "app-insurance"
+      },
+      "initial": {
+        "width": 1100,
+        "height": 530
+      },
+      "academyScreenId": "insurance"
+    }
+  },
+  {
+    "id": "seasonPeriods",
+    "label": "BackEnd_WikiLanguage.PAT_SeasionPeriods",
+    "contentSource": {
+      "window": {
+        "moduleId": "seasonPeriods",
+        "selector": "app-season-periods"
+      },
+      "initial": {
+        "width": 1010,
+        "height": 540
+      },
+      "academyScreenId": "seasonPeriods"
+    }
+  },
+  {
+    "id": "seasonPeriodsSettings",
+    "label": "BackEnd_WikiLanguage.GS_GeneralSettingsHeader",
+    "contentSource": {
+      "window": {
+        "moduleId": "seasonPeriodsSettings",
+        "selector": "app-season-periods-settings"
+      },
+      "initial": {
+        "width": 400,
+        "height": 530
+      }
+    }
+  },
+  {
+    "id": "catering",
+    "label": "BackEnd_WikiLanguage.PAT_Catering",
+    "contentSource": {
+      "window": {
+        "moduleId": "cateringSettings",
+        "selector": "app-catering-settings"
+      },
+      "initial": {
+        "width": 960,
+        "height": 429
+      },
+      "academyScreenId": "catering"
+    }
+  },
+  {
+    "id": "visitorsTax",
+    "label": "BackEnd_WikiLanguage.PAT_VisitorsTax",
+    "contentSource": {
+      "window": {
+        "moduleId": "visitorsTaxSettings",
+        "selector": "app-visitors-tax-settings"
+      },
+      "initial": {
+        "width": 860,
+        "height": 390
+      },
+      "academyScreenId": "visitorsTax"
+    }
+  },
+  {
+    "id": "extraCharges",
+    "label": "BackEnd_WikiLanguage.PAT_ExtraCharges",
+    "contentSource": {
+      "window": {
+        "moduleId": "extraCharges",
+        "selector": "app-extra-charges"
+      },
+      "initial": {
+        "width": 700,
+        "height": 360
+      },
+      "academyScreenId": "extraCharges"
+    }
+  },
+  {
+    "id": "ageGroups",
+    "label": "BackEnd_WikiLanguage.PAT_AgeGroups",
+    "contentSource": {
+      "window": {
+        "moduleId": "ageGroups",
+        "selector": "app-age-groups"
+      },
+      "initial": {
+        "width": 560,
+        "height": 245
+      },
+      "academyScreenId": "ageGroupAdmin"
+    }
+  },
+  {
+    "id": "lastMinutes",
+    "label": "BackEnd_WikiLanguage.PAT_LastMinutes",
+    "contentSource": {
+      "window": {
+        "moduleId": "lastMinutes",
+        "selector": "app-last-minutes"
+      },
+      "initial": {
+        "width": 900,
+        "height": 440
+      },
+      "academyScreenId": "lastMinutes"
+    }
+  },
+  {
+    "id": "longStayDiscount",
+    "label": "BackEnd_WikiLanguage.PAT_LongStayDiscount",
+    "contentSource": {
+      "window": {
+        "moduleId": "longStayDiscount",
+        "selector": "app-long-stay-discount"
+      },
+      "initial": {
+        "width": 830,
+        "height": 450
+      },
+      "academyScreenId": "longStayDiscount"
+    }
+  },
+  {
+    "id": "earlyBirdDiscount",
+    "label": "BackEnd_WikiLanguage.EBD_Header",
+    "contentSource": {
+      "window": {
+        "moduleId": "earlyBirdDiscount",
+        "selector": "app-early-bird-discount"
+      },
+      "initial": {
+        "width": 770,
+        "height": 430
+      },
+      "academyScreenId": "earlyBirdDiscount"
+    }
+  },
+  {
+    "id": "chargingScheme",
+    "label": "BackEnd_WikiLanguage.CS_TAB",
+    "contentSource": {
+      "window": {
+        "moduleId": "chargingScheme",
+        "selector": "app-charging-scheme"
+      },
+      "initial": {
+        "width": 1000,
+        "height": 600
+      },
+      "academyScreenId": "chargingScheme"
+    }
+  },
+  {
+    "id": "entityGroup",
+    "label": "BackEnd_WikiLanguage.CAT_EntityGroup",
+    "contentSource": {
+      "window": {
+        "moduleId": "roomCategory",
+        "selector": "app-room-category"
+      },
+      "initial": {
+        "width": 1200,
+        "height": 640
+      },
+      "academyScreenId": "roomCategoryAdmin"
+    }
+  },
+  {
+    "id": "stdRoomsAndApartments",
+    "label": "BackEnd_WikiLanguage.TLM_RoomsAndApps",
+    "contentSource": {
+      "window": {
+        "moduleId": "roomsApartments",
+        "selector": "app-rooms-apartments"
+      },
+      "initial": {
+        "width": 1090,
+        "height": 655
+      }
+    }
+  },
+  {
+    "id": "wishRoomModule",
+    "label": "BackEnd_WikiLanguage.TLM_WRM",
+    "contentSource": {
+      "window": {
+        "moduleId": "wishRoomAdministration",
+        "selector": "app-wish-room-administration"
+      },
+      "initial": {
+        "width": 960,
+        "height": 438
+      },
+      "academyScreenId": "wishroom"
+    }
+  },
+  {
+    "id": "licenseUpsellingModule",
+    "label": "BackEnd_WikiLanguage.increaseRoomLicence",
+    "contentSource": {
+      "window": {
+        "moduleId": "licenseUpsellingModule",
+        "selector": "app-license-upselling"
+      },
+      "initial": {
+        "width": 960,
+        "height": 660
+      }
+    }
+  },
+  {
+    "id": "hotelManagement",
+    "label": "BackEnd_WikiLanguage.Hotel_ConfigMenuItem",
+    "contentSource": {
+      "window": {
+        "moduleId": "hotelManagement",
+        "selector": "app-operation-settings"
+      },
+      "initial": {
+        "width": 920,
+        "height": 550
+      }
+    }
+  },
+  {
+    "id": "portalAAT",
+    "label": "Portal \"austria-booking.at\"",
+    "permission": "seeAATPortal",
+    "contentSource": {
+      "window": {
+        "moduleId": "portalAAT",
+        "selector": "app-portal-aat"
+      },
+      "initial": {
+        "width": 920,
+        "height": 600
+      },
+      "academyScreenId": "austriaAt"
+    }
+  },
+  {
+    "id": "portal",
+    "label": "BackEnd_WikiLanguage.CAT_Portal",
+    "contentSource": {
+      "window": {
+        "moduleId": "portal",
+        "selector": "app-portal"
+      },
+      "initial": {
+        "width": 920,
+        "height": 600
+      }
+    }
+  },
+  {
+    "id": "fileAdmin",
+    "label": "BackEnd_WikiLanguage.FA_FileAdmin",
+    "contentSource": {
+      "window": {
+        "moduleId": "fileAdmin",
+        "selector": "app-file-admin"
+      },
+      "initial": {
+        "width": 970,
+        "height": 510
+      },
+      "academyScreenId": "fileadmin"
+    }
+  },
+  {
+    "id": "templateAdmin",
+    "label": "BackEnd_WikiLanguage.CAT_TemplateAdmin",
+    "contentSource": {
+      "window": {
+        "moduleId": "templateAdmin",
+        "selector": "app-template-admin"
+      },
+      "initial": {
+        "width": 960,
+        "height": 560
+      },
+      "academyScreenId": "emailTemplateAdmin"
+    }
+  },
+  {
+    "id": "roomOwnerConfig",
+    "label": "BackEnd_WikiLanguage.roomOwnerConfigTitle",
+    "permission": "seeRoomOwnerModule",
+    "contentSource": {
+      "window": {
+        "moduleId": "roomOwnerConfig",
+        "selector": "app-room-owner"
+      },
+      "initial": {
+        "width": 860,
+        "height": 600
+      },
+      "academyScreenId": "roomOwnerConfig"
+    }
+  },
+  {
+    "id": "payment",
+    "label": "BackEnd_WikiLanguage.MENU_paymentOptions",
+    "contentSource": {
+      "window": {
+        "moduleId": "payment",
+        "selector": "app-payment"
+      },
+      "initial": {
+        "width": 920,
+        "height": 550
+      },
+      "academyScreenId": "paymentOptions"
+    }
+  },
+  {
+    "id": "openBookingTools",
+    "label": "BackEnd_WikiLanguage.FE_BookingToolsMenuItem",
+    "contentSource": {
+      "window": {
+        "moduleId": "bookingTools",
+        "selector": "app-booking-tools"
+      },
+      "initial": {
+        "width": 920,
+        "height": 550
+      },
+      "academyScreenId": "bookingTools"
+    }
+  },
+  {
+    "id": "cms",
+    "label": "BackEnd_WikiLanguage.CMS_Header",
+    "contentSource": {
+      "window": {
+        "moduleId": "website",
+        "selector": "app-website"
+      },
+      "initial": {
+        "width": 900,
+        "height": 480
+      },
+      "academyScreenId": "cms"
+    }
+  },
+  {
+    "id": "iframedSupportFormNew",
+    "label": "BackEnd_WikiLanguage.TLM_supportHelpContact",
+    "contentSource": {
+      "window": {
+        "moduleId": "supportFormNew",
+        "selector": "app-support-form-new"
+      },
+      "initial": {
+        "width": 995,
+        "height": 550
+      },
+      "academyScreenId": "myEbSupportForm"
+    }
+  },
+  {
+    "id": "myAccount",
+    "label": "BackEnd_WikiLanguage.TLM_sugarInvoices",
+    "contentSource": {
+      "window": {
+        "moduleId": "sugarInvoices",
+        "selector": "app-sugar-invoices"
+      },
+      "initial": {
+        "width": 843,
+        "height": 550
+      }
+    }
+  },
+  {
+    "id": "ebCustomerAdmin",
+    "label": "BackEnd_WikiLanguage.AT_CustomerAdmin",
+    "permission": "accessAdminArea",
+    "contentSource": {
+      "window": {
+        "moduleId": "customers",
+        "selector": "app-customers"
+      },
+      "initial": {
+        "width": 1000,
+        "height": 550
+      }
+    }
+  },
+  {
+    "id": "customerReporting",
+    "label": "BackEnd_WikiLanguage.CR_BillableCustomers",
+    "permission": "accessAdminArea",
+    "contentSource": {
+      "window": {
+        "moduleId": "customerReporting",
+        "selector": "app-customer-reporting"
+      },
+      "initial": {
+        "width": 975,
+        "height": 550
+      }
+    }
+  },
+  {
+    "id": "portalAdmin",
+    "label": "BackEnd_WikiLanguage.POA_PortalAdmin",
+    "permission": "accessAdminArea",
+    "contentSource": {
+      "window": {
+        "moduleId": "portalAdmin",
+        "selector": "app-portal-admin"
+      },
+      "initial": {
+        "width": 1030,
+        "height": 560
+      }
+    }
+  },
+  {
+    "id": "validateDBReport",
+    "label": "BackEnd_WikiLanguage.REP_DBValid_TAB",
+    "permission": "accessAdminArea",
+    "contentSource": {
+      "window": {
+        "moduleId": "databaseValidation",
+        "selector": "app-database-validation"
+      },
+      "initial": {
+        "width": 850,
+        "height": 290
+      }
+    }
+  },
+  {
+    "id": "adminMessageCenter",
+    "label": "Admin - MessageCenter",
+    "permission": "accessAdminArea",
+    "contentSource": {
+      "window": {
+        "moduleId": "adminMessageCenter",
+        "selector": "app-message-center"
+      }
+    }
+  },
+  {
+    "id": "multiUser",
+    "label": "Multiuser",
+    "permission": "accessAdminArea",
+    "contentSource": {
+      "window": {
+        "moduleId": "multiUser",
+        "selector": "app-multi-user"
+      },
+      "initial": {
+        "width": 580,
+        "height": 200
+      }
+    }
+  },
+  {
+    "id": "legaldocs",
+    "label": "Legaldocs",
+    "permission": "accessAdminArea",
+    "contentSource": {
+      "window": {
+        "moduleId": "legalDocs",
+        "selector": "app-legal-docs"
+      },
+      "initial": {
+        "width": 870,
+        "height": 730
+      }
+    }
+  },
+  {
+    "id": "consumerMoreInformation",
+    "label": "BackEnd_WikiLanguage.CCA_MoreInformation",
+    "contentSource": {
+      "window": {
+        "moduleId": "consumerMoreInformation",
+        "selector": "app-customer-more-information"
+      }
+    }
+  },
+  {
+    "id": "guestRegistrationConfig",
+    "label": "BackEnd_WikiLanguage.MW_ConfigTitle",
+    "contentSource": {
+      "window": {
+        "moduleId": "guestRegistrationConfig",
+        "selector": "app-guest-registration-config"
+      }
+    }
+  },
+  {
+    "id": "billingSettings",
+    "label": "BackEnd_WikiLanguage.BW_BillingSettingsTitle",
+    "contentSource": {
+      "window": {
+        "moduleId": "billingSettings",
+        "selector": "app-billing-settings"
+      },
+      "initial": {
+        "width": 768,
+        "height": 430
+      }
+    }
+  },
+  {
+    "id": "enquiryPoolSettings",
+    "label": "BackEnd_WikiLanguage.ORPEA_EnquiryPoolSettingsTitle",
+    "contentSource": {
+      "window": {
+        "moduleId": "enquiryPoolSettings",
+        "selector": "app-enquiry-pool-settings"
+      },
+      "initial": {
+        "width": 435,
+        "height": 345
+      }
+    }
+  },
+  {
+    "id": "generalSettings",
+    "label": "BackEnd_WikiLanguage.GS_GeneralSettingsHeader",
+    "contentSource": {
+      "window": {
+        "moduleId": "generalSettings",
+        "selector": "app-general-settings"
+      },
+      "initial": {
+        "width": 850,
+        "height": 500
+      }
+    }
+  },
+  {
+    "id": "specialOffersSettings",
+    "label": "BackEnd_WikiLanguage.SO_packageSettingsTitle",
+    "contentSource": {
+      "window": {
+        "moduleId": "specialOffersSettings",
+        "selector": "app-special-offers-settings"
+      },
+      "initial": {
+        "width": 900,
+        "height": 310
+      }
+    }
+  },
+  {
+    "id": "createRegistrationForm",
+    "label": "BackEnd_WikiLanguage.MW_CreateRegformTitle",
+    "contentSource": {
+      "window": {
+        "moduleId": "createRegistrationForm",
+        "selector": "app-create-registration-form"
+      },
+      "initial": {
+        "width": 800,
+        "height": 530
+      }
+    }
+  },
+  {
+    "id": "guestInformation",
+    "label": "BackEnd_WikiLanguage.MW_GuestData",
+    "contentSource": {
+      "window": {
+        "moduleId": "guestInformation",
+        "selector": "app-guest-information"
+      },
+      "initial": {
+        "width": 910,
+        "height": 540
+      }
+    }
+  }
+]

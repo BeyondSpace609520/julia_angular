@@ -1,0 +1,31 @@
+@import '_variables'
+    
+:host
+    display: flex
+
+.image-container
+    flex: 3
+    text-align: center
+    background: #fff8e8
+    border: 1px solid #a5a5a5
+    img
+        max-width: 100%
+
+.buttons
+    flex: 1
+    display: flex
+    flex-direction: column
+    align-items: center
+    padding: 1em
+    .btn-group
+        margin-bottom: .3em
+        .btn
+            padding: .5em
+    .mdi
+        font-size: 1.6em
+        &.mdi-upload
+            color: $success
+        &.mdi-close-octagon
+            color: $danger
+        &.mdi-star
+            color: #ECE13E

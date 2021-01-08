@@ -1,0 +1,54 @@
+@import 'app-globals';
+
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(white, 0.5);
+    z-index: 10;
+  }
+}
+
+.spinner-container {
+  display: inline-block;
+}
+
+// Spinner 1
+// Source: https://tobiasahlin.com/spinkit/
+//
+.spinner {
+  text-align: center;
+}
+
+.spinner > div {
+  width:  14px;
+  height: 14px;
+  background-color: $primary;
+
+  border-radius: 100%;
+  display: inline-block;
+  animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+}
+
+.spinner .bounce1 {
+  animation-delay: -0.32s;
+}
+
+.spinner .bounce2 {
+  animation-delay: -0.16s;
+}
+
+@keyframes sk-bouncedelay {
+  0%, 80%, 100% {
+    transform: scale(0);
+  } 40% {
+      transform: scale(1.0);
+    }
+}

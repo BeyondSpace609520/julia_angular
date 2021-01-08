@@ -1,0 +1,55 @@
+.onoffswitch {
+  height: 22px;
+}
+
+.onoffswitch ui-switch,
+.onoffswitch > strong {
+  line-height: 22px;
+}
+
+.onoffswitch ui-switch,
+.onoffswitch ui-switch > span,
+.onoffswitch > strong {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.onoffswitch > strong {
+  margin-left: 8px;
+}
+
+.toggleGreen {
+  background: #7c8fa6;
+  width: 40px;
+  height: 20px;
+  border-radius: 100px;
+  display: block;
+  appearance: none;
+  -webkit-appearance: none;
+  position: relative;
+  cursor: pointer;
+  float: left;
+  &:after {
+    content: "";
+    background: #ffffff;
+    display: block;
+    height: 20px;
+    width: 20px;
+    border-radius: 100%;
+    position: absolute;
+    left: 0px;
+    transform: scale(0.9);
+    cursor: pointer;
+    transition: all 0.4s ease;
+  }
+  &:checked {
+    background: #00b936;
+    &:after {
+      background: #ffffff;
+      left: 20px;
+    }
+  }
+  &:disabled {
+    opacity: .5;
+  }
+}

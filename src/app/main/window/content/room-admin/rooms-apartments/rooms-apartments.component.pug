@@ -1,0 +1,17 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+.sidebar
+  app-list-view.list-view(
+    [items]="list",
+    [selected]="selectedItem?.id",
+    (select)="selectItem($event)"
+  )
+    ng-template(let-item)
+      ng-container(*ngIf="item.isSeparator; else itemTemplate") {{'BackEnd_WikiLanguage.defaultSeparatorText' | translate}}
+      ng-template(#itemTemplate) {{item.uniqueNo}}
+  .bottom-buttons
+    button.new.btn.btn-secondary((click)="newRoom()", translate) BackEnd_WikiLanguage.generic_New
+    button.delete.btn.btn-secondary((click)="deleteItem(selectedItem)", [disabled]="!selectedItem", translate) BackEnd_WikiLanguage.generic_Delete
+    button.new-separator.btn.btn-secondary((click)="newSeparator()", translate) BackEnd_WikiLanguage.newSeparatorBTN
+content(*ngIf="selectedItem")
+  app-edit-separator(*ngIf="selectedItem.isSeparator", [selectedItem]="selectedItem", (edited)="onTabSaved('separator')")
+  app-edit-room(*ngIf="!selectedItem.isSeparator", [selectedItem]="selectedItem", (edited)="onTabSaved($event)", [(preselectTabId)]="preselectTabId")

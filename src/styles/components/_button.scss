@@ -1,0 +1,281 @@
+$lighten-gradient: 10%;
+$darken-border-hover: 9%;
+$darken-border: 5%;
+
+.loadingOnButton {
+  display: none;
+  width: 48px;
+  height: 18px;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  position: absolute;
+  z-index: 1;
+  &.run {
+    display: block;
+  }
+}
+
+// fix firefox border problem - start
+@-moz-document url-prefix() {
+  .btn {
+    border: none !important;
+    margin: 0 1px;
+    // normal buttons
+    &.btn-primary, &.btn-outline-primary {
+      box-shadow: 0px 0px 0px 1px #1891eb inset !important;
+      &.btn-link {
+        box-shadow: none !important;
+      }
+    }
+    &.btn-secondary, &.btn-outline-secondary, &.dropdown-toggle {
+      box-shadow: 0px 0px 0px 1px #e4e4e4 inset !important;
+      &.btn-link {
+        box-shadow: none !important;
+      }
+    }
+    &.btn-success, &.btn-outline-success {
+      box-shadow: 0px 0px 0px 1px #6dc949 inset !important;
+      &.btn-link {
+        box-shadow: none !important;
+      }
+    }
+    &.btn-warning, &.btn-outline-warning {
+      box-shadow: 0px 0px 0px 1px #f6971c inset !important;
+      &.btn-link {
+        box-shadow: none !important;
+      }
+    }
+    &.btn-danger, &.btn-outline-danger {
+      box-shadow: 0px 0px 0px 1px #d53e2f inset !important;
+      &.btn-link {
+        box-shadow: none !important;
+      }
+    }
+    &.btn-primary, &.btn-outline-primary {
+      box-shadow: 0px 0px 0px 1px #1891eb inset !important;
+      &.btn-link {
+        box-shadow: none !important;
+      }
+    }
+  }
+}
+// fix firefox border problem - end
+
+// General
+.btn {
+  display: inline-block;
+  cursor: pointer;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, background 0.15s ease-in-out;
+  font-weight: $btn-font-weight;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  padding: $btn-padding-y $btn-padding-x;
+  border: $btn-border-width solid transparent;
+  line-height: 1;
+  border-radius: $border-radius;
+  box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  -o-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  outline: none !important;
+
+  &.btn-secondary {
+    color: $gray-900;
+    border-color: #CACBCB;
+  }
+
+  // Opinionated: add "hand" cursor to non-disabled .btn elements
+  &:not(:disabled):not(.disabled) {
+    cursor: pointer;
+  }
+
+  // Disabled
+  &.disabled, &:disabled {
+    cursor: not-allowed;
+    opacity: $btn-disabled-opacity;
+  }
+
+  // Future-proof disabling of clicks on `<a>` elements
+  a.btn.disabled,
+  fieldset:disabled a.btn {
+    pointer-events: none;
+  }
+
+  //&:hover,
+  //&:active,
+  //&:focus,
+  //&.active {
+    //box-shadow: inset 0 -20px 20px rgba(0, 0, 0, 0.08);
+  //}
+
+  // Dropdown
+  &.dropdown-toggle {
+    vertical-align: middle;
+    &.btn-sm {
+      padding-right: $btn-padding-x-sm;
+    }
+
+    &.btn-lg {
+      padding-right: $btn-padding-x-lg;
+    }
+    &.ng-invalid {
+      border-color: $danger;
+    }
+  }
+
+  // With icon
+  .mdi {
+    display: inline-block;
+    font-size: $btn-icon-size;
+    height: 1.1rem;
+    line-height: 1.1rem;
+    vertical-align: sub;
+  }
+
+  // Small
+  &.btn-sm {
+    padding: $btn-padding-y-sm $btn-padding-x-sm;
+    font-size: 1rem;
+
+    i {
+      font-size: $btn-icon-size-sm;
+      height: #{$btn-icon-size-sm - 3};
+      line-height: #{$btn-icon-size-sm - 3};
+    }
+  }
+
+  &.btn-xs {
+    padding: $btn-padding-y-xs $btn-padding-x-xs;
+    font-size: $btn-icon-size-xs;
+    line-height: 1;
+
+    i {
+      font-size: $btn-icon-size-xs;
+      height: $btn-icon-size-xs;
+      line-height: 1;
+    }
+  }
+
+  // Large
+  &.btn-lg {
+    padding: $btn-padding-y-lg $btn-padding-x-lg;
+
+    .mdi {
+      font-size: $btn-icon-size-lg;
+      height: #{$btn-icon-size-lg - 3};
+      line-height: #{$btn-icon-size-lg - 3};
+    }
+  }
+
+  &.btn-secondary-inverted {
+    border-color: #242c3e;
+    background: linear-gradient(to bottom, #242c3e 0%, #141822 100%);
+    color: #e4e4e4;
+  }
+
+  &.btn-icon {
+    padding: $btn-padding-y-icon $btn-padding-x-icon;
+    border: none;
+
+    i {
+      color: $gray-600;
+      font-size: $btn-icon-size-icon;
+      height: #{$btn-icon-size-icon - 3};
+      line-height: #{$btn-icon-size-icon - 3};
+      vertical-align: middle;
+    }
+    &:hover {
+      i {
+        color: $gray-900;
+      }
+    }
+  }
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+}
+
+.btn-group,
+.input-group {
+  .mdi {
+    font-size: $btn-icon-size;
+  }
+
+  .btn {
+    padding-left: $grid-gutter-width/2;
+    padding-right: $grid-gutter-width/2;
+  }
+}
+
+.btn-group.btn-group-fullwidth {
+  width: 100%;
+
+  .btn {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.btn-group-sm {
+  .btn {
+    font-size: 1rem;
+  }
+}
+
+// Fix bootstrap
+.btn.dropdown-toggle.btn-sm,
+.btn-group-sm > .btn.dropdown-toggle {
+  padding-right: 30px;
+}
+.btn.btn-sm i, .btn-group-sm > .btn i {
+  font-size: 1.28rem;
+  height: 1.1rem;
+  line-height: 1.1rem;
+}
+
+// Button variants
+@each $color, $value in $buttons {
+  .btn-#{$color} {
+    @include button-variant($value, $value, $color);
+  }
+}
+
+// Button outline
+@each $color, $value in $buttons {
+  .btn-outline-#{$color} {
+    @include button-outline-variant($value, $color);
+  }
+}
+
+// Button link
+.btn-link {
+  background: none!important;
+  border: none!important;
+
+  @each $color, $value in $buttons {
+    &.btn-#{$color} {
+      @include button-link-variant($value, $color);
+    }
+  }
+  
+  &:hover {
+    filter: brightness(75%);
+  }
+}
+
+// Other
+.button-wrap {
+  display: inline-block;
+  position: relative;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+

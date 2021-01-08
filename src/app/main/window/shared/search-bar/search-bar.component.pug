@@ -1,0 +1,18 @@
+form.row(*ngIf="form", [formGroup]="form")
+    .column.refresh-button(*ngIf="refreshInsteadOfGo")
+        button.btn.btn-secondary((click)="onSearch()")
+            i.mdi.mdi-refresh
+    .column.form-group(*ngIf="form.get('from') as from")
+        label(translate) BackEnd_WikiLanguage.generic_From
+        app-datepicker-input.bottomLeft([date]="from.value", (dateChange)="from.setValue($event)", placement="bottomLeft")
+    .column.form-group(*ngIf="form.get('to') as to")
+        label(translate) BackEnd_WikiLanguage.generic_To
+        app-datepicker-input([date]="to.value", (dateChange)="to.setValue($event)", placement="bottomLeft")
+    .column.middleslot
+        ng-content(select="[middleSlot]")
+    .column.search-button(*ngIf="!refreshInsteadOfGo")
+        button.btn.btn-secondary.go-button((click)="onSearch()", translate) BackEnd_WikiLanguage.interactionReport_GoButtonLabel
+    .column.checkbox-list.col.sm-fullheight
+        .form-check(*ngFor="let checkbox of checkboxes; let i = index")
+            input(type="checkbox", [formControl]="form.get('checkboxes').controls[i]", [id]="checkbox.id+'-checkbox'")
+            label(translate, [for]="checkbox.id+'-checkbox'") {{checkbox.label}}

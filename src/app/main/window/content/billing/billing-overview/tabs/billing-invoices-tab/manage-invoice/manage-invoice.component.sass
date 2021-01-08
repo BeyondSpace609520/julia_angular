@@ -1,0 +1,32 @@
+.total
+    font-size: 1.1em
+    width: 6em
+    text-align: right
+    border-bottom: 3px solid #cbcbcb
+    margin-left: auto
+    font-weight: 600
+    &.highlight
+        color: #0cb90c
+
+
+$bottom-actions-overlay: 2em
+
+.billing-text
+    margin-bottom: $bottom-actions-overlay
+    .form-group
+        display: block
+        textarea
+            height: 9em
+
+.payments
+    .form-group
+        margin: 0
+        .btn
+            padding: 0.2em
+            .mdi-plus-outline
+                font-size: 1.7rem
+    .total
+        margin-right: 5em
+
+.bottom-buttons
+    margin-top: -$bottom-actions-overlay // make buttons and 'total' element from payments in one line

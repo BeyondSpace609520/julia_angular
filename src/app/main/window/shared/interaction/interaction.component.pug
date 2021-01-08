@@ -1,0 +1,36 @@
+.row
+  app-search-bar.w-100([checkboxes]="searchCheckboxes", (search)="onSearch($event)")
+  app-loading.loading-bar(*ngIf="isSearching()")
+.m-3
+  app-table.with-tooltip.table-responsive.d-md-table([items]="items")
+    ng-template(#column, let-item)
+      .actions
+        app-table-action(
+          [active]="!(!item.isLatestStatus || item.isCancelled)",
+          tooltip="BackEnd_WikiLanguage.CCAI_OpenBooking",
+          icon="arrow-right",
+          (click)="openRoomplan(item)"
+        )
+        app-table-action(
+          tooltip="BackEnd_WikiLanguage.CCAI_ViewInteraction",
+          icon="magnify",
+          (click)="viewEmail(item)"
+        )
+        app-table-action(
+          tooltip="BackEnd_WikiLanguage.CCAI_ResendInteraction",
+          icon="redo",
+          (click)="resendEmail(item)"
+        )
+        app-table-action(
+          [active]="item.interactionType === 'customerEMail' && item.stdAttachmentPath",
+          tooltip="BackEnd_WikiLanguage.CCAI_ViewPDF",
+          icon="file-pdf",
+          (click)="previewPDF(item)"
+        )
+    ng-container(*ngFor="let col of columns")
+      ng-template(#column, [sortable]="col.id", [label]="col.label", let-item)
+        ng-container([ngSwitch]="col.type")
+          span(*ngSwitchCase="'date'") {{ item[col.id] | ebDate }}
+          span(*ngSwitchCase="'number'", appFormatNumber) {{ item[col.id] }}
+          span(*ngSwitchDefault) {{ item[col.id] }}
+

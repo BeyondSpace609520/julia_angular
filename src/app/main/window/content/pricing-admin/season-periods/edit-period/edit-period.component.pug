@@ -1,0 +1,3 @@
+app-loading.loading-bar(*ngIf="isLoading | async")
+app-manage-period(#form, [periodId]="periodId", (refresh)="edited.emit($event)")
+button.save-button.btn.btn-secondary((click)="submit()", translate) BackEnd_WikiLanguage.generic_Save

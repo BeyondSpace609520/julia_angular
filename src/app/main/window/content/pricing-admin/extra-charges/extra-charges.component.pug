@@ -1,0 +1,43 @@
+.sidebar
+  app-list-view.list-view(
+    [items]="charges",
+    [selected]="selected?.id",
+    (select)="selectItem($event)"
+  )
+    ng-template(let-item)
+      span(translate) {{item.name}}
+      span(*ngIf="item.active")
+        | (
+        span(translate) BackEnd_WikiLanguage.generic_Active
+        | )
+content
+  app-loading.loading-bar(*ngIf="isLoading | async")
+  .charge.scrollable(*ngIf="selected && form")
+    form([formGroup]="form")
+      .form-check
+        input(id="genericActive-checkbox", type="checkbox", formControlName="active")
+        label(for="genericActive-checkbox", translate) BackEnd_WikiLanguage.generic_Active
+      .grid-area
+        .form-group
+          label(translate) BackEnd_WikiLanguage.EC_Price
+          input(type="text", appNumberInput, formControlName="price")
+
+        ng-container(*ngIf="selected.type === 'clean-up'")
+          .form-check.mb-3
+            input(id="chargeDaily-checkbox", type="checkbox", formControlName="chargeDaily")
+            label(for="chargeDaily-checkbox", translate) BackEnd_WikiLanguage.EC_ChargeDaily
+          .form-group(*ngFor="let lang of locales; let i = index")
+            label(translate) BackEnd_WikiLanguage.{{lang.name}}
+            input([formControl]="form.get('locales').controls[i]")
+
+        ng-container(*ngIf="hasValueField")
+          .form-group
+            label(translate) BackEnd_WikiLanguage.EC_NumberAvailable
+            input(formControlName="value")
+
+        ng-container(*ngIf="selected.type === 'large-pet'")
+          .form-group
+            label(translate) BackEnd_WikiLanguage.EC_LargePetXXCMAndAbove
+            input(formControlName="value", required)
+    .button-controls
+      button.btn.btn-secondary(translate, [disabled]="form && !form.valid", (click)="save()") BackEnd_WikiLanguage.generic_Save

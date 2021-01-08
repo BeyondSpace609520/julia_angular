@@ -1,0 +1,28 @@
+@import '_variables';
+
+.invoice-notice {
+    width: 700px;
+    height: 450px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+.header {
+    display: flex;
+    padding: 0.2em 0.3em;
+    background: $mdi-window-header-color;
+    border: solid 1px $mdi-window-border-color;
+    color: #121621;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+.mdi-alert-circle {
+    color: #d22d1f;
+    font-size: 90px;
+}
+.border-left {
+    color: #000;
+}
+.btn-secondary {
+    margin: auto 1em 1em auto;
+}
